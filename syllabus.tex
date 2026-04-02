@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{placeins}
+
+\title{Advanced Web Data Collection Workshop}
+\author{Cornelius Erfort}
+\date{May 16-17, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Course Overview}
+The internet is an essential source of data for social science research, providing access to vast amounts of text and structured information. This course introduces students to both basic and advanced methods for automated web data collection, focusing on practical applications in political science and other social sciences. Students will learn web scraping techniques for static and dynamic content, work with APIs, process various data formats, and automate data collection workflows. The course also covers browser automation, error handling, scheduling scraping jobs, and ethical and legal considerations.
+
+\section*{Learning Objectives}
+By the end of this workshop, participants will be able to:
+\begin{itemize}
+    \item Understand web scraping fundamentals and best practices
+    \item Use R and Python libraries for web scraping (rvest, RSelenium, requests, BeautifulSoup, httr)
+    \item Handle different types of web content (static, dynamic, JavaScript-rendered)
+    \item Work with APIs and direct HTTP requests
+    \item Store and process scraped data in various formats (CSV, JSON, XML, etc.)
+    \item Implement rate limiting, respect robots.txt, and manage sessions/cookies
+    \item Automate scraping tasks and schedule jobs (cron, Docker)
+    \item Handle common scraping challenges, errors, and logging
+    \item Understand and apply ethical and legal considerations in web data collection
+\end{itemize}
+
+\newpage
+\section*{Course Schedule}
+
+\subsection*{Day 1: Fundamentals and Basic Scraping}
+\FloatBarrier
+\begin{table}[!ht]
+\begin{tabular}{ll}
+\toprule
+Time & Topic/Activities \\
+\midrule
+9:00 & Start, Introduction \\
+& Course overview, setup \\
+ & HTML/CSS, Web Structure  \\
+& HTML basics, CSS Diner, Selector Gadget, R basics (if needed) \\
+12:30--13:30 & Lunch Break \\
+& Static Web Scraping, APIs and Data Formats \\
+ & Continue with exercises and project work \\
+ & Hands-on Project, Practical scraping (static sites, APIs) \\
+ & Wrap-up \\
+17:00 & Finish \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Day 2: Advanced Techniques and Best Practices}
+\FloatBarrier
+
+\begin{table}[h]
+\begin{tabular}{ll}
+\toprule
+Time & Topic/Activities \\
+\midrule
+9:00 & Start \\
+& Day 1 Review, Recap and questions \\
+ & Dynamic Content, Browser automation (RSelenium) \\
+12:30--13:30 & Lunch Break \\
+ & HTTP Requests, Automation, Scheduling \\
+ & Ethics, Legal Aspects \\
+ & Continue with exercises and project work \\
+ & Hands-on Project, Project presentations, Q\&A \\
+ & Wrap-up \\
+17:00 & Finish \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\newpage
+\section*{Course Materials}
+\begin{itemize}
+    \item Web browser with developer tools (Firefox or Chrome recommended)
+    \item Code editor (RStudio, Cursor, or similar)
+    \item Required R packages:
+    \begin{itemize}
+        \item rvest
+        \item xml2
+        \item httr
+        \item RSelenium
+        \item jsonlite
+        \item tidyverse
+    \end{itemize}
+\end{itemize}
+
+\section*{Resources}
+\begin{itemize}
+    \item \href{https://rvest.tidyverse.org/}{rvest Documentation}
+    \item \href{https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf}{RSelenium Documentation}
+    \item \href{https://httr.r-lib.org/}{httr Documentation}
+    \item \href{https://selectorgadget.com}{SelectorGadget}
+    \item \href{https://flukeout.github.io/}{CSS Diner}
+    \item \href{https://github.com/public-apis/public-apis}{List of Free Public APIs}
+    \item \href{https://github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md}{List of R Packages for APIs}
+\end{itemize}
+
+
+\section*{Example Web Scraping Projects}
+\textbf{Easy}
+\begin{itemize}
+    \item Wikipedia: List of political scientists (\url{https://en.wikipedia.org/wiki/List_of_political_scientists})
+    \item Parties' press releases (\url{https://www.spd.de/presse/pressemitteilungen/})
+    \item Polls (wahlrecht.de) (\url{https://www.wahlrecht.de/umfragen/})
+    \item Conference programs (EPSA, DVPW) (\url{https://epsaweb.org/annual-conference/})
+    \item Abgeordnetenwatch.de (questions and answers from candidates) (\url{https://www.abgeordnetenwatch.de/})
+    \item German Lobby Register (\url{https://www.lobbyregister.bundestag.de/})
+    \item Web Search Results (DuckDuckGo) (\url{https://duckduckgo.com/})
+    \item News articles (\url{https://www.nytimes.com/section/world})
+\end{itemize}
+
+\textbf{Medium}
+\begin{itemize}
+    \item Korean election results (backend, JSON) (\url{https://info.nec.go.kr/})
+    \item Parliamentary protocols (PDFs) (\url{https://www.bundestag.de/protokolle})
+    \item US live election data from the New York Times (JSON backend) (\url{https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html})
+    \item Polls (Politico JSON) (\url{https://www.politico.com/interactives/2024/president-election-polls/})
+    \item Doctolib appointment availability (JSON) (\url{https://www.doctolib.de/})
+    \item List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding) (\url{https://dip.bundestag.de/})
+    \item Privatization of state owned companies (Treuhand) map (\url{https://treuhandanstalt.online/karte/})
+\end{itemize}
+
+\textbf{Difficult}
+\begin{itemize}
+    \item German Members of Parliament (MPs) websites (parallel scraping/crawling)
+    \item LinkedIn profiles (Python library) (\url{https://pypi.org/project/linkedin-scraper/})
+    \item Air quality sensor data worldwide (encrypted via JavaScript) (\url{https://waqi.info/#/c/3.563/8.145/2.2z})
+    \item Historic shapefiles for Danish parishes (\url{https://dataforsyningen.dk/data/4840})
+\end{itemize}
+
+
+\section*{Research Applications}
+\begin{itemize}
+    \item Siegel, Alexandra A., and Vivienne Badaan. “\#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” \textit{American Political Science Review} 114, no. 3 (2020): 837–55. \url{https://doi.org/10.1017/S0003055420000283}
+    \item Mitts, Tamar. "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." \textit{Working Paper} (2021). \url{https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0}
+    \item Boas, Taylor C., and F. Daniel Hidalgo. “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” \textit{American Journal of Political Science} 55, no. 4 (2011): 869–85. \url{https://doi.org/10.1111/j.1540-5907.2011.00532.x}
+    \item Bischof, Daniel, and Thomas Kurer. “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” \textit{The Journal of Politics} (2023). \url{https://doi.org/10.1086/723985}
+    \item Box-Steffensmeier, Janet M., et al. “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” \textit{American Journal of Political Science} 64, no. 4 (2020): 1017–33. \url{https://doi.org/10.1111/ajps.12528}
+    \item Motolina, Lucia. “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” \textit{American Political Science Review} 115, no. 1 (2021): 97–113. \url{https://doi.org/10.1017/S0003055420000672}
+    \item Sances, Michael W. “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” \textit{The Journal of Politics} (2023). \url{https://doi.org/10.1086/723979}
+    \item Lutscher, Philipp M. “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” \textit{Political Science Research and Methods} (2021): 1–16. \url{https://doi.org/10.1017/psrm.2021.68}
+    \item Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F. "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." \textit{Research and Politics} (2023).
+    \item Morris, Kevin. “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” \textit{American Political Science Review} 115, no. 3 (2021): 805–20. \url{https://doi.org/10.1017/S0003055421000253}
+    \item Gessler, Theresa, \& Hunger, Sophia. "How the refugee crisis and radical right parties shape party competition on immigration." \textit{Political Science Research and Methods}, 10(3), 524-544 (2022). \url{https://doi.org/10.1017/psrm.2021.64}
+    \item Stukal, Denis, et al. “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” \textit{American Political Science Review} 116, no. 3 (2022): 843–57. \url{https://doi.org/10.1017/S0003055421001507}
+\end{itemize}
+
+\section*{Contact Information}
+For questions or concerns, please contact: cornelius.erfort@uni-wh.de
+
+\end{document}

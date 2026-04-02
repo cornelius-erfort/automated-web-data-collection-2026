@@ -1,0 +1,717 @@
+---
+title: "Automated Web Data Collection (Day 1)"
+author: "Cornelius Erfort"
+date: "2025-05-16"
+format: 
+  revealjs:
+     css: custom.css
+     slide-number: true
+     show-slide-number: all
+     preview-links: auto
+     theme: default
+pdf: default
+date-format: long
+from: markdown+emoji
+editor: visual
+---
+
+```{r install, echo = F}
+# install.packages("rmarkdown")
+# install.packages("tidyverse")
+# install.packages("qrcode")
+
+library(tidyverse)
+library(rmarkdown)
+library(qrcode)
+library(rvest)
+library(xml2)
+```
+
+------------------------------------------------------------------------
+
+## About me :wave:
+
+-   Post-doctoral Researcher at Witten/Herdecke University
+-   Focus on computational social science and political behavior
+
+------------------------------------------------------------------------
+
+## About you
+
+<img src="images/programming.png" class="fragment replace"/> <img src="images/experience.png" class="fragment replace"/> <img src="images/ai.png" class="fragment replace"/> <img src="images/content.png" class="fragment replace"/> <img src="images/goals.png" class="fragment replace"/> <img src="images/format.png" class="fragment replace"/> <img src="images/interaction.png" class="fragment replace"/>
+
+------------------------------------------------------------------------
+
+## Why Web Scraping?
+
+-   Access to unique and innovative data sources
+-   Large amounts of data openly accessible
+-   Complementing traditional research methods
+
+## Research Examples Using Web Data Collection
+
+::: small-font
+-   **Siegel, Alexandra A., and Vivienne Badaan.** “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” *American Political Science Review* 114, no. 3 (2020): 837–55. <https://doi.org/10.1017/S0003055420000283>
+-   **Mitts, Tamar.** "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." *Working Paper* (2021). [PDF](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0)
+-   **Boas, Taylor C., and F. Daniel Hidalgo.** “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” *American Journal of Political Science* 55, no. 4 (2011): 869–85. <https://doi.org/10.1111/j.1540-5907.2011.00532.x>
+:::
+
+------------------------------------------------------------------------
+
+## Research Examples (cont.)
+
+::: small-font
+-   **Bischof, Daniel, and Thomas Kurer.** “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723985>
+-   **Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.** “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” *American Journal of Political Science* 64, no. 4 (2020): 1017–33. <https://doi.org/10.1111/ajps.12528>
+-   **Motolina, Lucia.** “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” *American Political Science Review* 115, no. 1 (2021): 97–113. <https://doi.org/10.1017/S0003055420000672>
+:::
+
+------------------------------------------------------------------------
+
+## Research Examples (cont.)
+
+::: small-font
+-   **Sances, Michael W.** “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723979>
+-   **Lutscher, Philipp M.** “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” *Political Science Research and Methods* (2021): 1–16. <https://doi.org/10.1017/psrm.2021.68>
+-   **Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.** "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." *Research and Politics* (2023).
+:::
+
+------------------------------------------------------------------------
+
+## Research Examples (cont.)
+
+::: small-font
+-   **Morris, Kevin.** “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” *American Political Science Review* 115, no. 3 (2021): 805–20. <https://doi.org/10.1017/S0003055421000253>
+-   **Gessler, Theresa, & Hunger, Sophia.** "How the refugee crisis and radical right parties shape party competition on immigration." *Political Science Research and Methods*, 10(3), 524-544 (2022). <https://doi.org/10.1017/psrm.2021.64>
+-   **Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.** “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” *American Political Science Review* 116, no. 3 (2022): 843–57. <https://doi.org/10.1017/S0003055421001507>
+:::
+
+------------------------------------------------------------------------
+
+## Workshop Goals
+
+-   Basics of web scraping
+-   Explore different methods of webscraping
+-   Learn about practical applications of web scraping
+
+------------------------------------------------------------------------
+
+## Organizational Points
+
+-   Workshop logistics and expectations
+-   Github
+
+```{r github}
+qr_code("https://github.com/cornelius-erfort/automated-web-data-collection") %>% plot
+```
+
+<https://github.com/cornelius-erfort/automated-web-data-collection>
+
+------------------------------------------------------------------------
+
+::::: columns
+::: {.column width="60%"}
+**Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). *Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining*. Wiley.**
+
+```{r munzert-qr}
+qr_code("https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817") %>% plot
+```
+
+<https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817>
+:::
+
+::: {.column width="40%"}
+![](images/munzert.jpg){width="90%"}
+:::
+:::::
+
+------------------------------------------------------------------------
+
+::::: columns
+::: {.column width="60%"}
+**Wickham, H., & Grolemund, G. (2023). *R for Data Science (2nd Edition)*. O'Reilly Media.**
+
+```{r wickham-qr}
+qr_code("https://r4ds.had.co.nz/") %>% plot
+```
+
+<https://r4ds.had.co.nz/>
+:::
+
+::: {.column width="40%"}
+![](images/wickham.jpg){width="90%"}
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Overview of the workshop
+
+-   Day 1 Topics:
+    -   HTML and Web Structure: Basics of HTML and CSS, `rvest`
+    -   Web Scraping: Introduction, practical exercises
+    -   APIs and Data Formats
+    -   Hands-on Project
+
+------------------------------------------------------------------------
+
+## Overview of the workshop
+
+-   Day 2 Topics:
+    -   Dynamic content etc.
+    -   File management, Scheduling, challenges
+    -   Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
+    -   Outlook
+    -   Hands-on Project
+
+------------------------------------------------------------------------
+
+## Questions
+
+-   Any questions so far?
+-   Feel free to interrupt me at any point
+
+------------------------------------------------------------------------
+
+## Web Scraping Ideas: Easy
+
+-   [Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists) (useful for networks etc.)
+-   [Parties' press releases](https://www.spd.de/presse/pressemitteilungen/) (Some parties are very difficult)
+-   [Polls (wahlrecht.de)](https://www.wahlrecht.de/umfragen/)
+-   [Conference programs (EPSA, DVPW)](https://epsaweb.org/annual-conference/)
+-   [Abgeordnetenwatch.de (questions and answers from candidates)](https://www.abgeordnetenwatch.de/)
+-   [German Lobby Register](https://www.lobbyregister.bundestag.de/) (can get very complex)
+-   [Web Search Results (DuckDuckGo)](https://duckduckgo.com/)
+-   [News articles](https://www.nytimes.com/section/world)
+
+------------------------------------------------------------------------
+
+## Web Scraping Ideas: Medium
+
+-   [Korean election results (backend, JSON)](https://info.nec.go.kr/)
+-   [Parliamentary protocols (sometimes as documents or PDFs)](https://www.bundestag.de/protokolle)
+-   [US live election data from the New York Times (JSON backend)](https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html)
+-   [Polls (Politico JSON)](https://www.politico.com/interactives/2024/president-election-polls/)
+-   [Doctolib appointment availability (JSON)](https://www.doctolib.de/)
+-   [List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)](https://dip.bundestag.de/)
+-   [Privatization of state owned companies (Treuhand) map](https://treuhandanstalt.online/karte/)
+
+------------------------------------------------------------------------
+
+## Web Scraping Ideas: Difficult
+
+-   German Members of Parliament (MPs) websites (parallel scraping/crawling)
+-   [LinkedIn profiles (Python library)](https://pypi.org/project/linkedin-scraper/)
+-   [Air quality sensor data worldwide (encrypted via JavaScript)](https://waqi.info/#/c/3.563/8.145/2.2z)
+-   [Historic shapefiles for Danish parishes](https://dataforsyningen.dk/data/4840)
+
+------------------------------------------------------------------------
+
+# HTML and Web Structure
+
+## HTML
+
+-   HyperText Markup Language
+-   Building blocks of most websites
+-   Defines the structure and content of a webpage#
+-   Uses tags to define elements (e.g. headings, paragraphs, links, images)
+-   Tags are enclosed in angle brackets (e.g. `<tagname>content</tagname>`)
+-   Tags can have attributes (e.g. `<img src="image.jpg" alt="description">`)
+-   Also helps us find the information we want!
+
+------------------------------------------------------------------------
+
+## HTML Syntax
+
+. . .
+
+``` {.html code-line-numbers="|1|5,10|6|7|9"}
+<html>
+<head>
+  <title>Page title</title>
+</head>
+<body>
+  <h1 id='first'>A heading</h1>
+  <p>Some text &amp; <b>some bold text.</b></p>
+  <img src='myimg.png' width='100' height='100'>
+  <p>This is a <a href="https://www.google.com">Link</a></p>
+</body>
+```
+
+------------------------------------------------------------------------
+
+## CSS
+
+-   Cascading Style Sheets
+-   Used to style HTML elements
+-   Defines how HTML elements should be displayed on the screen
+-   Can be used to change colors, fonts, layouts, and more
+-   CSS rules consist of selectors and declarations
+-   Selectors target HTML elements, and declarations define the styles to be applied
+-   Also helps us find the information we want!
+
+------------------------------------------------------------------------
+
+## Using CSS in HTML
+
+. . .
+
+``` {.html code-line-numbers="3|7|8|10"}
+<html>
+<head>
+<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+  <h1 id='first'>A heading</h1>
+  <p class = "main-text">Some text &amp; <b>some bold text.</b></p>
+  <p>This is a <a href="https://www.google.com" class = "important-link">Link</a></p>
+  <div>
+    <p id = "twitter">Follow us on Twitter.</p>
+  </div>
+
+</body>
+```
+
+------------------------------------------------------------------------
+
+## CSS Syntax
+
+``` {.html code-line-numbers="1-4|6-9|11-14|16-19"}
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+
+div p {
+  color: red;
+  font-size: 20px;
+}
+
+.important-link {
+  color: green;
+  font-size: 18px;
+}
+
+#twitter {
+  color: orange;
+  font-size: 16px;
+}
+```
+
+------------------------------------------------------------------------
+
+## CSS path
+
+-   `elements` are referred to by their name, e.g. `p`
+
+. . .
+
+-   Elements within other elements can be referred to: `div p`
+
+. . .
+
+-   The `class` attribute is referred to with a dot, e.g. `.important-link`
+
+. . .
+
+-   The `id` attribute is referred to with a hash, e.g. `#twitter`
+
+------------------------------------------------------------------------
+
+## CSS Diner
+
+```{r css}
+qr_code("https://flukeout.github.io/") %>% plot
+```
+
+<https://flukeout.github.io/>
+
+------------------------------------------------------------------------
+
+## View the source code in the browser
+
+[MPs from the 17th Bundestag](https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html), CSS path: `.linkIntern`
+
+```{r bundestag}
+qr_code("https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html") %>% plot
+```
+
+<https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html>
+
+------------------------------------------------------------------------
+
+## View the source code in the browser
+
+[Political scientists on Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists), CSS path: `h2+ ul li > a:nth-child(1)`
+
+```{r polsci}
+qr_code("https://en.wikipedia.org/wiki/List_of_political_scientists") %>% plot
+```
+
+<https://en.wikipedia.org/wiki/List_of_political_scientists>
+
+------------------------------------------------------------------------
+
+## Selector Gadget
+
+```{r selector}
+qr_code("https://selectorgadget.com") %>% plot
+```
+
+<https://selectorgadget.com>
+
+------------------------------------------------------------------------
+
+## Package `xml2`
+
+-   `read_html()`
+
+. . .
+
+-   `read_html("http://rvest.tidyverse.org/")`
+
+. . .
+
+-   `read_html("myfiles/myhtml.html")`
+
+## Package `rvest`
+
+-   `html_elements(html, css = "your css path")` gives you the elements that fit to your css path
+
+. . .
+
+-   `html_text2(html)` gives you the content/text of the elements
+
+. . .
+
+-   `html_attr(html, name = "name of the html attribute")` gives you the values/texts of the html attribute
+
+------------------------------------------------------------------------
+
+# Exercise 1: HTML
+
+------------------------------------------------------------------------
+
+# Web scraping
+
+What we did so far:
+
+-   Download single HTML
+-   Extract data from HTML
+
+But:
+
+-   Data is often on multiple pages
+
+# Basic web scraping workflow
+
+First step
+
+```{mermaid}
+flowchart LR
+  A(URL)-- "read_html(URL)" --> B(HTML file)
+  B -- "rvest/regex" --> C(Data)
+  B -- "rvest" --> D(list of URLs)
+```
+
+or
+
+```{mermaid}
+flowchart LR
+  A(URL)-- "manually" --> B(URL pattern)
+  B -- "str_c(URL, pattern)" --> C(list of URLs)
+```
+
+------------------------------------------------------------------------
+
+## Manipulating URLs
+
+-   Often, the URLs for the HTMLs we need follow a pattern:
+
+`https:///website.com/page/1`, `https:///website.com/page/2`, ...
+
+-   We can use `stringr` to create a vector of URLs we want to download.
+
+```{r echo = T}
+str_c("https:///website.com/page/", 1:10)
+
+```
+
+------------------------------------------------------------------------
+
+## Manipulating URLs
+
+```{r }
+qr_code("https://labour.org.uk/category/latest/press-release") %>% plot
+```
+
+<https://labour.org.uk/category/latest/press-release>
+
+## Collecting links from HTML
+
+-   We can use `rvest` to extract links from HTMLs (href attribute)
+
+```{r echo = T}
+myhtml <- read_html("https://labour.org.uk/category/latest/press-release")
+myelements <- html_elements(myhtml, ".post-preview-compact__link")
+links <- html_attr(myelements, "href")
+links <- str_c("https://labour.org.uk", links)
+head(links, 5)
+
+```
+
+## How do we download multiple HTMLs?
+
+-   For loop
+-   (`sapply()`)
+-   (While loop)
+
+## For loop
+
+```{r echo = T, eval = F}
+vector <- 1:3
+for (element in vector) {
+  print(element)  
+}
+
+```
+
+. . .
+
+```{r echo = T}
+for (element in c("one", "two", "three")) {
+  print(element)  
+}
+
+```
+
+## For loop
+
+```{r echo = T, loop}
+if(!dir.exists("labour")) dir.create("labour")
+for (link in head(links)) {
+  filename <- str_c("labour/", basename(link), ".html")
+  if(file.exists(filename)) next
+  print(filename)
+  myhtml <- read_html(link)
+  write_html(myhtml, file = filename)
+  Sys.sleep(1)
+}
+
+```
+
+## Pause R
+
+For loops create a lot of traffic:
+
+-   `Sys.sleep(seconds)` pauses R for the specified time
+-   Be polite and pause for one or two seconds
+
+## Manage files
+
+-   The number of HTMLs can grow really fast.
+-   We don't want to start from the beginning with every error.
+-   Best practice: Save HTMLs to a local folder.
+
+## Manage files
+
+-   `list.files(folder, full.names = TRUE)` returns a vector with all files (and folders in the folder)
+-   `file.exists(file)` returns TRUE when the file exists, otherwise FALSE
+-   `dir.create(folder)`creates the folder
+-   `dir.exists(folder)`returns TRUE when the folder exists, otherwise FALSE
+
+## Manage files
+
+```{r echo = T, eval = F}
+for (link in links) {
+  filename <- basename(link)
+  if(!file.exists(filename)) next
+  myhtml <- read_html(link)
+  # ...
+}
+```
+
+## Useful functions
+
+-   `if(condition) expression`, if condition: only runs expression if condition is TRUE
+-   `!` Logical NOT operator\`, inverts a logical (`TRUE` -\> `FALSE`, `FALSE` -\> `TRUE`)
+-   `vector_1 %in% vector_2` operator to check whether the elements from vector_1 are in vector_2
+
+------------------------------------------------------------------------
+
+# Exercise 2: Web Scraping
+
+------------------------------------------------------------------------
+
+## APIs
+
+-   Webscraping often uses the user interface (e.g. HTML)
+-   But websites often provide data in more efficient ways
+-   Application Programming Interfaces
+-   ("Hidden" APIs)
+
+## APIs
+
+-   Standardized way to request data
+-   API returns only the requested data
+-   Some APIs are free
+-   Some APIs require authentication
+
+## API Query Parameters Explained
+
+-   **latitude**: The latitude of the location for which you want weather data (e.g., `54.09`)
+-   **longitude**: The longitude of the location (e.g., `12.14`)
+-   **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
+-   **end_date**: The end date for the data (format: `YYYY-MM-DD`)
+-   **hourly**: The type of data you want to receive, e.g., `temperature_2m` for hourly temperature at 2 meters above ground
+
+Example URL: <https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+
+-   You can change these parameters to get data for different locations, dates, or variables.
+
+## API Query Parameters Explained
+
+```{r open-meteo-docs-qr}
+qr_code("https://open-meteo.com/en/docs") %>% plot
+```
+
+[Open-Meteo API Documentation](https://open-meteo.com/en/docs)
+
+## API example
+
+<https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+
+``` {.html code-line-numbers="|1-2|12-15"}
+{"latitude":54.100006,
+"longitude":12.100006,
+"generationtime_ms":0.27310848236083984,
+"utc_offset_seconds":0,
+"timezone":"GMT",
+"timezone_abbreviation":"GMT",
+"elevation":13.0,
+"daily_units":
+  {"time":"iso8601",
+  "temperature_2m_max":"°C"},
+"daily":
+  {"time":
+      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],
+  "temperature_2m_max":
+      [14.0,16.4,13.6,16.0,15.1]}}
+```
+
+## APIs: More examples
+
+-   Geographic coordinates
+-   Twitter data
+-   Uber price estimation
+
+## APIs more examples
+
+List of free APIs
+
+```{r }
+qr_code("https://github.com/public-apis/public-apis") %>% plot
+```
+
+<https://github.com/public-apis/public-apis>
+
+## R packages for APIs
+
+-   Often R packages make it easier to use APIs in R
+
+List of R packages
+
+```{r }
+qr_code("https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md") %>% plot
+```
+
+<https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md>
+
+## File formats
+
+Which file formats do we need to know?
+
+. . .
+
+-   XML `xml2::read_xml()`
+-   CSV `readr::read_csv()`
+-   XLSX `openxlsx::read.xlsx()`
+-   JSON
+
+. . .
+
+But also:
+
+-   PDF
+-   JPG etc.
+
+## JSON
+
+-   Data are stored in key-value pairs: `{"key": "value"}`
+-   JSON is hierarchical, unlike tables/dataframes
+-   Curly brackets `{}` define objects
+-   Square brackets `[]` define arrays (ordered sequence/list of values)
+
+## JSON
+
+``` {.html code-line-numbers="|1-12|3|5-8|9|13-15"}
+{"indy movies" :[
+  {
+  "name" : "Raiders of the Lost Ark",
+  "year" : 1981,
+  "actors" : {
+      "Indiana Jones": "Harrison Ford",
+      "Dr. Rene Belloq": "Paul Freeman"
+    },
+  "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],
+  "budget" : 18000000,
+  "academy_award_ve": true
+  },
+{
+"name" : "Another Movie"
+}]
+}
+```
+
+## JSON
+
+```{r echo = T}
+library(jsonlite)
+json <- '{"indy movies" :[
+  {"name" : "Raiders of the Lost Ark",
+  "year" : 1981,
+  "actors" : {
+      "Indiana Jones": "Harrison Ford",
+      "Dr. Rene Belloq": "Paul Freeman"}},
+{"name" : "Another Movie",
+"year" : 1999
+}]}'
+  
+fromJSON(json)
+```
+
+## Hierarchical data
+
+-   We usually work with rectangular data.
+-   How can we transform hierarchical data to rectangular?
+
+. . .
+
+-   add additional columns: `tidyr::unnest_wider()`
+-   add additional rows: `tidyr::unnest_longer()`
+
+## Hierarchical data
+
+-   Packages: `jsonlite` and `tidyr`
+-   `jsonlite::parse_json()`
+-   `jsonlite::fromJSON()`
+
+------------------------------------------------------------------------
+
+# Exercise 3: APIs and Data Formats
+
+------------------------------------------------------------------------
+
+# Exercises and Hands-on Projects
+
+-   Practical applications and exercises
