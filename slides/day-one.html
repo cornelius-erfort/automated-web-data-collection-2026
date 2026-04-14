@@ -6,18 +6,21 @@
 <script src="day-one_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="day-one_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="day-one_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="day-one_files/libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+<link href="day-one_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Cornelius Erfort">
-  <meta name="dcterms.date" content="2025-05-16">
-  <title>Automated Web Data Collection (Day 1)</title>
+  <meta name="dcterms.date" content="2026-04-24">
+  <title>Automated Web Data Collection</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="day-one_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="day-one_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -96,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="day-one_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="day-one_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
   <link href="day-one_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="day-one_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -198,44 +201,61 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Automated Web Data Collection (Day 1)</h1>
+  <h1 class="title">Automated Web Data Collection</h1>
+  <p class="subtitle">Day 1</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
 Cornelius Erfort 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            Witten/Herdecke University
+          </p>
+    </div>
 </div>
 
-  <p class="date">May 16, 2025</p>
+  <p class="date">April 24, 2026</p>
 </section>
 <section id="about-me" class="slide level2">
 <h2>About me <span class="emoji" data-emoji="wave">👋</span></h2>
 <ul>
-<li>Post-doctoral Researcher at Witten/Herdecke University</li>
+<li>Post-doctoral Researcher</li>
+<li>Witten/Herdecke University</li>
 <li>Focus on computational social science and political behavior</li>
+<li>Part of <a href="https://zweitstimme.org/">zweitstimme.org</a> project</li>
 </ul>
 </section>
 <section id="about-you" class="slide level2">
 <h2>About you</h2>
-<p><img src="images/programming.png" class="fragment replace"> <img src="images/experience.png" class="fragment replace"> <img src="images/ai.png" class="fragment replace"> <img src="images/content.png" class="fragment replace"> <img src="images/goals.png" class="fragment replace"> <img src="images/format.png" class="fragment replace"> <img src="images/interaction.png" class="fragment replace"></p>
+<ul>
+<li>Experience with <strong>R</strong> vs.&nbsp;<strong>Python</strong>?</li>
+<li>Experience with <strong>agentic coding</strong> (e.g.&nbsp;Claude Code, Cursor, GitHub Copilot, etc.)?</li>
+<li>Experience with <strong>web scraping</strong>?
+<ul>
+<li>If yes: what did you scrape (site/API), and with what tools (e.g.&nbsp;<code>rvest</code>, Selenium, <code>httr</code>)?</li>
+</ul></li>
+</ul>
 </section>
 <section id="why-web-scraping" class="slide level2">
 <h2>Why Web Scraping?</h2>
 <ul>
 <li>Access to unique and innovative data sources</li>
+<li>Create <strong>original datasets</strong> that do not exist in ready-to-use form</li>
 <li>Large amounts of data openly accessible</li>
+<li>Different content types (e.g.&nbsp;text, metadata, images)</li>
 <li>Complementing traditional research methods</li>
 </ul>
 </section>
-<section id="research-examples-using-web-data-collection" class="slide level2">
-<h2>Research Examples Using Web Data Collection</h2>
+<section id="research-examples" class="slide level2">
+<h2>Research Examples</h2>
 <div class="small-font">
 <ul>
-<li><strong>Siegel, Alexandra A., and Vivienne Badaan.</strong> “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” <em>American Political Science Review</em> 114, no. 3 (2020): 837–55. <a href="https://doi.org/10.1017/S0003055420000283" class="uri">https://doi.org/10.1017/S0003055420000283</a></li>
-<li><strong>Mitts, Tamar.</strong> “Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet.” <em>Working Paper</em> (2021). <a href="https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0">PDF</a></li>
-<li><strong>Boas, Taylor C., and F. Daniel Hidalgo.</strong> “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” <em>American Journal of Political Science</em> 55, no. 4 (2011): 869–85. <a href="https://doi.org/10.1111/j.1540-5907.2011.00532.x" class="uri">https://doi.org/10.1111/j.1540-5907.2011.00532.x</a></li>
+<li><span class="info-tip" data-tip="Uses experiments on the Arab Twittersphere plus a survey experiment to test counter-speech messages and measure changes in online hate speech">ⓘ</span> <strong>#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online</strong> (<a href="https://doi.org/10.1017/S0003055420000283">Siegel &amp; Badaan 2020</a>)</li>
+<li><span class="info-tip" data-tip="Combines cross-platform data (Twitter and Gab accounts for the same users) to show how deplatforming on mainstream platforms can shift activity and increase hate-speech engagement elsewhere">ⓘ</span> <strong>Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet</strong> (<a href="https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=1">Mitts 2021</a>)</li>
+<li><span class="info-tip" data-tip="Links administrative data on radio license applications and election outcomes to estimate how control of local media affects electoral success">ⓘ</span> <strong>Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil</strong> (<a href="https://doi.org/10.1111/j.1540-5907.2011.00532.x">Boas &amp; Hidalgo 2011</a>)</li>
+<li><span class="info-tip" data-tip="Web-scrapes and geocodes a large archive of local campaign activities from an online platform to study the effects of grassroots mobilization">ⓘ</span> <strong>Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization</strong> (<a href="https://doi.org/10.1086/723985">Bischof &amp; Kurer 2023</a>)</li>
+<li><span class="info-tip" data-tip="Uses millions of campaign-finance records to map collaboration networks and show how resource sharing relates to institutional power">ⓘ</span> <strong>I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power</strong> (<a href="https://doi.org/10.1111/ajps.12528">Box-Steffensmeier et al.&nbsp;2020</a>)</li>
 </ul>
 </div>
 </section>
@@ -243,9 +263,11 @@ Cornelius Erfort
 <h2>Research Examples (cont.)</h2>
 <div class="small-font">
 <ul>
-<li><strong>Bischof, Daniel, and Thomas Kurer.</strong> “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” <em>The Journal of Politics</em> (2023). <a href="https://doi.org/10.1086/723985" class="uri">https://doi.org/10.1086/723985</a></li>
-<li><strong>Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.</strong> “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” <em>American Journal of Political Science</em> 64, no. 4 (2020): 1017–33. <a href="https://doi.org/10.1111/ajps.12528" class="uri">https://doi.org/10.1111/ajps.12528</a></li>
-<li><strong>Motolina, Lucia.</strong> “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” <em>American Political Science Review</em> 115, no. 1 (2021): 97–113. <a href="https://doi.org/10.1017/S0003055420000672" class="uri">https://doi.org/10.1017/S0003055420000672</a></li>
+<li><span class="info-tip" data-tip="Builds a large text corpus of legislative session transcripts and applies topic modeling to measure how reform-induced reelection incentives shift legislative focus over time">ⓘ</span> <strong>Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico</strong> (<a href="https://doi.org/10.1017/S0003055420000672">Motolinia 2021</a>)</li>
+<li><span class="info-tip" data-tip="Combines referendum outcomes and surveys to estimate how a major real-world event shifted support for local police spending, with heterogeneity across places">ⓘ</span> <strong>Defund My Police? The Effect of George Floyd’s Murder on Support for Local Police Budgets</strong> (<a href="https://doi.org/10.1086/723979">Sances 2023</a>)</li>
+<li><span class="info-tip" data-tip="Continuously collects website content and HTTP status codes to detect DoS attacks and links attack timing to what outlets publish">ⓘ</span> <strong>Hot topics: Denial-of-Service attacks on news websites in autocracies</strong> (<a href="https://doi.org/10.1017/psrm.2021.68">Lutscher 2021</a>)</li>
+<li><span class="info-tip" data-tip="Example of building research infrastructure by systematically collecting and standardizing parties’ press releases across countries (large-scale web data collection)">ⓘ</span> <strong>The PARTYPRESS Database</strong> (Erfort, Klüver &amp; Stötzer 2023)</li>
+<li><span class="info-tip" data-tip="Links administrative reentry records to household/neighborhood voting histories to test whether a salient ballot initiative mobilized communities most affected by incarceration">ⓘ</span> <strong>Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians</strong> (<a href="https://doi.org/10.1017/S0003055421000253">Morris 2021</a>)</li>
 </ul>
 </div>
 </section>
@@ -253,28 +275,84 @@ Cornelius Erfort
 <h2>Research Examples (cont.)</h2>
 <div class="small-font">
 <ul>
-<li><strong>Sances, Michael W.</strong> “Defund My Police? The Effect of George Floyd’s Murder on Support for Local Police Budgets.” <em>The Journal of Politics</em> (2023). <a href="https://doi.org/10.1086/723979" class="uri">https://doi.org/10.1086/723979</a></li>
-<li><strong>Lutscher, Philipp M.</strong> “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” <em>Political Science Research and Methods</em> (2021): 1–16. <a href="https://doi.org/10.1017/psrm.2021.68" class="uri">https://doi.org/10.1017/psrm.2021.68</a></li>
-<li><strong>Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.</strong> “The PARTYPRESS Database: A new Comparative Database of Parties’ Press Releases.” <em>Research and Politics</em> (2023).</li>
-</ul>
-</div>
-</section>
-<section id="research-examples-cont.-2" class="slide level2">
-<h2>Research Examples (cont.)</h2>
-<div class="small-font">
-<ul>
-<li><strong>Morris, Kevin.</strong> “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” <em>American Political Science Review</em> 115, no. 3 (2021): 805–20. <a href="https://doi.org/10.1017/S0003055421000253" class="uri">https://doi.org/10.1017/S0003055421000253</a></li>
-<li><strong>Gessler, Theresa, &amp; Hunger, Sophia.</strong> “How the refugee crisis and radical right parties shape party competition on immigration.” <em>Political Science Research and Methods</em>, 10(3), 524-544 (2022). <a href="https://doi.org/10.1017/psrm.2021.64" class="uri">https://doi.org/10.1017/psrm.2021.64</a></li>
-<li><strong>Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.</strong> “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” <em>American Political Science Review</em> 116, no. 3 (2022): 843–57. <a href="https://doi.org/10.1017/S0003055421001507" class="uri">https://doi.org/10.1017/S0003055421001507</a></li>
+<li><span class="info-tip" data-tip="Uses a corpus of 120,000 party press releases (2013–2017) to track issue attention and positions during the refugee crisis">ⓘ</span> <strong>How the refugee crisis and radical right parties shape party competition on immigration</strong> (<a href="https://doi.org/10.1017/psrm.2021.64">Gessler &amp; Hunger 2022</a>)</li>
+<li><span class="info-tip" data-tip="Builds an original collection of Twitter data from pro-government bots to test whether bots react more to online vs. offline opposition activity">ⓘ</span> <strong>Why Botter: How Pro-Government Bots Fight Opposition in Russia</strong> (<a href="https://doi.org/10.1017/S0003055421001507">Stukal et al.&nbsp;2022</a>)</li>
+<li><span class="info-tip" data-tip="Combines administrative data on local health facility closures with panel survey data to estimate how service decline shifts political attitudes and voting intentions">ⓘ</span> <strong>Public Service Decline and Support for the Populist Right: Evidence from England’s National Health Service (NHS)</strong> (<a href="http://catherinedevries.eu/NHS.pdf">Dickson, Hobolt, De Vries &amp; Cremaschi forthcoming</a>)</li>
+<li><span class="info-tip" data-tip="Uses an LLM annotation pipeline on ~1M German police press releases (2014–2024) to study how out-group cues in police communications respond to immigration salience shocks and election periods">ⓘ</span> <strong>The Police as Gatekeepers of Information: Immigration Salience and Selective Crime Reporting</strong> (<a href="https://osf.io/preprints/socarxiv/trhys_v1">Elshehawy et al.&nbsp;2025</a>)</li>
 </ul>
 </div>
 </section>
 <section id="workshop-goals" class="slide level2">
 <h2>Workshop Goals</h2>
-<ul>
+<ol type="1">
 <li>Basics of web scraping</li>
 <li>Explore different methods of webscraping</li>
 <li>Learn about practical applications of web scraping</li>
+<li>Understand the role of AI agents in scraping workflows</li>
+</ol>
+</section>
+<section id="whats-new-in-2026-ai-assisted-scraping" class="slide level2">
+<h2>What’s new in 2026: AI-assisted scraping</h2>
+<ul>
+<li>AI tools have improved a lot in the last year</li>
+<li>They can now often draft a working scraper quickly, propose selectors/regex, and iterate on errors.</li>
+<li>This workshop still focuses on <strong>understanding the web</strong> (HTML, APIs, dynamic content) so you can verify and adapt when sites change.</li>
+</ul>
+</section>
+<section id="scraping-workflow-in-practice" class="slide level2">
+<h2>Scraping Workflow in Practice</h2>
+<ol type="1">
+<li>Discover the best source (HTML vs API vs file endpoint)</li>
+<li>Inspect structure (selectors, parameters, pagination, dynamic loading)</li>
+<li>Prototype a minimal scraper for one page/request</li>
+<li>Scale up with loops, pauses, retries, and logging</li>
+<li>Validate output quality before analysis</li>
+<li>Store data and metadata for reproducibility</li>
+</ol>
+</section>
+<section id="common-failure-modes-and-quick-fixes" class="slide level2">
+<h2>Common Failure Modes (and Quick Fixes)</h2>
+<ul>
+<li><strong>Selector drift:</strong> class names or page structure changes<br>
+→ Prefer stable attributes and re-check with browser inspect tools</li>
+<li><strong>Hidden pagination:</strong> only first page scraped<br>
+→ Explicitly detect and iterate over pagination/query parameters</li>
+<li><strong>Rate limiting / blocking:</strong> requests start failing<br>
+→ Add pauses, retries, and conservative request rates</li>
+<li><strong>Dynamic content not in HTML source:</strong> empty tables in <code>read_html()</code><br>
+→ Look for background API calls or use browser automation when needed</li>
+<li><strong>Encoding / locale issues:</strong> garbled text or broken numbers/dates<br>
+→ Set encoding explicitly and standardize parsing rules</li>
+</ul>
+</section>
+<section id="data-quality-checks-before-analysis" class="slide level2">
+<h2>Data Quality Checks Before Analysis</h2>
+<ul>
+<li><strong>Row count sanity check:</strong> is the size plausible for the source/time range?</li>
+<li><strong>Unique identifier check:</strong> do IDs duplicate unexpectedly?</li>
+<li><strong>Missingness check:</strong> are key fields (date, actor, value) frequently missing?</li>
+<li><strong>Coverage check:</strong> are all expected pages/time periods included?</li>
+<li><strong>Spot-check against source:</strong> verify a random sample manually in browser</li>
+</ul>
+</section>
+<section id="ethics-and-legal-quick-checklist" class="slide level2">
+<h2>Ethics and Legal Quick Checklist</h2>
+<ul>
+<li>Check <code>robots.txt</code> and terms of service before scaling up</li>
+<li>Minimize load: respectful request rate and pauses</li>
+<li>Avoid collecting personal data unless clearly necessary and lawful</li>
+<li>Keep an audit trail: source URL, scrape date, script version</li>
+<li>Document limitations and potential biases in collected data</li>
+</ul>
+</section>
+<section id="ai-agent-guardrails-for-scraping" class="slide level2">
+<h2>AI Agent Guardrails for Scraping</h2>
+<ul>
+<li><strong>AI proposes, you verify</strong>: selectors, endpoints, parameters, and outputs</li>
+<li>Ask AI to explain <em>why</em> a selector or endpoint is robust</li>
+<li>Test on small samples before full runs</li>
+<li>Require explicit checks for duplicates, missing values, and coverage</li>
+<li>Keep scripts transparent and reproducible (no black-box copy/paste)</li>
 </ul>
 </section>
 <section id="organizational-points" class="slide level2">
@@ -284,7 +362,7 @@ Cornelius Erfort
 <li>Github</li>
 </ul>
 
-<img data-src="day-one_files/figure-revealjs/github-1.png" width="960" class="r-stretch"><p><a href="https://github.com/cornelius-erfort/automated-web-data-collection" class="uri">https://github.com/cornelius-erfort/automated-web-data-collection</a></p>
+<img data-src="day-one_files/figure-revealjs/github-1.png" width="960" class="r-stretch"><p><a href="https://github.com/cornelius-erfort/automated-web-data-collection-2026" class="uri">https://github.com/cornelius-erfort/automated-web-data-collection-2026</a></p>
 </section>
 <section class="slide level2">
 
@@ -332,7 +410,7 @@ Cornelius Erfort
 <li>HTML and Web Structure: Basics of HTML and CSS, <code>rvest</code></li>
 <li>Web Scraping: Introduction, practical exercises</li>
 <li>APIs and Data Formats</li>
-<li>Hands-on Project</li>
+<li>Applied exercise block</li>
 </ul></li>
 </ul>
 </section>
@@ -345,14 +423,14 @@ Cornelius Erfort
 <li>File management, Scheduling, challenges</li>
 <li>Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks</li>
 <li>Outlook</li>
-<li>Hands-on Project</li>
+<li>Applied exercise block</li>
 </ul></li>
 </ul>
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions</h2>
 <ul>
-<li>Any questions so far?</li>
+<li>Any questions?</li>
 <li>Feel free to interrupt me at any point</li>
 </ul>
 </section>
@@ -377,6 +455,7 @@ Cornelius Erfort
 <li><a href="https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html">US live election data from the New York Times (JSON backend)</a></li>
 <li><a href="https://www.politico.com/interactives/2024/president-election-polls/">Polls (Politico JSON)</a></li>
 <li><a href="https://www.doctolib.de/">Doctolib appointment availability (JSON)</a></li>
+<li><a href="https://www.zeit.de/wissen/2026-04/nsdap-mitgliederkartei-karteikarten-familienmitglieder-suche?freebie=a24c8315">ZEIT “NSDAP Mitgliederkartei” name search (hidden API behind search results)</a></li>
 <li><a href="https://dip.bundestag.de/">List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)</a></li>
 <li><a href="https://treuhandanstalt.online/karte/">Privatization of state owned companies (Treuhand) map</a></li>
 </ul>
@@ -413,7 +492,7 @@ Cornelius Erfort
 <section id="html-syntax" class="slide level2">
 <h2>HTML Syntax</h2>
 <div class="fragment">
-<div class="sourceCode" id="cb1" data-code-line-numbers="|1|5,10|6|7|9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|5,10|6|7|9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb1-2"><a href=""></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb1-3"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Page title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb1-4"><a href=""></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
@@ -422,7 +501,7 @@ Cornelius Erfort
 <span id="cb1-7"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Some text <span class="dv">&amp;amp;</span> <span class="dt">&lt;</span><span class="kw">b</span><span class="dt">&gt;</span>some bold text.<span class="dt">&lt;/</span><span class="kw">b</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb1-8"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">'myimg.png'</span><span class="ot"> width</span><span class="op">=</span><span class="st">'100'</span><span class="ot"> height</span><span class="op">=</span><span class="st">'100'</span><span class="dt">&gt;</span></span>
 <span id="cb1-9"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is a <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.google.com"</span><span class="dt">&gt;</span>Link<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb1-10"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="css" class="slide level2">
@@ -440,7 +519,7 @@ Cornelius Erfort
 <section id="using-css-in-html" class="slide level2">
 <h2>Using CSS in HTML</h2>
 <div class="fragment">
-<div class="sourceCode" id="cb2" data-code-line-numbers="3|7|8|10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="3|7|8|10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb2-2"><a href=""></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb2-3"><a href=""></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"mystyle.css"</span><span class="dt">&gt;</span></span>
 <span id="cb2-4"><a href=""></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
@@ -452,12 +531,12 @@ Cornelius Erfort
 <span id="cb2-10"><a href=""></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> id </span><span class="op">=</span> <span class="st">"twitter"</span><span class="dt">&gt;</span>Follow us on Twitter.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb2-11"><a href=""></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb2-12"><a href=""></a></span>
-<span id="cb2-13"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="css-syntax" class="slide level2">
 <h2>CSS Syntax</h2>
-<div class="sourceCode" id="cb3" data-code-line-numbers="1-4|6-9|11-14|16-19"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href=""></a>h1 {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-code-line-numbers="1-4|6-9|11-14|16-19"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href=""></a>h1 {</span>
 <span id="cb3-2"><a href=""></a>  color: blue;</span>
 <span id="cb3-3"><a href=""></a>  font-size: 24px;</span>
 <span id="cb3-4"><a href=""></a>}</span>
@@ -475,7 +554,7 @@ Cornelius Erfort
 <span id="cb3-16"><a href=""></a>#twitter {</span>
 <span id="cb3-17"><a href=""></a>  color: orange;</span>
 <span id="cb3-18"><a href=""></a>  font-size: 16px;</span>
-<span id="cb3-19"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-19"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="css-path" class="slide level2">
 <h2>CSS path</h2>
@@ -621,7 +700,7 @@ Cornelius Erfort
 <li>We can use <code>stringr</code> to create a vector of URLs we want to download.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">str_c</span>(<span class="st">"https:///website.com/page/"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">str_c</span>(<span class="st">"https:///website.com/page/"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "https:///website.com/page/1"  "https:///website.com/page/2" 
  [3] "https:///website.com/page/3"  "https:///website.com/page/4" 
@@ -642,11 +721,11 @@ Cornelius Erfort
 <li>We can use <code>rvest</code> to extract links from HTMLs (href attribute)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://labour.org.uk/category/latest/press-release"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://labour.org.uk/category/latest/press-release"</span>)</span>
 <span id="cb6-2"><a href=""></a>myelements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(myhtml, <span class="st">".post-preview-compact__link"</span>)</span>
 <span id="cb6-3"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">html_attr</span>(myelements, <span class="st">"href"</span>)</span>
 <span id="cb6-4"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"https://labour.org.uk"</span>, links)</span>
-<span id="cb6-5"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "https://labour.org.uk/updates/press-releases/liz-kendall-speech-at-labour-party-conference-2024/"       
 [2] "https://labour.org.uk/updates/press-releases/bridget-phillipson-speech-at-labour-party-conference-2024/"
@@ -667,16 +746,16 @@ Cornelius Erfort
 <section id="for-loop" class="slide level2">
 <h2>For loop</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
 <span id="cb8-2"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> vector) {</span>
 <span id="cb8-3"><a href=""></a>  <span class="fu">print</span>(element)  </span>
-<span id="cb8-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)) {</span>
 <span id="cb9-2"><a href=""></a>  <span class="fu">print</span>(element)  </span>
-<span id="cb9-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "one"
 [1] "two"
@@ -688,7 +767,7 @@ Cornelius Erfort
 <section id="for-loop-1" class="slide level2">
 <h2>For loop</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
 <span id="cb11-2"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> <span class="fu">head</span>(links)) {</span>
 <span id="cb11-3"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
 <span id="cb11-4"><a href=""></a>  <span class="cf">if</span>(<span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
@@ -696,7 +775,7 @@ Cornelius Erfort
 <span id="cb11-6"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
 <span id="cb11-7"><a href=""></a>  <span class="fu">write_html</span>(myhtml, <span class="at">file =</span> filename)</span>
 <span id="cb11-8"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
-<span id="cb11-9"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pause-r" class="slide level2">
@@ -727,12 +806,12 @@ Cornelius Erfort
 <section id="manage-files-2" class="slide level2">
 <h2>Manage files</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
 <span id="cb12-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
 <span id="cb12-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
 <span id="cb12-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
 <span id="cb12-5"><a href=""></a>  <span class="co"># ...</span></span>
-<span id="cb12-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="useful-functions" class="slide level2">
@@ -791,7 +870,7 @@ Cornelius Erfort
 <section id="api-example" class="slide level2">
 <h2>API example</h2>
 <p><a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m</a></p>
-<div class="sourceCode" id="cb13" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href=""></a>{"latitude":54.100006,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href=""></a>{"latitude":54.100006,</span>
 <span id="cb13-2"><a href=""></a>"longitude":12.100006,</span>
 <span id="cb13-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
 <span id="cb13-4"><a href=""></a>"utc_offset_seconds":0,</span>
@@ -805,7 +884,7 @@ Cornelius Erfort
 <span id="cb13-12"><a href=""></a>  {"time":</span>
 <span id="cb13-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
 <span id="cb13-14"><a href=""></a>  "temperature_2m_max":</span>
-<span id="cb13-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="apis-more-examples" class="slide level2">
 <h2>APIs: More examples</h2>
@@ -860,7 +939,7 @@ Cornelius Erfort
 </section>
 <section id="json-1" class="slide level2">
 <h2>JSON</h2>
-<div class="sourceCode" id="cb14" data-code-line-numbers="|1-12|3|5-8|9|13-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href=""></a>{"indy movies" :[</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="|1-12|3|5-8|9|13-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href=""></a>{"indy movies" :[</span>
 <span id="cb14-2"><a href=""></a>  {</span>
 <span id="cb14-3"><a href=""></a>  "name" : "Raiders of the Lost Ark",</span>
 <span id="cb14-4"><a href=""></a>  "year" : 1981,</span>
@@ -875,12 +954,12 @@ Cornelius Erfort
 <span id="cb14-13"><a href=""></a>{</span>
 <span id="cb14-14"><a href=""></a>"name" : "Another Movie"</span>
 <span id="cb14-15"><a href=""></a>}]</span>
-<span id="cb14-16"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-16"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="json-2" class="slide level2">
 <h2>JSON</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
 <span id="cb15-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
 <span id="cb15-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
 <span id="cb15-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
@@ -891,7 +970,7 @@ Cornelius Erfort
 <span id="cb15-9"><a href=""></a><span class="st">"year" : 1999</span></span>
 <span id="cb15-10"><a href=""></a><span class="st">}]}'</span></span>
 <span id="cb15-11"><a href=""></a>  </span>
-<span id="cb15-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`indy movies`
                      name year actors.Indiana Jones actors.Dr. Rene Belloq
@@ -932,8 +1011,8 @@ Cornelius Erfort
 <section class="slide level2">
 
 </section></section>
-<section id="exercises-and-hands-on-projects" class="title-slide slide level1 center">
-<h1>Exercises and Hands-on Projects</h1>
+<section id="exercises-and-applied-work" class="title-slide slide level1 center">
+<h1>Exercises and Applied Work</h1>
 <ul>
 <li>Practical applications and exercises</li>
 </ul>
@@ -1128,7 +1207,7 @@ Cornelius Erfort
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1240,13 +1319,14 @@ Cornelius Erfort
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

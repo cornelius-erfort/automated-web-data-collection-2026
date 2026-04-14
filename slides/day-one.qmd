@@ -1,7 +1,10 @@
 ---
-title: "Automated Web Data Collection (Day 1)"
-author: "Cornelius Erfort"
-date: "2025-05-16"
+title: "Automated Web Data Collection"
+subtitle: "Day 1"
+author:
+  - name: "Cornelius Erfort"
+    affiliation: "Witten/Herdecke University"
+date: "2026-04-24"
 format: 
   revealjs:
      css: custom.css
@@ -31,29 +34,38 @@ library(xml2)
 
 ## About me :wave:
 
--   Post-doctoral Researcher at Witten/Herdecke University
+-   Post-doctoral Researcher
+-   Witten/Herdecke University
 -   Focus on computational social science and political behavior
+-   Part of [zweitstimme.org](https://zweitstimme.org/) project
 
 ------------------------------------------------------------------------
 
 ## About you
 
-<img src="images/programming.png" class="fragment replace"/> <img src="images/experience.png" class="fragment replace"/> <img src="images/ai.png" class="fragment replace"/> <img src="images/content.png" class="fragment replace"/> <img src="images/goals.png" class="fragment replace"/> <img src="images/format.png" class="fragment replace"/> <img src="images/interaction.png" class="fragment replace"/>
+-   Experience with **R** vs. **Python**?
+-   Experience with **agentic coding** (e.g. Claude Code, Cursor, GitHub Copilot, etc.)?
+-   Experience with **web scraping**?
+    -   If yes: what did you scrape (site/API), and with what tools (e.g. `rvest`, Selenium, `httr`)?
 
 ------------------------------------------------------------------------
 
 ## Why Web Scraping?
 
 -   Access to unique and innovative data sources
+-   Create **original datasets** that do not exist in ready-to-use form
 -   Large amounts of data openly accessible
+-   Different content types (e.g. text, metadata, images)
 -   Complementing traditional research methods
 
-## Research Examples Using Web Data Collection
+## Research Examples
 
 ::: small-font
--   **Siegel, Alexandra A., and Vivienne Badaan.** “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” *American Political Science Review* 114, no. 3 (2020): 837–55. <https://doi.org/10.1017/S0003055420000283>
--   **Mitts, Tamar.** "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." *Working Paper* (2021). [PDF](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0)
--   **Boas, Taylor C., and F. Daniel Hidalgo.** “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” *American Journal of Political Science* 55, no. 4 (2011): 869–85. <https://doi.org/10.1111/j.1540-5907.2011.00532.x>
+-   [ⓘ]{.info-tip data-tip="Uses experiments on the Arab Twittersphere plus a survey experiment to test counter-speech messages and measure changes in online hate speech"} **#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online** ([Siegel & Badaan 2020](https://doi.org/10.1017/S0003055420000283))
+-   [ⓘ]{.info-tip data-tip="Combines cross-platform data (Twitter and Gab accounts for the same users) to show how deplatforming on mainstream platforms can shift activity and increase hate-speech engagement elsewhere"} **Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet** ([Mitts 2021](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=1))
+-   [ⓘ]{.info-tip data-tip="Links administrative data on radio license applications and election outcomes to estimate how control of local media affects electoral success"} **Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil** ([Boas & Hidalgo 2011](https://doi.org/10.1111/j.1540-5907.2011.00532.x))
+-   [ⓘ]{.info-tip data-tip="Web-scrapes and geocodes a large archive of local campaign activities from an online platform to study the effects of grassroots mobilization"} **Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization** ([Bischof & Kurer 2023](https://doi.org/10.1086/723985))
+-   [ⓘ]{.info-tip data-tip="Uses millions of campaign-finance records to map collaboration networks and show how resource sharing relates to institutional power"} **I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power** ([Box-Steffensmeier et al. 2020](https://doi.org/10.1111/ajps.12528))
 :::
 
 ------------------------------------------------------------------------
@@ -61,9 +73,11 @@ library(xml2)
 ## Research Examples (cont.)
 
 ::: small-font
--   **Bischof, Daniel, and Thomas Kurer.** “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723985>
--   **Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.** “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” *American Journal of Political Science* 64, no. 4 (2020): 1017–33. <https://doi.org/10.1111/ajps.12528>
--   **Motolina, Lucia.** “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” *American Political Science Review* 115, no. 1 (2021): 97–113. <https://doi.org/10.1017/S0003055420000672>
+-   [ⓘ]{.info-tip data-tip="Builds a large text corpus of legislative session transcripts and applies topic modeling to measure how reform-induced reelection incentives shift legislative focus over time"} **Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico** ([Motolinia 2021](https://doi.org/10.1017/S0003055420000672))
+-   [ⓘ]{.info-tip data-tip="Combines referendum outcomes and surveys to estimate how a major real-world event shifted support for local police spending, with heterogeneity across places"} **Defund My Police? The Effect of George Floyd’s Murder on Support for Local Police Budgets** ([Sances 2023](https://doi.org/10.1086/723979))
+-   [ⓘ]{.info-tip data-tip="Continuously collects website content and HTTP status codes to detect DoS attacks and links attack timing to what outlets publish"} **Hot topics: Denial-of-Service attacks on news websites in autocracies** ([Lutscher 2021](https://doi.org/10.1017/psrm.2021.68))
+-   [ⓘ]{.info-tip data-tip="Example of building research infrastructure by systematically collecting and standardizing parties’ press releases across countries (large-scale web data collection)"} **The PARTYPRESS Database** (Erfort, Klüver & Stötzer 2023)
+-   [ⓘ]{.info-tip data-tip="Links administrative reentry records to household/neighborhood voting histories to test whether a salient ballot initiative mobilized communities most affected by incarceration"} **Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians** ([Morris 2021](https://doi.org/10.1017/S0003055421000253))
 :::
 
 ------------------------------------------------------------------------
@@ -71,28 +85,82 @@ library(xml2)
 ## Research Examples (cont.)
 
 ::: small-font
--   **Sances, Michael W.** “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723979>
--   **Lutscher, Philipp M.** “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” *Political Science Research and Methods* (2021): 1–16. <https://doi.org/10.1017/psrm.2021.68>
--   **Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.** "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." *Research and Politics* (2023).
-:::
-
-------------------------------------------------------------------------
-
-## Research Examples (cont.)
-
-::: small-font
--   **Morris, Kevin.** “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” *American Political Science Review* 115, no. 3 (2021): 805–20. <https://doi.org/10.1017/S0003055421000253>
--   **Gessler, Theresa, & Hunger, Sophia.** "How the refugee crisis and radical right parties shape party competition on immigration." *Political Science Research and Methods*, 10(3), 524-544 (2022). <https://doi.org/10.1017/psrm.2021.64>
--   **Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.** “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” *American Political Science Review* 116, no. 3 (2022): 843–57. <https://doi.org/10.1017/S0003055421001507>
+-   [ⓘ]{.info-tip data-tip="Uses a corpus of 120,000 party press releases (2013–2017) to track issue attention and positions during the refugee crisis"} **How the refugee crisis and radical right parties shape party competition on immigration** ([Gessler & Hunger 2022](https://doi.org/10.1017/psrm.2021.64))
+-   [ⓘ]{.info-tip data-tip="Builds an original collection of Twitter data from pro-government bots to test whether bots react more to online vs. offline opposition activity"} **Why Botter: How Pro-Government Bots Fight Opposition in Russia** ([Stukal et al. 2022](https://doi.org/10.1017/S0003055421001507))
+-   [ⓘ]{.info-tip data-tip="Combines administrative data on local health facility closures with panel survey data to estimate how service decline shifts political attitudes and voting intentions"} **Public Service Decline and Support for the Populist Right: Evidence from England’s National Health Service (NHS)** ([Dickson, Hobolt, De Vries & Cremaschi forthcoming](http://catherinedevries.eu/NHS.pdf))
+-   [ⓘ]{.info-tip data-tip="Uses an LLM annotation pipeline on ~1M German police press releases (2014–2024) to study how out-group cues in police communications respond to immigration salience shocks and election periods"} **The Police as Gatekeepers of Information: Immigration Salience and Selective Crime Reporting** ([Elshehawy et al. 2025](https://osf.io/preprints/socarxiv/trhys_v1))
 :::
 
 ------------------------------------------------------------------------
 
 ## Workshop Goals
 
--   Basics of web scraping
--   Explore different methods of webscraping
--   Learn about practical applications of web scraping
+1.  Basics of web scraping
+2.  Explore different methods of webscraping
+3.  Learn about practical applications of web scraping
+4.  Understand the role of AI agents in scraping workflows
+
+## What’s new in 2026: AI-assisted scraping
+
+-   AI tools have improved a lot in the last year
+-   They can now often draft a working scraper quickly, propose selectors/regex, and iterate on errors.
+-   This workshop still focuses on **understanding the web** (HTML, APIs, dynamic content) so you can verify and adapt when sites change.
+
+------------------------------------------------------------------------
+
+## Scraping Workflow in Practice
+
+1.  Discover the best source (HTML vs API vs file endpoint)
+2.  Inspect structure (selectors, parameters, pagination, dynamic loading)
+3.  Prototype a minimal scraper for one page/request
+4.  Scale up with loops, pauses, retries, and logging
+5.  Validate output quality before analysis
+6.  Store data and metadata for reproducibility
+
+------------------------------------------------------------------------
+
+## Common Failure Modes (and Quick Fixes)
+
+-   **Selector drift:** class names or page structure changes\
+    → Prefer stable attributes and re-check with browser inspect tools
+-   **Hidden pagination:** only first page scraped\
+    → Explicitly detect and iterate over pagination/query parameters
+-   **Rate limiting / blocking:** requests start failing\
+    → Add pauses, retries, and conservative request rates
+-   **Dynamic content not in HTML source:** empty tables in `read_html()`\
+    → Look for background API calls or use browser automation when needed
+-   **Encoding / locale issues:** garbled text or broken numbers/dates\
+    → Set encoding explicitly and standardize parsing rules
+
+------------------------------------------------------------------------
+
+## Data Quality Checks Before Analysis
+
+-   **Row count sanity check:** is the size plausible for the source/time range?
+-   **Unique identifier check:** do IDs duplicate unexpectedly?
+-   **Missingness check:** are key fields (date, actor, value) frequently missing?
+-   **Coverage check:** are all expected pages/time periods included?
+-   **Spot-check against source:** verify a random sample manually in browser
+
+------------------------------------------------------------------------
+
+## Ethics and Legal Quick Checklist
+
+-   Check `robots.txt` and terms of service before scaling up
+-   Minimize load: respectful request rate and pauses
+-   Avoid collecting personal data unless clearly necessary and lawful
+-   Keep an audit trail: source URL, scrape date, script version
+-   Document limitations and potential biases in collected data
+
+------------------------------------------------------------------------
+
+## AI Agent Guardrails for Scraping
+
+-   **AI proposes, you verify**: selectors, endpoints, parameters, and outputs
+-   Ask AI to explain *why* a selector or endpoint is robust
+-   Test on small samples before full runs
+-   Require explicit checks for duplicates, missing values, and coverage
+-   Keep scripts transparent and reproducible (no black-box copy/paste)
 
 ------------------------------------------------------------------------
 
@@ -102,10 +170,10 @@ library(xml2)
 -   Github
 
 ```{r github}
-qr_code("https://github.com/cornelius-erfort/automated-web-data-collection") %>% plot
+qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026") %>% plot
 ```
 
-<https://github.com/cornelius-erfort/automated-web-data-collection>
+<https://github.com/cornelius-erfort/automated-web-data-collection-2026>
 
 ------------------------------------------------------------------------
 
@@ -151,7 +219,7 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
     -   HTML and Web Structure: Basics of HTML and CSS, `rvest`
     -   Web Scraping: Introduction, practical exercises
     -   APIs and Data Formats
-    -   Hands-on Project
+    -   Applied exercise block
 
 ------------------------------------------------------------------------
 
@@ -162,13 +230,13 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
     -   File management, Scheduling, challenges
     -   Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
     -   Outlook
-    -   Hands-on Project
+    -   Applied exercise block
 
 ------------------------------------------------------------------------
 
 ## Questions
 
--   Any questions so far?
+-   Any questions?
 -   Feel free to interrupt me at any point
 
 ------------------------------------------------------------------------
@@ -193,6 +261,7 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 -   [US live election data from the New York Times (JSON backend)](https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html)
 -   [Polls (Politico JSON)](https://www.politico.com/interactives/2024/president-election-polls/)
 -   [Doctolib appointment availability (JSON)](https://www.doctolib.de/)
+-   [ZEIT “NSDAP Mitgliederkartei” name search (hidden API behind search results)](https://www.zeit.de/wissen/2026-04/nsdap-mitgliederkartei-karteikarten-familienmitglieder-suche?freebie=a24c8315)
 -   [List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)](https://dip.bundestag.de/)
 -   [Privatization of state owned companies (Treuhand) map](https://treuhandanstalt.online/karte/)
 
@@ -712,6 +781,6 @@ fromJSON(json)
 
 ------------------------------------------------------------------------
 
-# Exercises and Hands-on Projects
+# Exercises and Applied Work
 
 -   Practical applications and exercises
