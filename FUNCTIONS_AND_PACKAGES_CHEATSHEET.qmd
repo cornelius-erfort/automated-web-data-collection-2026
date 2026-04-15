@@ -15,7 +15,7 @@ format:
 **Prepared for:** Automated Web Data Collection 2026  
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
 
-**Syllabus (HTML on GitHub):** [Advanced Web Data Collection Workshop Syllabus](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/syllabus.html)
+**Syllabus:** [Advanced Web Data Collection Workshop](https://github.com/cornelius-erfort/automated-web-data-collection-2026#readme)
 
 ## Core Packages
 

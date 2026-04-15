@@ -77,7 +77,7 @@ By the end of this workshop, participants will be able to:
 
 - Web browser with developer tools (Firefox or Chrome recommended)
 - R environment: **R** + **RStudio** (recommended) or a similar editor/IDE
-- Web Data Collection Cheat Sheet (HTML): [Functions and Packages Cheat Sheet](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html)
+- Web Data Collection Cheat Sheet (HTML): [Functions and Packages Cheat Sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html)
 - Required R packages:
   - rvest
   - xml2
