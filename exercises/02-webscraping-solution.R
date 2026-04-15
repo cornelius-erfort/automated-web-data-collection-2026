@@ -13,11 +13,11 @@ links <- str_c("https://www.abgeordnetenwatch.de/berlin/fragen-antworten?page=",
 links
 
 # 3. Create a folder where you will save the HTML files with the full questions/responses.
-dir.create("berlin")
+dir.create("examples/berlin", recursive = TRUE, showWarnings = FALSE)
 
 # 4. Read the first page into R, and save it in the created folder.
 myhtml <- read_html(links[1])
-write_html(myhtml, file = "berlin/0.html")
+write_html(myhtml, file = "examples/berlin/0.html")
 
 # 5. Build a for loop for the links to the first three pages. First define a filename that is different for each link.
 # (hint: you can name the files "0.html", "1.html", etc. by extracting the page number from the link via regular expression).
@@ -30,7 +30,7 @@ for (i in 1:3) {
   
   link <- links[i]
   
-  filename <- str_c("berlin/", i, ".html")
+  filename <- str_c("examples/berlin/", i, ".html")
   
   if(file.exists(filename)) next
   
@@ -43,7 +43,7 @@ for (i in 1:3) {
 }
 
 # 6. Read the first html page (from the folder) and extract all links to the page for the full question/response on that page using a css path (hint: ".tile__question__teaser a").
-myhtml <- read_html("berlin/0.html")
+myhtml <- read_html("examples/berlin/0.html")
 
 myelements <- html_elements(myhtml, ".tile__question__teaser a")
 
@@ -54,7 +54,7 @@ links <- html_attr(myelements, "href")
 links
 
 # 7. Create a vector with the (full) file path to each file in your folder. (hint: The path has to include the folder name.)
-files <- list.files("berlin", full.names = T)
+files <- list.files("examples/berlin", full.names = T)
 
 files
 
@@ -79,7 +79,7 @@ links <- str_c("https://www.abgeordnetenwatch.de/", links)
 
 # 10. Download the first three HTMLs with the full questions/responses. (hint: download.file(url, destfile)
 for (link in links[1:3]) {
-  download.file(link, destfile = str_c("berlin/", basename(link), ".html"))
+  download.file(link, destfile = str_c("examples/berlin/", basename(link), ".html"))
 }
 
 

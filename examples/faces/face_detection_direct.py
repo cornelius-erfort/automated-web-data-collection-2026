@@ -10,7 +10,7 @@ from retinaface import RetinaFace
 from deepface import DeepFace
 
 # Load an image
-image_path = "faces/example_image.jpg"  # Replace with your image path
+image_path = "examples/faces/example_image.jpg"  # Replace with your image path
 img = cv2.imread(image_path)
 
 # Plot the original image
@@ -41,5 +41,5 @@ plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
 # Save the annotated image
-output_path = "faces/annotated_image.jpg"  # Replace with your desired output path
+output_path = "examples/faces/annotated_image.jpg"  # Replace with your desired output path
 cv2.imwrite(output_path, img)
