@@ -65,6 +65,8 @@ library(xml2)
 -   Understand scraping challenges (CAPTCHAs, rate limits, proxies)
 -   Discuss ethics and legal aspects
 -   Applied exercises
+-   Syllabus: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
+-   Cheat Sheet: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html>
 
 ------------------------------------------------------------------------
 

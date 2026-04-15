@@ -1,3 +1,18 @@
+---
+title: "Advanced Web Data Collection Workshop"
+subtitle: "Syllabus 2026"
+author: "Cornelius Erfort (Witten/Herdecke University)"
+date: "2026-04-24"
+format:
+  html:
+    toc: true
+    number-sections: false
+    theme: cosmo
+    css: slides/handout-shared.css
+    include-after-body:
+      - text: <script src="slides/handout-theme-toggle.js"></script>
+---
+
 **Prepared for:** Automated Web Data Collection 2026  
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
 

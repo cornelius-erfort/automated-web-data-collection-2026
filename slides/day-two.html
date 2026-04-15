@@ -259,6 +259,8 @@ Cornelius Erfort
 <li>Understand scraping challenges (CAPTCHAs, rate limits, proxies)</li>
 <li>Discuss ethics and legal aspects</li>
 <li>Applied exercises</li>
+<li>Syllabus: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html</a></li>
+<li>Cheat Sheet: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html</a></li>
 </ul>
 </section>
 <section id="dynamic-content-on-websites" class="slide level2">
@@ -784,6 +786,100 @@ Cornelius Erfort
 <li>For each step, start with a minimal example and make it work</li>
 <li>Then think about additional steps like feedback, saving, error handling</li>
 </ul>
+</section>
+<section id="web-scraping-ideas-easy" class="slide level2">
+<h2>Web Scraping Ideas: Easy</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Wikipedia</a> (useful for networks etc.)</li>
+<li><a href="https://www.spd.de/presse/pressemitteilungen/">Parties’ press releases</a> (Some parties are very difficult)</li>
+<li><a href="https://www.wahlrecht.de/umfragen/">Polls (wahlrecht.de)</a></li>
+<li><a href="https://epsaweb.org/annual-conference/">Conference programs (EPSA, DVPW)</a></li>
+<li><a href="https://www.abgeordnetenwatch.de/">Abgeordnetenwatch.de (questions and answers from candidates)</a></li>
+<li><a href="https://www.lobbyregister.bundestag.de/">German Lobby Register</a> (can get very complex)</li>
+<li><a href="https://duckduckgo.com/">Web Search Results (DuckDuckGo)</a></li>
+<li><a href="https://www.nytimes.com/section/world">News articles</a></li>
+</ul>
+</section>
+<section id="web-scraping-ideas-medium" class="slide level2">
+<h2>Web Scraping Ideas: Medium</h2>
+<ul>
+<li><a href="https://info.nec.go.kr/">Korean election results (backend, JSON)</a></li>
+<li><a href="https://www.bundestag.de/protokolle">Parliamentary protocols (sometimes as documents or PDFs)</a></li>
+<li><a href="https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html">US live election data from the New York Times (JSON backend)</a></li>
+<li><a href="https://www.politico.com/interactives/2024/president-election-polls/">Polls (Politico JSON)</a></li>
+<li><a href="https://www.doctolib.de/">Doctolib appointment availability (JSON)</a></li>
+<li><a href="https://www.zeit.de/wissen/2026-04/nsdap-mitgliederkartei-karteikarten-familienmitglieder-suche?freebie=a24c8315">ZEIT “NSDAP Mitgliederkartei” name search (hidden API behind search results)</a></li>
+<li><a href="https://dip.bundestag.de/">List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)</a></li>
+<li><a href="https://treuhandanstalt.online/karte/">Privatization of state owned companies (Treuhand) map</a></li>
+</ul>
+</section>
+<section id="web-scraping-ideas-difficult" class="slide level2">
+<h2>Web Scraping Ideas: Difficult</h2>
+<ul>
+<li>German Members of Parliament (MPs) websites (parallel scraping/crawling)</li>
+<li><a href="https://pypi.org/project/linkedin-scraper/">LinkedIn profiles (Python library)</a></li>
+<li><a href="https://waqi.info/#/c/3.563/8.145/2.2z">Air quality sensor data worldwide (encrypted via JavaScript)</a></li>
+<li><a href="https://dataforsyningen.dk/data/4840">Historic shapefiles for Danish parishes</a></li>
+</ul>
+</section>
+<section id="scraping-workflow-in-practice" class="slide level2">
+<h2>Scraping Workflow in Practice</h2>
+<ol type="1">
+<li>Discover the best source (HTML vs API vs file endpoint)</li>
+<li>Inspect structure (selectors, parameters, pagination, dynamic loading)</li>
+<li>Prototype a minimal scraper for one page/request</li>
+<li>Scale up with loops, pauses, retries, and logging</li>
+<li>Validate output quality before analysis</li>
+<li>Store data and metadata for reproducibility</li>
+</ol>
+</section>
+<section id="common-failure-modes-and-quick-fixes" class="slide level2">
+<h2>Common Failure Modes (and Quick Fixes)</h2>
+<ul>
+<li><strong>Selector drift:</strong> class names or page structure changes<br>
+→ Prefer stable attributes and re-check with browser inspect tools</li>
+<li><strong>Hidden pagination:</strong> only first page scraped<br>
+→ Explicitly detect and iterate over pagination/query parameters</li>
+<li><strong>Rate limiting / blocking:</strong> requests start failing<br>
+→ Add pauses, retries, and conservative request rates</li>
+<li><strong>Dynamic content not in HTML source:</strong> empty tables in <code>read_html()</code><br>
+→ Look for background API calls or use browser automation when needed</li>
+<li><strong>Encoding / locale issues:</strong> garbled text or broken numbers/dates<br>
+→ Set encoding explicitly and standardize parsing rules</li>
+</ul>
+</section>
+<section id="data-quality-checks-before-analysis" class="slide level2">
+<h2>Data Quality Checks Before Analysis</h2>
+<ul>
+<li><strong>Row count sanity check:</strong> is the size plausible for the source/time range?</li>
+<li><strong>Unique identifier check:</strong> do IDs duplicate unexpectedly?</li>
+<li><strong>Missingness check:</strong> are key fields (date, actor, value) frequently missing?</li>
+<li><strong>Coverage check:</strong> are all expected pages/time periods included?</li>
+<li><strong>Spot-check against source:</strong> verify a random sample manually in browser</li>
+</ul>
+</section>
+<section id="ethics-and-legal-quick-checklist" class="slide level2">
+<h2>Ethics and Legal Quick Checklist</h2>
+<ul>
+<li>Check <code>robots.txt</code> and terms of service before scaling up</li>
+<li>Minimize load: respectful request rate and pauses</li>
+<li>Avoid collecting personal data unless clearly necessary and lawful</li>
+<li>Keep an audit trail: source URL, scrape date, script version</li>
+<li>Document limitations and potential biases in collected data</li>
+</ul>
+</section>
+<section id="ai-agent-guardrails-for-scraping" class="slide level2">
+<h2>AI Agent Guardrails for Scraping</h2>
+<ul>
+<li><strong>AI proposes, you verify</strong>: selectors, endpoints, parameters, and outputs</li>
+<li>Ask AI to explain <em>why</em> a selector or endpoint is robust</li>
+<li>Test on small samples before full runs</li>
+<li>Require explicit checks for duplicates, missing values, and coverage</li>
+<li>Keep scripts transparent and reproducible (no black-box copy/paste)</li>
+</ul>
+</section>
+<section class="slide level2">
+
 
 </section></section>
     </div>
