@@ -49,9 +49,11 @@ By the end of this workshop, participants will be able to:
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start, Introduction |
+| | Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/day-one.html> |
 | | Course overview, setup |
 | | HTML/CSS, Web Structure |
 | | HTML basics, CSS Diner, Selector Gadget, R basics (if needed) |
+| | Day 1 HTML examples: [Plain](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-plain.html) · [Styled](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-styled.html) |
 | 12:30–13:30 | Lunch Break |
 | | Static Web Scraping, APIs and Data Formats |
 | | Continue with exercises and project work |
@@ -64,6 +66,7 @@ By the end of this workshop, participants will be able to:
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start |
+| | Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/day-two.html> |
 | | Day 1 Review, Recap and questions |
 | | Dynamic Content, Browser automation (RSelenium) |
 | 12:30–13:30 | Lunch Break |
