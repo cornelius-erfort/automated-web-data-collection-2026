@@ -733,7 +733,7 @@ Cornelius Erfort
 <span id="cb12-2"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
 <span id="cb12-3"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> <span class="fu">head</span>(links)) {</span>
 <span id="cb12-4"><a href=""></a>  <span class="co"># Build a filename from the URL slug</span></span>
-<span id="cb12-5"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"slides/labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
+<span id="cb12-5"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
 <span id="cb12-6"><a href=""></a>  <span class="co"># Skip if this page was already downloaded</span></span>
 <span id="cb12-7"><a href=""></a>  <span class="cf">if</span>(<span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
 <span id="cb12-8"><a href=""></a>  <span class="fu">print</span>(filename)</span>
@@ -743,6 +743,14 @@ Cornelius Erfort
 <span id="cb12-12"><a href=""></a>  <span class="co"># Pause briefly to avoid overloading the server</span></span>
 <span id="cb12-13"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
 <span id="cb12-14"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "labour/liz-kendall-speech-at-labour-party-conference-2024.html"
+[1] "labour/bridget-phillipson-speech-at-labour-party-conference-2024.html"
+[1] "labour/wes-streeting-speech-at-labour-party-conference-2024.html"
+[1] "labour/keir-starmer-speech-at-labour-party-conference-2024.html"
+[1] "labour/lisa-nandy-speech-at-labour-party-conference-2024.html"
+[1] "labour/yvette-cooper-speech-at-labour-party-conference-2024.html"</code></pre>
+</div>
 </div>
 </section>
 <section id="pause-r" class="slide level2">
@@ -773,12 +781,12 @@ Cornelius Erfort
 <section id="manage-files-2" class="slide level2">
 <h2>Manage files</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
-<span id="cb13-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
-<span id="cb13-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
-<span id="cb13-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
-<span id="cb13-5"><a href=""></a>  <span class="co"># ...</span></span>
-<span id="cb13-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
+<span id="cb14-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
+<span id="cb14-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
+<span id="cb14-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb14-5"><a href=""></a>  <span class="co"># ...</span></span>
+<span id="cb14-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="useful-functions" class="slide level2">
@@ -840,12 +848,12 @@ Cornelius Erfort
 <section id="example-api" class="slide level2">
 <h2>Example API</h2>
 <p>Example URL: <a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="|1|2|3|4|5|6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href=""></a><span class="ex">https://archive-api.open-meteo.com/v1/archive?</span></span>
-<span id="cb14-2"><a href=""></a><span class="va">latitude</span><span class="op">=</span>54.09<span class="kw">&amp;</span></span>
-<span id="cb14-3"><a href=""></a><span class="va">longitude</span><span class="op">=</span>12.14<span class="kw">&amp;</span></span>
-<span id="cb14-4"><a href=""></a><span class="va">start_date</span><span class="op">=</span>2020-05-16<span class="kw">&amp;</span></span>
-<span id="cb14-5"><a href=""></a><span class="va">end_date</span><span class="op">=</span>2020-05-20<span class="kw">&amp;</span></span>
-<span id="cb14-6"><a href=""></a><span class="va">daily</span><span class="op">=</span>temperature_2m_max</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-code-line-numbers="|1|2|3|4|5|6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href=""></a><span class="ex">https://archive-api.open-meteo.com/v1/archive?</span></span>
+<span id="cb15-2"><a href=""></a><span class="va">latitude</span><span class="op">=</span>54.09<span class="kw">&amp;</span></span>
+<span id="cb15-3"><a href=""></a><span class="va">longitude</span><span class="op">=</span>12.14<span class="kw">&amp;</span></span>
+<span id="cb15-4"><a href=""></a><span class="va">start_date</span><span class="op">=</span>2020-05-16<span class="kw">&amp;</span></span>
+<span id="cb15-5"><a href=""></a><span class="va">end_date</span><span class="op">=</span>2020-05-20<span class="kw">&amp;</span></span>
+<span id="cb15-6"><a href=""></a><span class="va">daily</span><span class="op">=</span>temperature_2m_max</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="api-query-parameters" class="slide level2">
 <h2>API Query Parameters</h2>
@@ -866,21 +874,21 @@ Cornelius Erfort
 <section id="api-response-example" class="slide level2">
 <h2>API response example</h2>
 <p><a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href=""></a>{"latitude":54.100006,</span>
-<span id="cb15-2"><a href=""></a>"longitude":12.100006,</span>
-<span id="cb15-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
-<span id="cb15-4"><a href=""></a>"utc_offset_seconds":0,</span>
-<span id="cb15-5"><a href=""></a>"timezone":"GMT",</span>
-<span id="cb15-6"><a href=""></a>"timezone_abbreviation":"GMT",</span>
-<span id="cb15-7"><a href=""></a>"elevation":13.0,</span>
-<span id="cb15-8"><a href=""></a>"daily_units":</span>
-<span id="cb15-9"><a href=""></a>  {"time":"iso8601",</span>
-<span id="cb15-10"><a href=""></a>  "temperature_2m_max":"°C"},</span>
-<span id="cb15-11"><a href=""></a>"daily":</span>
-<span id="cb15-12"><a href=""></a>  {"time":</span>
-<span id="cb15-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
-<span id="cb15-14"><a href=""></a>  "temperature_2m_max":</span>
-<span id="cb15-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href=""></a>{"latitude":54.100006,</span>
+<span id="cb16-2"><a href=""></a>"longitude":12.100006,</span>
+<span id="cb16-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
+<span id="cb16-4"><a href=""></a>"utc_offset_seconds":0,</span>
+<span id="cb16-5"><a href=""></a>"timezone":"GMT",</span>
+<span id="cb16-6"><a href=""></a>"timezone_abbreviation":"GMT",</span>
+<span id="cb16-7"><a href=""></a>"elevation":13.0,</span>
+<span id="cb16-8"><a href=""></a>"daily_units":</span>
+<span id="cb16-9"><a href=""></a>  {"time":"iso8601",</span>
+<span id="cb16-10"><a href=""></a>  "temperature_2m_max":"°C"},</span>
+<span id="cb16-11"><a href=""></a>"daily":</span>
+<span id="cb16-12"><a href=""></a>  {"time":</span>
+<span id="cb16-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
+<span id="cb16-14"><a href=""></a>  "temperature_2m_max":</span>
+<span id="cb16-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="apis-more-examples" class="slide level2">
 <h2>APIs: More examples</h2>
@@ -909,7 +917,7 @@ Cornelius Erfort
 <h2>APIs more examples</h2>
 <p>List of free APIs</p>
 
-<img data-src="slides-day-1_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p><a href="https://github.com/public-apis/public-apis" class="uri">https://github.com/public-apis/public-apis</a></p>
+<img data-src="slides-day-1_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p><a href="https://github.com/public-apis/public-apis" class="uri">https://github.com/public-apis/public-apis</a></p>
 </section>
 <section id="r-packages-for-apis" class="slide level2">
 <h2>R packages for APIs</h2>
@@ -918,7 +926,7 @@ Cornelius Erfort
 </ul>
 <p>List of R packages</p>
 
-<img data-src="slides-day-1_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p><a href="https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md" class="uri">https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md</a></p>
+<img data-src="slides-day-1_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p><a href="https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md" class="uri">https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md</a></p>
 </section>
 <section id="file-formats" class="slide level2">
 <h2>File formats</h2>
@@ -950,58 +958,58 @@ Cornelius Erfort
 </section>
 <section id="json-objects-vs-arrays" class="slide level2">
 <h2>JSON: Objects vs Arrays</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="|1-4|6-10|12-15"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href=""></a><span class="fu">{</span></span>
-<span id="cb16-2"><a href=""></a>  <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Rostock"</span><span class="fu">,</span></span>
-<span id="cb16-3"><a href=""></a>  <span class="dt">"country"</span><span class="fu">:</span> <span class="st">"Germany"</span></span>
-<span id="cb16-4"><a href=""></a><span class="fu">}</span></span>
-<span id="cb16-5"><a href=""></a></span>
-<span id="cb16-6"><a href=""></a><span class="ot">[</span></span>
-<span id="cb16-7"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2022</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.1</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb16-8"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">18.7</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb16-9"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2024</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.4</span><span class="fu">}</span></span>
-<span id="cb16-10"><a href=""></a><span class="ot">]</span></span>
-<span id="cb16-11"><a href=""></a></span>
-<span id="cb16-12"><a href=""></a><span class="fu">{</span></span>
-<span id="cb16-13"><a href=""></a>  <span class="dt">"metadata"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"open-meteo"</span><span class="fu">},</span></span>
-<span id="cb16-14"><a href=""></a>  <span class="dt">"daily"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span><span class="dt">"date"</span><span class="fu">:</span> <span class="st">"2020-05-16"</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">14.0</span><span class="fu">}</span><span class="ot">]</span></span>
-<span id="cb16-15"><a href=""></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="|1-4|6-10|12-15"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb17-1"><a href=""></a><span class="fu">{</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Rostock"</span><span class="fu">,</span></span>
+<span id="cb17-3"><a href=""></a>  <span class="dt">"country"</span><span class="fu">:</span> <span class="st">"Germany"</span></span>
+<span id="cb17-4"><a href=""></a><span class="fu">}</span></span>
+<span id="cb17-5"><a href=""></a></span>
+<span id="cb17-6"><a href=""></a><span class="ot">[</span></span>
+<span id="cb17-7"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2022</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.1</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb17-8"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">18.7</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb17-9"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2024</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.4</span><span class="fu">}</span></span>
+<span id="cb17-10"><a href=""></a><span class="ot">]</span></span>
+<span id="cb17-11"><a href=""></a></span>
+<span id="cb17-12"><a href=""></a><span class="fu">{</span></span>
+<span id="cb17-13"><a href=""></a>  <span class="dt">"metadata"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"open-meteo"</span><span class="fu">},</span></span>
+<span id="cb17-14"><a href=""></a>  <span class="dt">"daily"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span><span class="dt">"date"</span><span class="fu">:</span> <span class="st">"2020-05-16"</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">14.0</span><span class="fu">}</span><span class="ot">]</span></span>
+<span id="cb17-15"><a href=""></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="json-example" class="slide level2">
 <h2>JSON Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="|1,18|2,17|3-13|6-9|14-16"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href=""></a>{"indy movies" :</span>
-<span id="cb17-2"><a href=""></a>  [</span>
-<span id="cb17-3"><a href=""></a>    {</span>
-<span id="cb17-4"><a href=""></a>    "name" : "Raiders of the Lost Ark",</span>
-<span id="cb17-5"><a href=""></a>    "year" : 1981,</span>
-<span id="cb17-6"><a href=""></a>    "actors" : {</span>
-<span id="cb17-7"><a href=""></a>        "Indiana Jones": "Harrison Ford",</span>
-<span id="cb17-8"><a href=""></a>        "Dr. Rene Belloq": "Paul Freeman"</span>
-<span id="cb17-9"><a href=""></a>      },</span>
-<span id="cb17-10"><a href=""></a>    "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],</span>
-<span id="cb17-11"><a href=""></a>    "budget" : 18000000,</span>
-<span id="cb17-12"><a href=""></a>    "academy_award_ve": true</span>
-<span id="cb17-13"><a href=""></a>    },</span>
-<span id="cb17-14"><a href=""></a>    {</span>
-<span id="cb17-15"><a href=""></a>    "name" : "Another Movie"</span>
-<span id="cb17-16"><a href=""></a>    }</span>
-<span id="cb17-17"><a href=""></a>  ]</span>
-<span id="cb17-18"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-code-line-numbers="|1,18|2,17|3-13|6-9|14-16"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href=""></a>{"indy movies" :</span>
+<span id="cb18-2"><a href=""></a>  [</span>
+<span id="cb18-3"><a href=""></a>    {</span>
+<span id="cb18-4"><a href=""></a>    "name" : "Raiders of the Lost Ark",</span>
+<span id="cb18-5"><a href=""></a>    "year" : 1981,</span>
+<span id="cb18-6"><a href=""></a>    "actors" : {</span>
+<span id="cb18-7"><a href=""></a>        "Indiana Jones": "Harrison Ford",</span>
+<span id="cb18-8"><a href=""></a>        "Dr. Rene Belloq": "Paul Freeman"</span>
+<span id="cb18-9"><a href=""></a>      },</span>
+<span id="cb18-10"><a href=""></a>    "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],</span>
+<span id="cb18-11"><a href=""></a>    "budget" : 18000000,</span>
+<span id="cb18-12"><a href=""></a>    "academy_award_ve": true</span>
+<span id="cb18-13"><a href=""></a>    },</span>
+<span id="cb18-14"><a href=""></a>    {</span>
+<span id="cb18-15"><a href=""></a>    "name" : "Another Movie"</span>
+<span id="cb18-16"><a href=""></a>    }</span>
+<span id="cb18-17"><a href=""></a>  ]</span>
+<span id="cb18-18"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="json-in-r" class="slide level2">
 <h2>JSON in R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb18-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
-<span id="cb18-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
-<span id="cb18-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
-<span id="cb18-5"><a href=""></a><span class="st">  "actors" : {</span></span>
-<span id="cb18-6"><a href=""></a><span class="st">      "Indiana Jones": "Harrison Ford",</span></span>
-<span id="cb18-7"><a href=""></a><span class="st">      "Dr. Rene Belloq": "Paul Freeman"}},</span></span>
-<span id="cb18-8"><a href=""></a><span class="st">{"name" : "Another Movie",</span></span>
-<span id="cb18-9"><a href=""></a><span class="st">"year" : 1999</span></span>
-<span id="cb18-10"><a href=""></a><span class="st">}]}'</span></span>
-<span id="cb18-11"><a href=""></a>  </span>
-<span id="cb18-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb19-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
+<span id="cb19-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
+<span id="cb19-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
+<span id="cb19-5"><a href=""></a><span class="st">  "actors" : {</span></span>
+<span id="cb19-6"><a href=""></a><span class="st">      "Indiana Jones": "Harrison Ford",</span></span>
+<span id="cb19-7"><a href=""></a><span class="st">      "Dr. Rene Belloq": "Paul Freeman"}},</span></span>
+<span id="cb19-8"><a href=""></a><span class="st">{"name" : "Another Movie",</span></span>
+<span id="cb19-9"><a href=""></a><span class="st">"year" : 1999</span></span>
+<span id="cb19-10"><a href=""></a><span class="st">}]}'</span></span>
+<span id="cb19-11"><a href=""></a>  </span>
+<span id="cb19-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`indy movies`
                      name year actors.Indiana Jones actors.Dr. Rene Belloq

@@ -15,15 +15,7 @@ format:
 
 **Prepared for:** Automated Web Data Collection 2026  
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
-**Rendered HTML version:** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
-
-## Quick Links
-
-- Syllabus (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
-- Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html>
-- Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html>
-- Cheat Sheet (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
-- Day 1 HTML examples: [Plain](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-plain.html) · [Styled](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-styled.html)
+**Rendered syllabus (HTML):** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
 
 ## Course Overview
 
@@ -33,8 +25,14 @@ The internet is an essential source of data for social science research, providi
 
 To get the most from the hands-on parts, please **before the workshop**:
 
-1. Install **R** and a code editor/IDE, ideally **RStudio** (or an equivalent such as VS Code). We will do the workshop exercises in **R**. (Web scraping is also possible in Python, but we will not cover Python in this workshop.)
-2. Have a modern web browser with Developer Tools available (Firefox or Chrome).
+1. Install [**R**](https://cran.r-project.org/) and a code editor/IDE, ideally [**RStudio**](https://posit.co/download/rstudio-desktop/). We will do the workshop exercises in **R**. (Web scraping is also possible in Python, but we will not cover Python in this workshop.)
+2. Have a modern web browser with Developer Tools available ([Firefox](https://www.mozilla.org/firefox/new/) or [Chrome](https://www.google.com/chrome/)).
+3. For AI-assisted parts, it is ideal if you have either [**Cursor**](https://cursor.com/) or [**Claude**](https://claude.ai/) set up and some basic familiarity.
+4. Both tools may offer limited free plans, but features/usage limits can vary.
+5. You can typically use these tools via desktop app, terminal/CLI, or web interface:
+   - Desktop app: easiest for coding workflows and project context (recommended)
+   - Terminal/CLI: powerful for script-first workflows and automation
+   - Web: quick access, but usually less integrated with local project files
 
 ## Learning Objectives
 
@@ -52,16 +50,16 @@ By the end of this workshop, participants will be able to:
 
 ## Course Schedule
 
+**Slides:** [Day 1](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html), [Day 2](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html)
+
 ### Day 1: Fundamentals and Basic Scraping
 
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start, Introduction |
-| | Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html> |
 | | Course overview, setup |
 | | HTML/CSS, Web Structure |
 | | HTML basics, CSS Diner, Selector Gadget, R basics (if needed) |
-| | Day 1 HTML examples: [Plain](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-plain.html) · [Styled](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-styled.html) |
 | 12:30–13:30 | Lunch Break |
 | | Static Web Scraping, APIs and Data Formats |
 | | Continue with exercises and project work |
@@ -74,7 +72,6 @@ By the end of this workshop, participants will be able to:
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start |
-| | Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html> |
 | | Day 1 Review, Recap and questions |
 | | Dynamic Content, Browser automation (RSelenium) |
 | 12:30–13:30 | Lunch Break |
@@ -85,24 +82,20 @@ By the end of this workshop, participants will be able to:
 | | Wrap-up |
 | 17:00 | Finish |
 
-## Course Materials
+## Resources
 
 - Web browser with developer tools (Firefox or Chrome recommended)
 - R environment: **R** + **RStudio** (recommended) or a similar editor/IDE
-- Web Data Collection Cheat Sheet (HTML): [Functions and Packages Cheat Sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html)
+- Day 1 Slides (HTML): [slides](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html)
+- Day 2 Slides (HTML): [slides](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html)
+- Web Data Collection Cheat Sheet (HTML): [cheat sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html)
 - Required R packages:
-  - rvest
-  - xml2
-  - httr
-  - RSelenium
-  - jsonlite
-  - tidyverse
-
-## Resources
-
-- [rvest Documentation](https://rvest.tidyverse.org/)
-- [RSelenium Documentation](https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf)
-- [httr Documentation](https://httr.r-lib.org/)
+  - [rvest](https://cran.r-project.org/package=rvest)
+  - [xml2](https://cran.r-project.org/package=xml2)
+  - [httr](https://cran.r-project.org/package=httr)
+  - [RSelenium](https://cran.r-project.org/package=RSelenium)
+  - [jsonlite](https://cran.r-project.org/package=jsonlite)
+  - [tidyverse](https://cran.r-project.org/package=tidyverse)
 - [SelectorGadget](https://selectorgadget.com)
 - [CSS Diner](https://flukeout.github.io/)
 - [List of Free Public APIs](https://github.com/public-apis/public-apis)
