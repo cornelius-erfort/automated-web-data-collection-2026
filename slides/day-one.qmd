@@ -58,7 +58,7 @@ library(xml2)
 -   Different content types (e.g. text, metadata, images)
 -   Complementing traditional research methods
 
-## Research Examples
+## Research Examples (1/3)
 
 ::: small-font
 -   [ⓘ]{.info-tip data-tip="Uses experiments on the Arab Twittersphere plus a survey experiment to test counter-speech messages and measure changes in online hate speech"} **#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online** ([Siegel & Badaan 2020](https://doi.org/10.1017/S0003055420000283))
@@ -70,7 +70,7 @@ library(xml2)
 
 ------------------------------------------------------------------------
 
-## Research Examples (cont.)
+## Research Examples (2/3)
 
 ::: small-font
 -   [ⓘ]{.info-tip data-tip="Builds a large text corpus of legislative session transcripts and applies topic modeling to measure how reform-induced reelection incentives shift legislative focus over time"} **Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico** ([Motolinia 2021](https://doi.org/10.1017/S0003055420000672))
@@ -82,7 +82,7 @@ library(xml2)
 
 ------------------------------------------------------------------------
 
-## Research Examples (cont.)
+## Research Examples (3/3)
 
 ::: small-font
 -   [ⓘ]{.info-tip data-tip="Uses a corpus of 120,000 party press releases (2013–2017) to track issue attention and positions during the refugee crisis"} **How the refugee crisis and radical right parties shape party competition on immigration** ([Gessler & Hunger 2022](https://doi.org/10.1017/psrm.2021.64))
@@ -98,76 +98,22 @@ library(xml2)
 1.  Basics of web scraping
 2.  Explore different methods of webscraping
 3.  Learn about practical applications of web scraping
-4.  Understand the role of AI agents in scraping workflows
+4.  Build a reproducible scraping pipeline
+5.  Understand the role of AI agents in scraping workflows
 
 ## What’s new in 2026: AI-assisted scraping
 
--   AI tools have improved a lot in the last year
+-   AI tools have improved significantly
 -   They can now often draft a working scraper quickly, propose selectors/regex, and iterate on errors.
--   This workshop still focuses on **understanding the web** (HTML, APIs, dynamic content) so you can verify and adapt when sites change.
-
-------------------------------------------------------------------------
-
-## Scraping Workflow in Practice
-
-1.  Discover the best source (HTML vs API vs file endpoint)
-2.  Inspect structure (selectors, parameters, pagination, dynamic loading)
-3.  Prototype a minimal scraper for one page/request
-4.  Scale up with loops, pauses, retries, and logging
-5.  Validate output quality before analysis
-6.  Store data and metadata for reproducibility
-
-------------------------------------------------------------------------
-
-## Common Failure Modes (and Quick Fixes)
-
--   **Selector drift:** class names or page structure changes\
-    → Prefer stable attributes and re-check with browser inspect tools
--   **Hidden pagination:** only first page scraped\
-    → Explicitly detect and iterate over pagination/query parameters
--   **Rate limiting / blocking:** requests start failing\
-    → Add pauses, retries, and conservative request rates
--   **Dynamic content not in HTML source:** empty tables in `read_html()`\
-    → Look for background API calls or use browser automation when needed
--   **Encoding / locale issues:** garbled text or broken numbers/dates\
-    → Set encoding explicitly and standardize parsing rules
-
-------------------------------------------------------------------------
-
-## Data Quality Checks Before Analysis
-
--   **Row count sanity check:** is the size plausible for the source/time range?
--   **Unique identifier check:** do IDs duplicate unexpectedly?
--   **Missingness check:** are key fields (date, actor, value) frequently missing?
--   **Coverage check:** are all expected pages/time periods included?
--   **Spot-check against source:** verify a random sample manually in browser
-
-------------------------------------------------------------------------
-
-## Ethics and Legal Quick Checklist
-
--   Check `robots.txt` and terms of service before scaling up
--   Minimize load: respectful request rate and pauses
--   Avoid collecting personal data unless clearly necessary and lawful
--   Keep an audit trail: source URL, scrape date, script version
--   Document limitations and potential biases in collected data
-
-------------------------------------------------------------------------
-
-## AI Agent Guardrails for Scraping
-
--   **AI proposes, you verify**: selectors, endpoints, parameters, and outputs
--   Ask AI to explain *why* a selector or endpoint is robust
--   Test on small samples before full runs
--   Require explicit checks for duplicates, missing values, and coverage
--   Keep scripts transparent and reproducible (no black-box copy/paste)
+-   This workshop still focuses on **understanding the web** (HTML, APIs, dynamic content).
 
 ------------------------------------------------------------------------
 
 ## Organizational Points
 
--   Workshop logistics and expectations
+-   Workshop logistics
 -   Github
+-   Syllabus
 
 ```{r github}
 qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026") %>% plot
@@ -177,59 +123,54 @@ qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026"
 
 ------------------------------------------------------------------------
 
+## Resources (1/2)
+
 ::::: columns
-::: {.column width="60%"}
-**Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). *Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining*. Wiley.**
-
-```{r munzert-qr}
-qr_code("https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817") %>% plot
-```
-
-<https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817>
+::: {.column width="70%"}
+Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. Wiley.
 :::
 
-::: {.column width="40%"}
-![](images/munzert.jpg){width="90%"}
+::: {.column width="30%"}
+![](images/munzert.jpg){width="80%"}
 :::
 :::::
 
 ------------------------------------------------------------------------
 
+## Resources (2/2)
+
 ::::: columns
-::: {.column width="60%"}
-**Wickham, H., & Grolemund, G. (2023). *R for Data Science (2nd Edition)*. O'Reilly Media.**
-
-```{r wickham-qr}
-qr_code("https://r4ds.had.co.nz/") %>% plot
-```
-
-<https://r4ds.had.co.nz/>
+::: {.column width="70%"}
+Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly Media.
 :::
 
-::: {.column width="40%"}
-![](images/wickham.jpg){width="90%"}
+::: {.column width="30%"}
+![](images/wickham.jpg){width="80%"}
 :::
 :::::
 
 ------------------------------------------------------------------------
 
-## Overview of the workshop
+## Timeline (1/2)
 
--   Day 1 Topics:
-    -   HTML and Web Structure: Basics of HTML and CSS, `rvest`
-    -   Web Scraping: Introduction, practical exercises
-    -   APIs and Data Formats
+-   Day 1 Topics
+    -   Web data decision framework: HTML vs API vs dynamic content
+    -   HTML and CSS essentials for scraping with `rvest`
+    -   API fundamentals: query parameters, pagination, and responses
+    -   Build a minimal reproducible scraper workflow
+    -   Data quality checks before analysis
     -   Applied exercise block
 
 ------------------------------------------------------------------------
 
-## Overview of the workshop
+## Timeline (2/2)
 
--   Day 2 Topics:
-    -   Dynamic content etc.
-    -   File management, Scheduling, challenges
-    -   Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
-    -   Outlook
+-   Day 2 Topics
+    -   Dynamic pages and browser automation (when and how)
+    -   Robust scraping: retries, logging, and anti-fragile selectors
+    -   Workflow operations: file management, scheduling, and monitoring
+    -   Ethics and legal practice for responsible collection
+    -   AI-assisted scraping with verification guardrails
     -   Applied exercise block
 
 ------------------------------------------------------------------------
@@ -241,38 +182,20 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 
 ------------------------------------------------------------------------
 
-## Web Scraping Ideas: Easy
+## Where Can Web Data Come From?
 
--   [Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists) (useful for networks etc.)
--   [Parties' press releases](https://www.spd.de/presse/pressemitteilungen/) (Some parties are very difficult)
--   [Polls (wahlrecht.de)](https://www.wahlrecht.de/umfragen/)
--   [Conference programs (EPSA, DVPW)](https://epsaweb.org/annual-conference/)
--   [Abgeordnetenwatch.de (questions and answers from candidates)](https://www.abgeordnetenwatch.de/)
--   [German Lobby Register](https://www.lobbyregister.bundestag.de/) (can get very complex)
--   [Web Search Results (DuckDuckGo)](https://duckduckgo.com/)
--   [News articles](https://www.nytimes.com/section/world)
+-   **Raw websites (HTML):** content in page elements, links, and tables
+-   **APIs:** structured responses (often JSON) designed for data exchange
+-   **Datasets/downloads:** files like CSV, Excel, PDF, or ZIP provided on websites
+-   In practice, we first identify the source type, then choose the right collection strategy.
 
 ------------------------------------------------------------------------
 
-## Web Scraping Ideas: Medium
+## How is Data Ordered on the Web?
 
--   [Korean election results (backend, JSON)](https://info.nec.go.kr/)
--   [Parliamentary protocols (sometimes as documents or PDFs)](https://www.bundestag.de/protokolle)
--   [US live election data from the New York Times (JSON backend)](https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html)
--   [Polls (Politico JSON)](https://www.politico.com/interactives/2024/president-election-polls/)
--   [Doctolib appointment availability (JSON)](https://www.doctolib.de/)
--   [ZEIT “NSDAP Mitgliederkartei” name search (hidden API behind search results)](https://www.zeit.de/wissen/2026-04/nsdap-mitgliederkartei-karteikarten-familienmitglieder-suche?freebie=a24c8315)
--   [List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)](https://dip.bundestag.de/)
--   [Privatization of state owned companies (Treuhand) map](https://treuhandanstalt.online/karte/)
-
-------------------------------------------------------------------------
-
-## Web Scraping Ideas: Difficult
-
--   German Members of Parliament (MPs) websites (parallel scraping/crawling)
--   [LinkedIn profiles (Python library)](https://pypi.org/project/linkedin-scraper/)
--   [Air quality sensor data worldwide (encrypted via JavaScript)](https://waqi.info/#/c/3.563/8.145/2.2z)
--   [Historic shapefiles for Danish parishes](https://dataforsyningen.dk/data/4840)
+-   We need to have a basic understanding of how websites work.
+-   If we can read that structure, we can reliably target and extract the right pieces of information.
+-   So before scraping at scale, we start with the basics of **HTML** and **CSS selectors**.
 
 ------------------------------------------------------------------------
 
@@ -282,7 +205,7 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 
 -   HyperText Markup Language
 -   Building blocks of most websites
--   Defines the structure and content of a webpage#
+-   Defines the structure and content of a webpage
 -   Uses tags to define elements (e.g. headings, paragraphs, links, images)
 -   Tags are enclosed in angle brackets (e.g. `<tagname>content</tagname>`)
 -   Tags can have attributes (e.g. `<img src="image.jpg" alt="description">`)
@@ -292,20 +215,44 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 
 ## HTML Syntax
 
-. . .
+-   [The World Wide Web project (CERN, early web)](http://info.cern.ch/hypertext/WWW/TheProject.html)
+-   [Space Jam (1996 website)](https://www.spacejam.com/1996/)
 
-``` {.html code-line-numbers="|1|5,10|6|7|9"}
+------------------------------------------------------------------------
+
+## HTML Syntax
+
+``` {.html code-line-numbers="|1,16|2-4|5,15|6|7|8|9-13|14"}
 <html>
 <head>
-  <title>Page title</title>
+  <title>The World Wide Web project</title>
 </head>
 <body>
-  <h1 id='first'>A heading</h1>
-  <p>Some text &amp; <b>some bold text.</b></p>
-  <img src='myimg.png' width='100' height='100'>
-  <p>This is a <a href="https://www.google.com">Link</a></p>
+  <h1>World Wide Web</h1>
+  <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative.</p>
+  <h2>What's out there?</h2>
+  <ul>
+    <li><a href="/hypertext/DataSources/Top.html">Pointers to online information</a></li>
+    <li><a href="/hypertext/WWW/Help.html">Help</a> on the browser you are using</li>
+    <li><a href="/hypertext/WWW/Status.html">Software products</a></li>
+  </ul>
+  <p><a href="/hypertext/WWW/People.html">People</a> | <a href="/hypertext/WWW/History.html">History</a> | <a href="/hypertext/WWW/FAQ/List.html">FAQ</a></p>
 </body>
+</html>
 ```
+
+-   Open in browser: [HTML example (plain)](examples/html-syntax-plain.html)
+
+------------------------------------------------------------------------
+
+## From Structure to Design
+
+-   What if we want to add color etc.?
+-   This makes updates hard.
+-   Design usually follows rules (e.g. body text gray, headings blue, links underlined).
+-   We need a language to define these design rules separately.
+-   Result: cleaner code, easier maintenance, and faster redesigns.
+-   Open in browser: [HTML example (styled)](examples/html-syntax-styled.html)
 
 ------------------------------------------------------------------------
 
@@ -317,7 +264,10 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 -   Can be used to change colors, fonts, layouts, and more
 -   CSS rules consist of selectors and declarations
 -   Selectors target HTML elements, and declarations define the styles to be applied
--   Also helps us find the information we want!
+
+. . .
+
+-   *Same logic helps us find the information we want!*
 
 ------------------------------------------------------------------------
 
@@ -337,7 +287,6 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
   <div>
     <p id = "twitter">Follow us on Twitter.</p>
   </div>
-
 </body>
 ```
 
@@ -393,6 +342,8 @@ div p {
 qr_code("https://flukeout.github.io/") %>% plot
 ```
 
+10-15 min (including break)
+
 <https://flukeout.github.io/>
 
 ------------------------------------------------------------------------
@@ -427,7 +378,17 @@ qr_code("https://en.wikipedia.org/wiki/List_of_political_scientists") %>% plot
 qr_code("https://selectorgadget.com") %>% plot
 ```
 
+10-15 min to install
+
 <https://selectorgadget.com>
+
+------------------------------------------------------------------------
+
+## From Page Structure to Data Extraction in R
+
+-   We now know how to inspect HTML and identify CSS selectors.
+-   Next step: use R packages to parse/load pages and extract the elements we want.
+-   Workflow: `read_html()` -\> select elements -\> extract text/attributes -\> build dataset.
 
 ------------------------------------------------------------------------
 
@@ -443,6 +404,8 @@ qr_code("https://selectorgadget.com") %>% plot
 
 -   `read_html("myfiles/myhtml.html")`
 
+------------------------------------------------------------------------
+
 ## Package `rvest`
 
 -   `html_elements(html, css = "your css path")` gives you the elements that fit to your css path
@@ -457,11 +420,20 @@ qr_code("https://selectorgadget.com") %>% plot
 
 ------------------------------------------------------------------------
 
-# Exercise 1: HTML
+## Exercise 1: HTML
+
+-   **Time:** 15-20 minutes
+-   **Where in GitHub:** `exercises/01-html.R`
+-   **Goal:** inspect webpage and extract elements with CSS selectors
+-   **Steps:**
+    1.  Open `exercises/01-html.R`
+    2.  Run the starter code and inspect the page structure
+    3.  Write selectors and extract text/attributes
+    4.  Compare your output with your neighbor
 
 ------------------------------------------------------------------------
 
-# Web scraping
+## Scraping HTMLs
 
 What we did so far:
 
@@ -472,7 +444,9 @@ But:
 
 -   Data is often on multiple pages
 
-# Basic web scraping workflow
+------------------------------------------------------------------------
+
+## Basic HTML web scraping workflow
 
 First step
 
@@ -521,10 +495,16 @@ qr_code("https://labour.org.uk/category/latest/press-release") %>% plot
 -   We can use `rvest` to extract links from HTMLs (href attribute)
 
 ```{r echo = T}
+#| code-line-numbers: "1,2|3,4|5,6|7,8|9,10"
+# Download the page that lists recent press releases
 myhtml <- read_html("https://labour.org.uk/category/latest/press-release")
+# Select all relevant link elements with a CSS selector
 myelements <- html_elements(myhtml, ".post-preview-compact__link")
+# Extract the href attribute (relative URLs)
 links <- html_attr(myelements, "href")
+# Turn relative paths into absolute URLs
 links <- str_c("https://labour.org.uk", links)
+# Check the first few collected links
 head(links, 5)
 
 ```
@@ -537,7 +517,7 @@ head(links, 5)
 
 ## For loop
 
-```{r echo = T, eval = F}
+```{r echo = T, eval = T}
 vector <- 1:3
 for (element in vector) {
   print(element)  
@@ -557,13 +537,19 @@ for (element in c("one", "two", "three")) {
 ## For loop
 
 ```{r echo = T, loop}
+#| code-line-numbers: "1,2|3,14|4,5|6,7|8|9-11|12,13"
+# Create a local folder once to store downloaded pages
 if(!dir.exists("labour")) dir.create("labour")
 for (link in head(links)) {
+  # Build a filename from the URL slug
   filename <- str_c("labour/", basename(link), ".html")
+  # Skip if this page was already downloaded
   if(file.exists(filename)) next
   print(filename)
+  # Download page HTML and save it locally
   myhtml <- read_html(link)
   write_html(myhtml, file = filename)
+  # Pause briefly to avoid overloading the server
   Sys.sleep(1)
 }
 
@@ -605,17 +591,43 @@ for (link in links) {
 -   `if(condition) expression`, if condition: only runs expression if condition is TRUE
 -   `!` Logical NOT operator\`, inverts a logical (`TRUE` -\> `FALSE`, `FALSE` -\> `TRUE`)
 -   `vector_1 %in% vector_2` operator to check whether the elements from vector_1 are in vector_2
+-   `message` prints a message in the console
 
 ------------------------------------------------------------------------
 
-# Exercise 2: Web Scraping
+## Exercise 2: Web Scraping
+
+-   **Time:** 20-25 minutes
+-   **Where in GitHub:** `exercises/02-webscraping.R`
+-   **Goal:** scrape pages, store HTMLs, and combine info
+-   **Steps:**
+    1.  Open `exercises/02-webscraping.R`
+
+    2.  Build or inspect the URL list you need to scrape
+
+    3.  Loop over pages with a polite pause (`Sys.sleep`)
+
+    4.  Save files locally and skip existing files
+
+    5.  Extract and combine key fields into one tidy table
+
+------------------------------------------------------------------------
+
+## Beyond HTML: Other Web Data Sources
+
+-   Data is not always in visible HTML elements.
+-   Common alternatives:
+    -   **APIs** (often JSON)
+    -   **Direct files** (CSV, XLSX, PDF, ZIP)
+    -   **Other formats** (XML, GeoJSON, feeds)
+-   First identify the source type, then choose the right method.
+-   Next, we focus on APIs as a fast and robust option.
 
 ------------------------------------------------------------------------
 
 ## APIs
 
--   Webscraping often uses the user interface (e.g. HTML)
--   But websites often provide data in more efficient ways
+-   Efficient and structured way to provide data
 -   Application Programming Interfaces
 -   ("Hidden" APIs)
 
@@ -626,19 +638,34 @@ for (link in links) {
 -   Some APIs are free
 -   Some APIs require authentication
 
-## API Query Parameters Explained
+## Example API
+
+Example URL: <https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-20&daily=temperature_2m_max>
+
+``` {.bash code-line-numbers="|1|2|3|4|5|6"}
+https://archive-api.open-meteo.com/v1/archive?
+latitude=54.09&
+longitude=12.14&
+start_date=2020-05-16&
+end_date=2020-05-20&
+daily=temperature_2m_max
+```
+
+## API Query Parameters
 
 -   **latitude**: The latitude of the location for which you want weather data (e.g., `54.09`)
--   **longitude**: The longitude of the location (e.g., `12.14`)
--   **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
--   **end_date**: The end date for the data (format: `YYYY-MM-DD`)
--   **hourly**: The type of data you want to receive, e.g., `temperature_2m` for hourly temperature at 2 meters above ground
 
-Example URL: <https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+-   **longitude**: The longitude of the location (e.g., `12.14`)
+
+-   **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
+
+-   **end_date**: The end date for the data (format: `YYYY-MM-DD`)
+
+-   **daily**: The daily variable(s) you want, e.g., `temperature_2m_max`
 
 -   You can change these parameters to get data for different locations, dates, or variables.
 
-## API Query Parameters Explained
+## API Query Parameters
 
 ```{r open-meteo-docs-qr}
 qr_code("https://open-meteo.com/en/docs") %>% plot
@@ -646,9 +673,9 @@ qr_code("https://open-meteo.com/en/docs") %>% plot
 
 [Open-Meteo API Documentation](https://open-meteo.com/en/docs)
 
-## API example
+## API response example
 
-<https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+<https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-20&daily=temperature_2m_max>
 
 ``` {.html code-line-numbers="|1-2|12-15"}
 {"latitude":54.100006,
@@ -673,6 +700,17 @@ qr_code("https://open-meteo.com/en/docs") %>% plot
 -   Geographic coordinates
 -   Twitter data
 -   Uber price estimation
+
+## Hidden APIs
+
+-   Many websites load data from APIs in the background.
+-   You can often find these calls in browser DevTools (`Network` -\> `Fetch/XHR`).
+-   Advantage: cleaner and more structured data than scraping rendered HTML.
+-   Typical workflow:
+    1.  Open page and inspect `Network` requests
+    2.  Find endpoint, parameters, and required headers
+    3.  Reproduce request in R (`httr::GET()`)
+    4.  Parse response (`jsonlite::fromJSON()`)
 
 ## APIs more examples
 
@@ -718,33 +756,55 @@ But also:
 
 -   Data are stored in key-value pairs: `{"key": "value"}`
 -   JSON is hierarchical, unlike tables/dataframes
--   Curly brackets `{}` define objects
--   Square brackets `[]` define arrays (ordered sequence/list of values)
+-   Curly brackets `{}` define objects (*unordered*)
+-   Square brackets `[]` define arrays (*ordered*)
 
-## JSON
+## JSON: Objects vs Arrays
 
-``` {.html code-line-numbers="|1-12|3|5-8|9|13-15"}
-{"indy movies" :[
-  {
-  "name" : "Raiders of the Lost Ark",
-  "year" : 1981,
-  "actors" : {
-      "Indiana Jones": "Harrison Ford",
-      "Dr. Rene Belloq": "Paul Freeman"
-    },
-  "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],
-  "budget" : 18000000,
-  "academy_award_ve": true
-  },
+``` {.json code-line-numbers="|1-4|6-10|12-15"}
 {
-"name" : "Another Movie"
-}]
+  "city": "Rostock",
+  "country": "Germany"
+}
+
+[
+  {"year": 2022, "temperature_2m_max": 19.1},
+  {"year": 2023, "temperature_2m_max": 18.7},
+  {"year": 2024, "temperature_2m_max": 19.4}
+]
+
+{
+  "metadata": {"source": "open-meteo"},
+  "daily": [{"date": "2020-05-16", "temperature_2m_max": 14.0}]
 }
 ```
 
-## JSON
+## JSON Example
 
-```{r echo = T}
+``` {.html code-line-numbers="|1,18|2,17|3-13|6-9|14-16"}
+{"indy movies" :
+  [
+    {
+    "name" : "Raiders of the Lost Ark",
+    "year" : 1981,
+    "actors" : {
+        "Indiana Jones": "Harrison Ford",
+        "Dr. Rene Belloq": "Paul Freeman"
+      },
+    "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],
+    "budget" : 18000000,
+    "academy_award_ve": true
+    },
+    {
+    "name" : "Another Movie"
+    }
+  ]
+}
+```
+
+## JSON in R
+
+```{r echo = T, eval = T}
 library(jsonlite)
 json <- '{"indy movies" :[
   {"name" : "Raiders of the Lost Ark",
@@ -761,26 +821,43 @@ fromJSON(json)
 
 ## Hierarchical data
 
--   We usually work with rectangular data.
--   How can we transform hierarchical data to rectangular?
+-   Our analysis tools (dataframes, models, plots) usually expect **rectangular data**.
+-   JSON is often **hierarchical**: nested objects, arrays, lists.
+-   Problem: there is no single automatic "correct" flattening.
+-   We need to decide what should become:
+    -   columns (attributes of one unit),
+    -   rows (repeated units),
+    -   separate tables (one-to-many relationships).
 
 . . .
 
--   add additional columns: `tidyr::unnest_wider()`
--   add additional rows: `tidyr::unnest_longer()`
+-   Typical tools:
+    -   add columns: `tidyr::unnest_wider()`
+    -   add rows: `tidyr::unnest_longer()`
 
 ## Hierarchical data
 
--   Packages: `jsonlite` and `tidyr`
--   `jsonlite::parse_json()`
--   `jsonlite::fromJSON()`
+-   Practical workflow:
+    1.  Parse JSON (`jsonlite::fromJSON()` or `jsonlite::parse_json()`)
+    2.  Inspect structure (`str()`, `names()`)
+    3.  Flatten step by step with `tidyr`
+    4.  Check that rows still represent the intended unit of analysis
+-   Core packages: `jsonlite` and `tidyr`
 
 ------------------------------------------------------------------------
 
-# Exercise 3: APIs and Data Formats
+## Exercise 3: APIs and Data Formats
+
+-   **Time:** 20-25 minutes
+-   **Where in GitHub:** `exercises/03-apis.R`
+-   **Goal:** request API data, parse JSON, and transform nested output into rectangular data
+-   **Steps:**
+    1.  Open `exercises/03-apis.R`
+    2.  Build and run an API request URL
+    3.  Parse response with `jsonlite`
+    4.  Export a clean table for analysis
 
 ------------------------------------------------------------------------
 
-# Exercises and Applied Work
-
--   Practical applications and exercises
+::: ::::::::
+:::

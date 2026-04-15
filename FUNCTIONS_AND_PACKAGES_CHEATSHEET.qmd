@@ -1,0 +1,180 @@
+---
+title: "R Web Data Collection Cheat Sheet"
+subtitle: "Day 1 + Day 2"
+author: "Cornelius Erfort (Witten/Herdecke University)"
+date: "2026-04-24"
+format:
+  html:
+    toc: true
+    number-sections: false
+    theme: cosmo
+    css: handout-shared.css
+---
+
+**Prepared for:** Automated Web Data Collection 2026  
+**Instructor:** Cornelius Erfort  
+**Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
+
+**Related document (syllabus):** [Local HTML](syllabus.html) · [GitHub source](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/syllabus.md)
+
+## Core Packages
+
+```r
+library(tidyverse)   # dplyr, stringr, purrr, tidyr, readr, tibble
+library(xml2)        # parse HTML/XML
+library(rvest)       # scrape HTML with CSS selectors
+library(httr)        # make HTTP requests to APIs/endpoints
+library(jsonlite)    # parse JSON responses
+library(RSelenium)   # browser automation for dynamic pages
+library(robotstxt)   # check robots.txt permissions
+```
+
+## Static HTML Scraping (`xml2` + `rvest`)
+
+### Workflow
+
+```r
+html <- read_html("https://example.com")
+nodes <- html_elements(html, ".article-title")
+texts <- html_text2(nodes)
+links <- html_attr(nodes, "href")
+```
+
+### Key functions
+
+| Function | What it does | Typical use |
+|---|---|---|
+| `read_html(url_or_file)` | Parse HTML into R object | Load webpage/local HTML |
+| `html_elements(x, css = "...")` | Select nodes by CSS | Grab titles, links, cards |
+| `html_text2(x)` | Extract clean node text | Get human-readable text |
+| `html_attr(x, "href")` | Extract attribute values | Get links, IDs, metadata |
+| `html_table(x)` | Parse HTML tables | Convert table elements to data frames |
+
+## URLs + String Manipulation (`stringr`)
+
+```r
+urls <- str_c("https://site.com/page/", 1:10)
+full_links <- str_c("https://site.com", rel_links)
+```
+
+| Function | What it does |
+|---|---|
+| `str_c(...)` | Concatenate strings |
+| `str_detect(x, pattern)` | Check if pattern exists |
+| `str_extract(x, pattern)` | Extract matching substring |
+| `str_replace_all(x, pattern, replacement)` | Replace text patterns |
+
+## Multi-page Scraping + Caching
+
+```r
+if (!dir.exists("raw_html")) dir.create("raw_html")
+
+for (u in urls) {
+  file <- str_c("raw_html/", basename(u), ".html")
+  if (file.exists(file)) next
+  page <- read_html(u)
+  write_html(page, file = file)
+  Sys.sleep(1)
+}
+```
+
+| Function | Why it matters |
+|---|---|
+| `dir.exists()` / `dir.create()` | Build folder structure once |
+| `file.exists()` | Resume safely after interruptions |
+| `write_html()` | Save raw pages for reproducibility |
+| `Sys.sleep()` | Respect rate limits / be polite |
+
+## APIs + HTTP (`httr`)
+
+### Basic request pattern
+
+```r
+resp <- GET(
+  "https://api.example.com/data",
+  query = list(page = 1, limit = 100)
+)
+status_code(resp)
+txt <- content(resp, as = "text", encoding = "UTF-8")
+```
+
+| Function | What it does |
+|---|---|
+| `GET()` | Send GET request |
+| `POST()` | Send POST request |
+| `status_code(resp)` | Check success/failure |
+| `content(resp, as = "text")` | Extract response body |
+| `add_headers(...)` | Set user agent / auth headers |
+| `set_cookies(...)` | Send cookies |
+| `authenticate(...)` | Basic auth |
+| `verbose()` | Debug request/response |
+| `use_proxy(...)` | Route traffic via proxy |
+
+## JSON + Nested Data (`jsonlite` + `tidyr`)
+
+```r
+obj <- jsonlite::fromJSON(txt)
+tbl <- tibble::as_tibble(obj$results) %>%
+  tidyr::unnest_wider(metadata) %>%
+  tidyr::unnest_longer(tags)
+```
+
+| Function | What it does |
+|---|---|
+| `fromJSON(x)` | Parse JSON to R structures/data frames |
+| `parse_json(x)` | Parse to nested list form |
+| `unnest_wider(col)` | Expand nested fields to columns |
+| `unnest_longer(col)` | Expand list entries to rows |
+
+## Dynamic Pages (`RSelenium`)
+
+Use `RSelenium` when:
+- content appears only after JavaScript runs
+- data requires clicks/scroll/login
+- `read_html()` misses visible page data
+
+Typical sequence:
+1. Start driver and open page
+2. Wait / interact with page elements
+3. Extract updated page source
+4. Parse with `rvest` or save raw output
+
+## Data Wrangling Essentials (`dplyr`, `tidyr`, `readr`)
+
+| Function | Purpose |
+|---|---|
+| `select()` / `rename()` | Keep and rename columns |
+| `mutate()` | Create/transform variables |
+| `filter()` | Keep rows by condition |
+| `group_by()` + `summarise()` | Aggregate results |
+| `distinct()` | Remove duplicates |
+| `bind_rows(...)` | Combine many scraped pages |
+| `write_csv(df, "file.csv")` | Export final dataset |
+
+## File Formats
+
+| Format | Recommended function |
+|---|---|
+| HTML | `xml2::read_html()` |
+| XML | `xml2::read_xml()` |
+| JSON | `jsonlite::fromJSON()` |
+| CSV | `readr::read_csv()` |
+| XLSX | `openxlsx::read.xlsx()` |
+
+## Reliability Checklist
+
+- Validate selectors on multiple pages.
+- Add progress logging with `message()` or `print()`.
+- Wrap fragile code in `tryCatch()`.
+- Save raw files before transformation.
+- Respect rate limits (`Sys.sleep()`).
+- Check robots rules with `robotstxt`.
+
+## Quick Decision Guide
+
+- Static page source available -> `xml2` + `rvest`
+- Structured endpoint/API available -> `httr` + `jsonlite`
+- JavaScript-only content -> `RSelenium`
+- Nested JSON too complex -> `unnest_wider()` / `unnest_longer()`
+- Long multi-page jobs -> loop + caching + retry logic
+

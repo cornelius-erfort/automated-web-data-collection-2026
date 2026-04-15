@@ -247,8 +247,8 @@ Cornelius Erfort
 <li>Complementing traditional research methods</li>
 </ul>
 </section>
-<section id="research-examples" class="slide level2">
-<h2>Research Examples</h2>
+<section id="research-examples-13" class="slide level2">
+<h2>Research Examples (1/3)</h2>
 <div class="small-font">
 <ul>
 <li><span class="info-tip" data-tip="Uses experiments on the Arab Twittersphere plus a survey experiment to test counter-speech messages and measure changes in online hate speech">ⓘ</span> <strong>#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online</strong> (<a href="https://doi.org/10.1017/S0003055420000283">Siegel &amp; Badaan 2020</a>)</li>
@@ -259,8 +259,8 @@ Cornelius Erfort
 </ul>
 </div>
 </section>
-<section id="research-examples-cont." class="slide level2">
-<h2>Research Examples (cont.)</h2>
+<section id="research-examples-23" class="slide level2">
+<h2>Research Examples (2/3)</h2>
 <div class="small-font">
 <ul>
 <li><span class="info-tip" data-tip="Builds a large text corpus of legislative session transcripts and applies topic modeling to measure how reform-induced reelection incentives shift legislative focus over time">ⓘ</span> <strong>Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico</strong> (<a href="https://doi.org/10.1017/S0003055420000672">Motolinia 2021</a>)</li>
@@ -271,8 +271,8 @@ Cornelius Erfort
 </ul>
 </div>
 </section>
-<section id="research-examples-cont.-1" class="slide level2">
-<h2>Research Examples (cont.)</h2>
+<section id="research-examples-33" class="slide level2">
+<h2>Research Examples (3/3)</h2>
 <div class="small-font">
 <ul>
 <li><span class="info-tip" data-tip="Uses a corpus of 120,000 party press releases (2013–2017) to track issue attention and positions during the refugee crisis">ⓘ</span> <strong>How the refugee crisis and radical right parties shape party competition on immigration</strong> (<a href="https://doi.org/10.1017/psrm.2021.64">Gessler &amp; Hunger 2022</a>)</li>
@@ -288,141 +288,70 @@ Cornelius Erfort
 <li>Basics of web scraping</li>
 <li>Explore different methods of webscraping</li>
 <li>Learn about practical applications of web scraping</li>
+<li>Build a reproducible scraping pipeline</li>
 <li>Understand the role of AI agents in scraping workflows</li>
 </ol>
 </section>
 <section id="whats-new-in-2026-ai-assisted-scraping" class="slide level2">
 <h2>What’s new in 2026: AI-assisted scraping</h2>
 <ul>
-<li>AI tools have improved a lot in the last year</li>
+<li>AI tools have improved significantly</li>
 <li>They can now often draft a working scraper quickly, propose selectors/regex, and iterate on errors.</li>
-<li>This workshop still focuses on <strong>understanding the web</strong> (HTML, APIs, dynamic content) so you can verify and adapt when sites change.</li>
-</ul>
-</section>
-<section id="scraping-workflow-in-practice" class="slide level2">
-<h2>Scraping Workflow in Practice</h2>
-<ol type="1">
-<li>Discover the best source (HTML vs API vs file endpoint)</li>
-<li>Inspect structure (selectors, parameters, pagination, dynamic loading)</li>
-<li>Prototype a minimal scraper for one page/request</li>
-<li>Scale up with loops, pauses, retries, and logging</li>
-<li>Validate output quality before analysis</li>
-<li>Store data and metadata for reproducibility</li>
-</ol>
-</section>
-<section id="common-failure-modes-and-quick-fixes" class="slide level2">
-<h2>Common Failure Modes (and Quick Fixes)</h2>
-<ul>
-<li><strong>Selector drift:</strong> class names or page structure changes<br>
-→ Prefer stable attributes and re-check with browser inspect tools</li>
-<li><strong>Hidden pagination:</strong> only first page scraped<br>
-→ Explicitly detect and iterate over pagination/query parameters</li>
-<li><strong>Rate limiting / blocking:</strong> requests start failing<br>
-→ Add pauses, retries, and conservative request rates</li>
-<li><strong>Dynamic content not in HTML source:</strong> empty tables in <code>read_html()</code><br>
-→ Look for background API calls or use browser automation when needed</li>
-<li><strong>Encoding / locale issues:</strong> garbled text or broken numbers/dates<br>
-→ Set encoding explicitly and standardize parsing rules</li>
-</ul>
-</section>
-<section id="data-quality-checks-before-analysis" class="slide level2">
-<h2>Data Quality Checks Before Analysis</h2>
-<ul>
-<li><strong>Row count sanity check:</strong> is the size plausible for the source/time range?</li>
-<li><strong>Unique identifier check:</strong> do IDs duplicate unexpectedly?</li>
-<li><strong>Missingness check:</strong> are key fields (date, actor, value) frequently missing?</li>
-<li><strong>Coverage check:</strong> are all expected pages/time periods included?</li>
-<li><strong>Spot-check against source:</strong> verify a random sample manually in browser</li>
-</ul>
-</section>
-<section id="ethics-and-legal-quick-checklist" class="slide level2">
-<h2>Ethics and Legal Quick Checklist</h2>
-<ul>
-<li>Check <code>robots.txt</code> and terms of service before scaling up</li>
-<li>Minimize load: respectful request rate and pauses</li>
-<li>Avoid collecting personal data unless clearly necessary and lawful</li>
-<li>Keep an audit trail: source URL, scrape date, script version</li>
-<li>Document limitations and potential biases in collected data</li>
-</ul>
-</section>
-<section id="ai-agent-guardrails-for-scraping" class="slide level2">
-<h2>AI Agent Guardrails for Scraping</h2>
-<ul>
-<li><strong>AI proposes, you verify</strong>: selectors, endpoints, parameters, and outputs</li>
-<li>Ask AI to explain <em>why</em> a selector or endpoint is robust</li>
-<li>Test on small samples before full runs</li>
-<li>Require explicit checks for duplicates, missing values, and coverage</li>
-<li>Keep scripts transparent and reproducible (no black-box copy/paste)</li>
+<li>This workshop still focuses on <strong>understanding the web</strong> (HTML, APIs, dynamic content).</li>
 </ul>
 </section>
 <section id="organizational-points" class="slide level2">
 <h2>Organizational Points</h2>
 <ul>
-<li>Workshop logistics and expectations</li>
+<li>Workshop logistics</li>
 <li>Github</li>
+<li>Syllabus</li>
 </ul>
 
 <img data-src="day-one_files/figure-revealjs/github-1.png" width="960" class="r-stretch"><p><a href="https://github.com/cornelius-erfort/automated-web-data-collection-2026" class="uri">https://github.com/cornelius-erfort/automated-web-data-collection-2026</a></p>
 </section>
-<section class="slide level2">
-
+<section id="resources-12" class="slide level2">
+<h2>Resources (1/2)</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
-<p><strong>Munzert, S., Rubba, C., Meißner, P., &amp; Nyhuis, D. (2014). <em>Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining</em>. Wiley.</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="day-one_files/figure-revealjs/munzert-qr-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><a href="https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817" class="uri">https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817</a></p>
-</div><div class="column" style="width:40%;">
-<p><img data-src="images/munzert.jpg" style="width:90.0%"></p>
+<div class="column" style="width:70%;">
+<p>Munzert, S., Rubba, C., Meißner, P., &amp; Nyhuis, D. (2014). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. Wiley.</p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="images/munzert.jpg" style="width:80.0%"></p>
 </div></div>
 </section>
-<section class="slide level2">
-
+<section id="resources-22" class="slide level2">
+<h2>Resources (2/2)</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
-<p><strong>Wickham, H., &amp; Grolemund, G. (2023). <em>R for Data Science (2nd Edition)</em>. O’Reilly Media.</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="day-one_files/figure-revealjs/wickham-qr-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
-</div><div class="column" style="width:40%;">
-<p><img data-src="images/wickham.jpg" style="width:90.0%"></p>
+<div class="column" style="width:70%;">
+<p>Wickham, H., &amp; Grolemund, G. (2023). R for Data Science (2nd Edition). O’Reilly Media.</p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="images/wickham.jpg" style="width:80.0%"></p>
 </div></div>
 </section>
-<section id="overview-of-the-workshop" class="slide level2">
-<h2>Overview of the workshop</h2>
+<section id="timeline-12" class="slide level2">
+<h2>Timeline (1/2)</h2>
 <ul>
-<li>Day 1 Topics:
+<li>Day 1 Topics
 <ul>
-<li>HTML and Web Structure: Basics of HTML and CSS, <code>rvest</code></li>
-<li>Web Scraping: Introduction, practical exercises</li>
-<li>APIs and Data Formats</li>
+<li>Web data decision framework: HTML vs API vs dynamic content</li>
+<li>HTML and CSS essentials for scraping with <code>rvest</code></li>
+<li>API fundamentals: query parameters, pagination, and responses</li>
+<li>Build a minimal reproducible scraper workflow</li>
+<li>Data quality checks before analysis</li>
 <li>Applied exercise block</li>
 </ul></li>
 </ul>
 </section>
-<section id="overview-of-the-workshop-1" class="slide level2">
-<h2>Overview of the workshop</h2>
+<section id="timeline-22" class="slide level2">
+<h2>Timeline (2/2)</h2>
 <ul>
-<li>Day 2 Topics:
+<li>Day 2 Topics
 <ul>
-<li>Dynamic content etc.</li>
-<li>File management, Scheduling, challenges</li>
-<li>Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks</li>
-<li>Outlook</li>
+<li>Dynamic pages and browser automation (when and how)</li>
+<li>Robust scraping: retries, logging, and anti-fragile selectors</li>
+<li>Workflow operations: file management, scheduling, and monitoring</li>
+<li>Ethics and legal practice for responsible collection</li>
+<li>AI-assisted scraping with verification guardrails</li>
 <li>Applied exercise block</li>
 </ul></li>
 </ul>
@@ -434,39 +363,21 @@ Cornelius Erfort
 <li>Feel free to interrupt me at any point</li>
 </ul>
 </section>
-<section id="web-scraping-ideas-easy" class="slide level2">
-<h2>Web Scraping Ideas: Easy</h2>
+<section id="where-can-web-data-come-from" class="slide level2">
+<h2>Where Can Web Data Come From?</h2>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Wikipedia</a> (useful for networks etc.)</li>
-<li><a href="https://www.spd.de/presse/pressemitteilungen/">Parties’ press releases</a> (Some parties are very difficult)</li>
-<li><a href="https://www.wahlrecht.de/umfragen/">Polls (wahlrecht.de)</a></li>
-<li><a href="https://epsaweb.org/annual-conference/">Conference programs (EPSA, DVPW)</a></li>
-<li><a href="https://www.abgeordnetenwatch.de/">Abgeordnetenwatch.de (questions and answers from candidates)</a></li>
-<li><a href="https://www.lobbyregister.bundestag.de/">German Lobby Register</a> (can get very complex)</li>
-<li><a href="https://duckduckgo.com/">Web Search Results (DuckDuckGo)</a></li>
-<li><a href="https://www.nytimes.com/section/world">News articles</a></li>
+<li><strong>Raw websites (HTML):</strong> content in page elements, links, and tables</li>
+<li><strong>APIs:</strong> structured responses (often JSON) designed for data exchange</li>
+<li><strong>Datasets/downloads:</strong> files like CSV, Excel, PDF, or ZIP provided on websites</li>
+<li>In practice, we first identify the source type, then choose the right collection strategy.</li>
 </ul>
 </section>
-<section id="web-scraping-ideas-medium" class="slide level2">
-<h2>Web Scraping Ideas: Medium</h2>
+<section id="how-is-data-ordered-on-the-web" class="slide level2">
+<h2>How is Data Ordered on the Web?</h2>
 <ul>
-<li><a href="https://info.nec.go.kr/">Korean election results (backend, JSON)</a></li>
-<li><a href="https://www.bundestag.de/protokolle">Parliamentary protocols (sometimes as documents or PDFs)</a></li>
-<li><a href="https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html">US live election data from the New York Times (JSON backend)</a></li>
-<li><a href="https://www.politico.com/interactives/2024/president-election-polls/">Polls (Politico JSON)</a></li>
-<li><a href="https://www.doctolib.de/">Doctolib appointment availability (JSON)</a></li>
-<li><a href="https://www.zeit.de/wissen/2026-04/nsdap-mitgliederkartei-karteikarten-familienmitglieder-suche?freebie=a24c8315">ZEIT “NSDAP Mitgliederkartei” name search (hidden API behind search results)</a></li>
-<li><a href="https://dip.bundestag.de/">List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)</a></li>
-<li><a href="https://treuhandanstalt.online/karte/">Privatization of state owned companies (Treuhand) map</a></li>
-</ul>
-</section>
-<section id="web-scraping-ideas-difficult" class="slide level2">
-<h2>Web Scraping Ideas: Difficult</h2>
-<ul>
-<li>German Members of Parliament (MPs) websites (parallel scraping/crawling)</li>
-<li><a href="https://pypi.org/project/linkedin-scraper/">LinkedIn profiles (Python library)</a></li>
-<li><a href="https://waqi.info/#/c/3.563/8.145/2.2z">Air quality sensor data worldwide (encrypted via JavaScript)</a></li>
-<li><a href="https://dataforsyningen.dk/data/4840">Historic shapefiles for Danish parishes</a></li>
+<li>We need to have a basic understanding of how websites work.</li>
+<li>If we can read that structure, we can reliably target and extract the right pieces of information.</li>
+<li>So before scraping at scale, we start with the basics of <strong>HTML</strong> and <strong>CSS selectors</strong>.</li>
 </ul>
 </section>
 <section class="slide level2">
@@ -482,7 +393,7 @@ Cornelius Erfort
 <ul>
 <li>HyperText Markup Language</li>
 <li>Building blocks of most websites</li>
-<li>Defines the structure and content of a webpage#</li>
+<li>Defines the structure and content of a webpage</li>
 <li>Uses tags to define elements (e.g.&nbsp;headings, paragraphs, links, images)</li>
 <li>Tags are enclosed in angle brackets (e.g.&nbsp;<code>&lt;tagname&gt;content&lt;/tagname&gt;</code>)</li>
 <li>Tags can have attributes (e.g.&nbsp;<code>&lt;img src="image.jpg" alt="description"&gt;</code>)</li>
@@ -491,18 +402,43 @@ Cornelius Erfort
 </section>
 <section id="html-syntax" class="slide level2">
 <h2>HTML Syntax</h2>
-<div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|5,10|6|7|9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<ul>
+<li><a href="http://info.cern.ch/hypertext/WWW/TheProject.html">The World Wide Web project (CERN, early web)</a></li>
+<li><a href="https://www.spacejam.com/1996/">Space Jam (1996 website)</a></li>
+</ul>
+</section>
+<section id="html-syntax-1" class="slide level2">
+<h2>HTML Syntax</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1,16|2-4|5,15|6|7|8|9-13|14"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb1-2"><a href=""></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb1-3"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Page title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>The World Wide Web project<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb1-4"><a href=""></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb1-5"><a href=""></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb1-6"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> id</span><span class="op">=</span><span class="st">'first'</span><span class="dt">&gt;</span>A heading<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
-<span id="cb1-7"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Some text <span class="dv">&amp;amp;</span> <span class="dt">&lt;</span><span class="kw">b</span><span class="dt">&gt;</span>some bold text.<span class="dt">&lt;/</span><span class="kw">b</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb1-8"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">'myimg.png'</span><span class="ot"> width</span><span class="op">=</span><span class="st">'100'</span><span class="ot"> height</span><span class="op">=</span><span class="st">'100'</span><span class="dt">&gt;</span></span>
-<span id="cb1-9"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is a <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.google.com"</span><span class="dt">&gt;</span>Link<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb1-10"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<span id="cb1-6"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>World Wide Web<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>What's out there?<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb1-10"><a href=""></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/DataSources/Top.html"</span><span class="dt">&gt;</span>Pointers to online information<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-11"><a href=""></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/WWW/Help.html"</span><span class="dt">&gt;</span>Help<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> on the browser you are using<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-12"><a href=""></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/WWW/Status.html"</span><span class="dt">&gt;</span>Software products<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-13"><a href=""></a>  <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb1-14"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/WWW/People.html"</span><span class="dt">&gt;</span>People<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> | <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/WWW/History.html"</span><span class="dt">&gt;</span>History<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> | <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/hypertext/WWW/FAQ/List.html"</span><span class="dt">&gt;</span>FAQ<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb1-15"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-16"><a href=""></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Open in browser: <a href="examples/html-syntax-plain.html">HTML example (plain)</a></li>
+</ul>
+</section>
+<section id="from-structure-to-design" class="slide level2">
+<h2>From Structure to Design</h2>
+<ul>
+<li>What if we want to add color etc.?</li>
+<li>This makes updates hard.</li>
+<li>Design usually follows rules (e.g.&nbsp;body text gray, headings blue, links underlined).</li>
+<li>We need a language to define these design rules separately.</li>
+<li>Result: cleaner code, easier maintenance, and faster redesigns.</li>
+<li>Open in browser: <a href="examples/html-syntax-styled.html">HTML example (styled)</a></li>
+</ul>
 </section>
 <section id="css" class="slide level2">
 <h2>CSS</h2>
@@ -513,8 +449,12 @@ Cornelius Erfort
 <li>Can be used to change colors, fonts, layouts, and more</li>
 <li>CSS rules consist of selectors and declarations</li>
 <li>Selectors target HTML elements, and declarations define the styles to be applied</li>
-<li>Also helps us find the information we want!</li>
 </ul>
+<div class="fragment">
+<ul>
+<li><em>Same logic helps us find the information we want!</em></li>
+</ul>
+</div>
 </section>
 <section id="using-css-in-html" class="slide level2">
 <h2>Using CSS in HTML</h2>
@@ -530,8 +470,7 @@ Cornelius Erfort
 <span id="cb2-9"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb2-10"><a href=""></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> id </span><span class="op">=</span> <span class="st">"twitter"</span><span class="dt">&gt;</span>Follow us on Twitter.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
 <span id="cb2-11"><a href=""></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-12"><a href=""></a></span>
-<span id="cb2-13"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-12"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="css-syntax" class="slide level2">
@@ -580,7 +519,8 @@ Cornelius Erfort
 <section id="css-diner" class="slide level2">
 <h2>CSS Diner</h2>
 
-<img data-src="day-one_files/figure-revealjs/css-1.png" width="960" class="r-stretch"><p><a href="https://flukeout.github.io/" class="uri">https://flukeout.github.io/</a></p>
+<img data-src="day-one_files/figure-revealjs/css-1.png" width="960" class="r-stretch"><p>10-15 min (including break)</p>
+<p><a href="https://flukeout.github.io/" class="uri">https://flukeout.github.io/</a></p>
 </section>
 <section id="view-the-source-code-in-the-browser" class="slide level2">
 <h2>View the source code in the browser</h2>
@@ -597,7 +537,16 @@ Cornelius Erfort
 <section id="selector-gadget" class="slide level2">
 <h2>Selector Gadget</h2>
 
-<img data-src="day-one_files/figure-revealjs/selector-1.png" width="960" class="r-stretch"><p><a href="https://selectorgadget.com" class="uri">https://selectorgadget.com</a></p>
+<img data-src="day-one_files/figure-revealjs/selector-1.png" width="960" class="r-stretch"><p>10-15 min to install</p>
+<p><a href="https://selectorgadget.com" class="uri">https://selectorgadget.com</a></p>
+</section>
+<section id="from-page-structure-to-data-extraction-in-r" class="slide level2">
+<h2>From Page Structure to Data Extraction in R</h2>
+<ul>
+<li>We now know how to inspect HTML and identify CSS selectors.</li>
+<li>Next step: use R packages to parse/load pages and extract the elements we want.</li>
+<li>Workflow: <code>read_html()</code> -&gt; select elements -&gt; extract text/attributes -&gt; build dataset.</li>
+</ul>
 </section>
 <section id="package-xml2" class="slide level2">
 <h2>Package <code>xml2</code></h2>
@@ -631,19 +580,23 @@ Cornelius Erfort
 </ul>
 </div>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="exercise-1-html" class="title-slide slide level1 center">
-<h1>Exercise 1: HTML</h1>
-
+<section id="exercise-1-html" class="slide level2">
+<h2>Exercise 1: HTML</h2>
+<ul>
+<li><strong>Time:</strong> 15-20 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/01-html.R</code></li>
+<li><strong>Goal:</strong> inspect webpage and extract elements with CSS selectors</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li>Open <code>exercises/01-html.R</code></li>
+<li>Run the starter code and inspect the page structure</li>
+<li>Write selectors and extract text/attributes</li>
+<li>Compare your output with your neighbor</li>
+</ol></li>
+</ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section id="web-scraping" class="title-slide slide level1 center">
-<h1>Web scraping</h1>
+<section id="scraping-htmls" class="slide level2">
+<h2>Scraping HTMLs</h2>
 <p>What we did so far:</p>
 <ul>
 <li>Download single HTML</li>
@@ -654,10 +607,8 @@ Cornelius Erfort
 <li>Data is often on multiple pages</li>
 </ul>
 </section>
-
-<section>
-<section id="basic-web-scraping-workflow" class="title-slide slide level1 center">
-<h1>Basic web scraping workflow</h1>
+<section id="basic-html-web-scraping-workflow" class="slide level2">
+<h2>Basic HTML web scraping workflow</h2>
 <p>First step</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
@@ -721,11 +672,16 @@ Cornelius Erfort
 <li>We can use <code>rvest</code> to extract links from HTMLs (href attribute)</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://labour.org.uk/category/latest/press-release"</span>)</span>
-<span id="cb6-2"><a href=""></a>myelements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(myhtml, <span class="st">".post-preview-compact__link"</span>)</span>
-<span id="cb6-3"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">html_attr</span>(myelements, <span class="st">"href"</span>)</span>
-<span id="cb6-4"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"https://labour.org.uk"</span>, links)</span>
-<span id="cb6-5"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1,2|3,4|5,6|7,8|9,10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Download the page that lists recent press releases</span></span>
+<span id="cb6-2"><a href=""></a>myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://labour.org.uk/category/latest/press-release"</span>)</span>
+<span id="cb6-3"><a href=""></a><span class="co"># Select all relevant link elements with a CSS selector</span></span>
+<span id="cb6-4"><a href=""></a>myelements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(myhtml, <span class="st">".post-preview-compact__link"</span>)</span>
+<span id="cb6-5"><a href=""></a><span class="co"># Extract the href attribute (relative URLs)</span></span>
+<span id="cb6-6"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">html_attr</span>(myelements, <span class="st">"href"</span>)</span>
+<span id="cb6-7"><a href=""></a><span class="co"># Turn relative paths into absolute URLs</span></span>
+<span id="cb6-8"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"https://labour.org.uk"</span>, links)</span>
+<span id="cb6-9"><a href=""></a><span class="co"># Check the first few collected links</span></span>
+<span id="cb6-10"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "https://labour.org.uk/updates/press-releases/liz-kendall-speech-at-labour-party-conference-2024/"       
 [2] "https://labour.org.uk/updates/press-releases/bridget-phillipson-speech-at-labour-party-conference-2024/"
@@ -750,12 +706,17 @@ Cornelius Erfort
 <span id="cb8-2"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> vector) {</span>
 <span id="cb8-3"><a href=""></a>  <span class="fu">print</span>(element)  </span>
 <span id="cb8-4"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3</code></pre>
+</div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)) {</span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">print</span>(element)  </span>
-<span id="cb9-3"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)) {</span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">print</span>(element)  </span>
+<span id="cb10-3"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "one"
 [1] "two"
@@ -767,15 +728,20 @@ Cornelius Erfort
 <section id="for-loop-1" class="slide level2">
 <h2>For loop</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
-<span id="cb11-2"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> <span class="fu">head</span>(links)) {</span>
-<span id="cb11-3"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
-<span id="cb11-4"><a href=""></a>  <span class="cf">if</span>(<span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
-<span id="cb11-5"><a href=""></a>  <span class="fu">print</span>(filename)</span>
-<span id="cb11-6"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
-<span id="cb11-7"><a href=""></a>  <span class="fu">write_html</span>(myhtml, <span class="at">file =</span> filename)</span>
-<span id="cb11-8"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
-<span id="cb11-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" data-code-line-numbers="1,2|3,14|4,5|6,7|8|9-11|12,13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Create a local folder once to store downloaded pages</span></span>
+<span id="cb12-2"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
+<span id="cb12-3"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> <span class="fu">head</span>(links)) {</span>
+<span id="cb12-4"><a href=""></a>  <span class="co"># Build a filename from the URL slug</span></span>
+<span id="cb12-5"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
+<span id="cb12-6"><a href=""></a>  <span class="co"># Skip if this page was already downloaded</span></span>
+<span id="cb12-7"><a href=""></a>  <span class="cf">if</span>(<span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
+<span id="cb12-8"><a href=""></a>  <span class="fu">print</span>(filename)</span>
+<span id="cb12-9"><a href=""></a>  <span class="co"># Download page HTML and save it locally</span></span>
+<span id="cb12-10"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb12-11"><a href=""></a>  <span class="fu">write_html</span>(myhtml, <span class="at">file =</span> filename)</span>
+<span id="cb12-12"><a href=""></a>  <span class="co"># Pause briefly to avoid overloading the server</span></span>
+<span id="cb12-13"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb12-14"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pause-r" class="slide level2">
@@ -806,12 +772,12 @@ Cornelius Erfort
 <section id="manage-files-2" class="slide level2">
 <h2>Manage files</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
-<span id="cb12-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
-<span id="cb12-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
-<span id="cb12-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
-<span id="cb12-5"><a href=""></a>  <span class="co"># ...</span></span>
-<span id="cb12-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
+<span id="cb13-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
+<span id="cb13-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
+<span id="cb13-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb13-5"><a href=""></a>  <span class="co"># ...</span></span>
+<span id="cb13-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="useful-functions" class="slide level2">
@@ -820,21 +786,43 @@ Cornelius Erfort
 <li><code>if(condition) expression</code>, if condition: only runs expression if condition is TRUE</li>
 <li><code>!</code> Logical NOT operator`, inverts a logical (<code>TRUE</code> -&gt; <code>FALSE</code>, <code>FALSE</code> -&gt; <code>TRUE</code>)</li>
 <li><code>vector_1 %in% vector_2</code> operator to check whether the elements from vector_1 are in vector_2</li>
+<li><code>message</code> prints a message in the console</li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="exercise-2-web-scraping" class="title-slide slide level1 center">
-<h1>Exercise 2: Web Scraping</h1>
-
+<section id="exercise-2-web-scraping" class="slide level2">
+<h2>Exercise 2: Web Scraping</h2>
+<ul>
+<li><strong>Time:</strong> 20-25 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/02-webscraping.R</code></li>
+<li><strong>Goal:</strong> scrape pages, store HTMLs, and combine info</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li><p>Open <code>exercises/02-webscraping.R</code></p></li>
+<li><p>Build or inspect the URL list you need to scrape</p></li>
+<li><p>Loop over pages with a polite pause (<code>Sys.sleep</code>)</p></li>
+<li><p>Save files locally and skip existing files</p></li>
+<li><p>Extract and combine key fields into one tidy table</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="beyond-html-other-web-data-sources" class="slide level2">
+<h2>Beyond HTML: Other Web Data Sources</h2>
+<ul>
+<li>Data is not always in visible HTML elements.</li>
+<li>Common alternatives:
+<ul>
+<li><strong>APIs</strong> (often JSON)</li>
+<li><strong>Direct files</strong> (CSV, XLSX, PDF, ZIP)</li>
+<li><strong>Other formats</strong> (XML, GeoJSON, feeds)</li>
+</ul></li>
+<li>First identify the source type, then choose the right method.</li>
+<li>Next, we focus on APIs as a fast and robust option.</li>
+</ul>
 </section>
 <section id="apis" class="slide level2">
 <h2>APIs</h2>
 <ul>
-<li>Webscraping often uses the user interface (e.g.&nbsp;HTML)</li>
-<li>But websites often provide data in more efficient ways</li>
+<li>Efficient and structured way to provide data</li>
 <li>Application Programming Interfaces</li>
 <li>(“Hidden” APIs)</li>
 </ul>
@@ -848,43 +836,50 @@ Cornelius Erfort
 <li>Some APIs require authentication</li>
 </ul>
 </section>
-<section id="api-query-parameters-explained" class="slide level2">
-<h2>API Query Parameters Explained</h2>
+<section id="example-api" class="slide level2">
+<h2>Example API</h2>
+<p>Example URL: <a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="|1|2|3|4|5|6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href=""></a><span class="ex">https://archive-api.open-meteo.com/v1/archive?</span></span>
+<span id="cb14-2"><a href=""></a><span class="va">latitude</span><span class="op">=</span>54.09<span class="kw">&amp;</span></span>
+<span id="cb14-3"><a href=""></a><span class="va">longitude</span><span class="op">=</span>12.14<span class="kw">&amp;</span></span>
+<span id="cb14-4"><a href=""></a><span class="va">start_date</span><span class="op">=</span>2020-05-16<span class="kw">&amp;</span></span>
+<span id="cb14-5"><a href=""></a><span class="va">end_date</span><span class="op">=</span>2020-05-20<span class="kw">&amp;</span></span>
+<span id="cb14-6"><a href=""></a><span class="va">daily</span><span class="op">=</span>temperature_2m_max</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="api-query-parameters" class="slide level2">
+<h2>API Query Parameters</h2>
 <ul>
-<li><strong>latitude</strong>: The latitude of the location for which you want weather data (e.g., <code>54.09</code>)</li>
-<li><strong>longitude</strong>: The longitude of the location (e.g., <code>12.14</code>)</li>
-<li><strong>start_date</strong>: The beginning date for the data (format: <code>YYYY-MM-DD</code>)</li>
-<li><strong>end_date</strong>: The end date for the data (format: <code>YYYY-MM-DD</code>)</li>
-<li><strong>hourly</strong>: The type of data you want to receive, e.g., <code>temperature_2m</code> for hourly temperature at 2 meters above ground</li>
-</ul>
-<p>Example URL: <a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m</a></p>
-<ul>
-<li>You can change these parameters to get data for different locations, dates, or variables.</li>
+<li><p><strong>latitude</strong>: The latitude of the location for which you want weather data (e.g., <code>54.09</code>)</p></li>
+<li><p><strong>longitude</strong>: The longitude of the location (e.g., <code>12.14</code>)</p></li>
+<li><p><strong>start_date</strong>: The beginning date for the data (format: <code>YYYY-MM-DD</code>)</p></li>
+<li><p><strong>end_date</strong>: The end date for the data (format: <code>YYYY-MM-DD</code>)</p></li>
+<li><p><strong>daily</strong>: The daily variable(s) you want, e.g., <code>temperature_2m_max</code></p></li>
+<li><p>You can change these parameters to get data for different locations, dates, or variables.</p></li>
 </ul>
 </section>
-<section id="api-query-parameters-explained-1" class="slide level2">
-<h2>API Query Parameters Explained</h2>
+<section id="api-query-parameters-1" class="slide level2">
+<h2>API Query Parameters</h2>
 
 <img data-src="day-one_files/figure-revealjs/open-meteo-docs-qr-1.png" width="960" class="r-stretch"><p><a href="https://open-meteo.com/en/docs">Open-Meteo API Documentation</a></p>
 </section>
-<section id="api-example" class="slide level2">
-<h2>API example</h2>
-<p><a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href=""></a>{"latitude":54.100006,</span>
-<span id="cb13-2"><a href=""></a>"longitude":12.100006,</span>
-<span id="cb13-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
-<span id="cb13-4"><a href=""></a>"utc_offset_seconds":0,</span>
-<span id="cb13-5"><a href=""></a>"timezone":"GMT",</span>
-<span id="cb13-6"><a href=""></a>"timezone_abbreviation":"GMT",</span>
-<span id="cb13-7"><a href=""></a>"elevation":13.0,</span>
-<span id="cb13-8"><a href=""></a>"daily_units":</span>
-<span id="cb13-9"><a href=""></a>  {"time":"iso8601",</span>
-<span id="cb13-10"><a href=""></a>  "temperature_2m_max":"°C"},</span>
-<span id="cb13-11"><a href=""></a>"daily":</span>
-<span id="cb13-12"><a href=""></a>  {"time":</span>
-<span id="cb13-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
-<span id="cb13-14"><a href=""></a>  "temperature_2m_max":</span>
-<span id="cb13-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="api-response-example" class="slide level2">
+<h2>API response example</h2>
+<p><a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-20&amp;daily=temperature_2m_max</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href=""></a>{"latitude":54.100006,</span>
+<span id="cb15-2"><a href=""></a>"longitude":12.100006,</span>
+<span id="cb15-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
+<span id="cb15-4"><a href=""></a>"utc_offset_seconds":0,</span>
+<span id="cb15-5"><a href=""></a>"timezone":"GMT",</span>
+<span id="cb15-6"><a href=""></a>"timezone_abbreviation":"GMT",</span>
+<span id="cb15-7"><a href=""></a>"elevation":13.0,</span>
+<span id="cb15-8"><a href=""></a>"daily_units":</span>
+<span id="cb15-9"><a href=""></a>  {"time":"iso8601",</span>
+<span id="cb15-10"><a href=""></a>  "temperature_2m_max":"°C"},</span>
+<span id="cb15-11"><a href=""></a>"daily":</span>
+<span id="cb15-12"><a href=""></a>  {"time":</span>
+<span id="cb15-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
+<span id="cb15-14"><a href=""></a>  "temperature_2m_max":</span>
+<span id="cb15-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="apis-more-examples" class="slide level2">
 <h2>APIs: More examples</h2>
@@ -892,6 +887,21 @@ Cornelius Erfort
 <li>Geographic coordinates</li>
 <li>Twitter data</li>
 <li>Uber price estimation</li>
+</ul>
+</section>
+<section id="hidden-apis" class="slide level2">
+<h2>Hidden APIs</h2>
+<ul>
+<li>Many websites load data from APIs in the background.</li>
+<li>You can often find these calls in browser DevTools (<code>Network</code> -&gt; <code>Fetch/XHR</code>).</li>
+<li>Advantage: cleaner and more structured data than scraping rendered HTML.</li>
+<li>Typical workflow:
+<ol type="1">
+<li>Open page and inspect <code>Network</code> requests</li>
+<li>Find endpoint, parameters, and required headers</li>
+<li>Reproduce request in R (<code>httr::GET()</code>)</li>
+<li>Parse response (<code>jsonlite::fromJSON()</code>)</li>
+</ol></li>
 </ul>
 </section>
 <section id="apis-more-examples-1" class="slide level2">
@@ -933,44 +943,64 @@ Cornelius Erfort
 <ul>
 <li>Data are stored in key-value pairs: <code>{"key": "value"}</code></li>
 <li>JSON is hierarchical, unlike tables/dataframes</li>
-<li>Curly brackets <code>{}</code> define objects</li>
-<li>Square brackets <code>[]</code> define arrays (ordered sequence/list of values)</li>
+<li>Curly brackets <code>{}</code> define objects (<em>unordered</em>)</li>
+<li>Square brackets <code>[]</code> define arrays (<em>ordered</em>)</li>
 </ul>
 </section>
-<section id="json-1" class="slide level2">
-<h2>JSON</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="|1-12|3|5-8|9|13-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href=""></a>{"indy movies" :[</span>
-<span id="cb14-2"><a href=""></a>  {</span>
-<span id="cb14-3"><a href=""></a>  "name" : "Raiders of the Lost Ark",</span>
-<span id="cb14-4"><a href=""></a>  "year" : 1981,</span>
-<span id="cb14-5"><a href=""></a>  "actors" : {</span>
-<span id="cb14-6"><a href=""></a>      "Indiana Jones": "Harrison Ford",</span>
-<span id="cb14-7"><a href=""></a>      "Dr. Rene Belloq": "Paul Freeman"</span>
-<span id="cb14-8"><a href=""></a>    },</span>
-<span id="cb14-9"><a href=""></a>  "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],</span>
-<span id="cb14-10"><a href=""></a>  "budget" : 18000000,</span>
-<span id="cb14-11"><a href=""></a>  "academy_award_ve": true</span>
-<span id="cb14-12"><a href=""></a>  },</span>
-<span id="cb14-13"><a href=""></a>{</span>
-<span id="cb14-14"><a href=""></a>"name" : "Another Movie"</span>
-<span id="cb14-15"><a href=""></a>}]</span>
-<span id="cb14-16"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="json-objects-vs-arrays" class="slide level2">
+<h2>JSON: Objects vs Arrays</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="|1-4|6-10|12-15"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href=""></a><span class="fu">{</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Rostock"</span><span class="fu">,</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="dt">"country"</span><span class="fu">:</span> <span class="st">"Germany"</span></span>
+<span id="cb16-4"><a href=""></a><span class="fu">}</span></span>
+<span id="cb16-5"><a href=""></a></span>
+<span id="cb16-6"><a href=""></a><span class="ot">[</span></span>
+<span id="cb16-7"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2022</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.1</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb16-8"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">18.7</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb16-9"><a href=""></a>  <span class="fu">{</span><span class="dt">"year"</span><span class="fu">:</span> <span class="dv">2024</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">19.4</span><span class="fu">}</span></span>
+<span id="cb16-10"><a href=""></a><span class="ot">]</span></span>
+<span id="cb16-11"><a href=""></a></span>
+<span id="cb16-12"><a href=""></a><span class="fu">{</span></span>
+<span id="cb16-13"><a href=""></a>  <span class="dt">"metadata"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"source"</span><span class="fu">:</span> <span class="st">"open-meteo"</span><span class="fu">},</span></span>
+<span id="cb16-14"><a href=""></a>  <span class="dt">"daily"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span><span class="dt">"date"</span><span class="fu">:</span> <span class="st">"2020-05-16"</span><span class="fu">,</span> <span class="dt">"temperature_2m_max"</span><span class="fu">:</span> <span class="fl">14.0</span><span class="fu">}</span><span class="ot">]</span></span>
+<span id="cb16-15"><a href=""></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="json-2" class="slide level2">
-<h2>JSON</h2>
+<section id="json-example" class="slide level2">
+<h2>JSON Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="|1,18|2,17|3-13|6-9|14-16"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href=""></a>{"indy movies" :</span>
+<span id="cb17-2"><a href=""></a>  [</span>
+<span id="cb17-3"><a href=""></a>    {</span>
+<span id="cb17-4"><a href=""></a>    "name" : "Raiders of the Lost Ark",</span>
+<span id="cb17-5"><a href=""></a>    "year" : 1981,</span>
+<span id="cb17-6"><a href=""></a>    "actors" : {</span>
+<span id="cb17-7"><a href=""></a>        "Indiana Jones": "Harrison Ford",</span>
+<span id="cb17-8"><a href=""></a>        "Dr. Rene Belloq": "Paul Freeman"</span>
+<span id="cb17-9"><a href=""></a>      },</span>
+<span id="cb17-10"><a href=""></a>    "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],</span>
+<span id="cb17-11"><a href=""></a>    "budget" : 18000000,</span>
+<span id="cb17-12"><a href=""></a>    "academy_award_ve": true</span>
+<span id="cb17-13"><a href=""></a>    },</span>
+<span id="cb17-14"><a href=""></a>    {</span>
+<span id="cb17-15"><a href=""></a>    "name" : "Another Movie"</span>
+<span id="cb17-16"><a href=""></a>    }</span>
+<span id="cb17-17"><a href=""></a>  ]</span>
+<span id="cb17-18"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="json-in-r" class="slide level2">
+<h2>JSON in R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb15-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
-<span id="cb15-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
-<span id="cb15-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
-<span id="cb15-5"><a href=""></a><span class="st">  "actors" : {</span></span>
-<span id="cb15-6"><a href=""></a><span class="st">      "Indiana Jones": "Harrison Ford",</span></span>
-<span id="cb15-7"><a href=""></a><span class="st">      "Dr. Rene Belloq": "Paul Freeman"}},</span></span>
-<span id="cb15-8"><a href=""></a><span class="st">{"name" : "Another Movie",</span></span>
-<span id="cb15-9"><a href=""></a><span class="st">"year" : 1999</span></span>
-<span id="cb15-10"><a href=""></a><span class="st">}]}'</span></span>
-<span id="cb15-11"><a href=""></a>  </span>
-<span id="cb15-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb18-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
+<span id="cb18-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
+<span id="cb18-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
+<span id="cb18-5"><a href=""></a><span class="st">  "actors" : {</span></span>
+<span id="cb18-6"><a href=""></a><span class="st">      "Indiana Jones": "Harrison Ford",</span></span>
+<span id="cb18-7"><a href=""></a><span class="st">      "Dr. Rene Belloq": "Paul Freeman"}},</span></span>
+<span id="cb18-8"><a href=""></a><span class="st">{"name" : "Another Movie",</span></span>
+<span id="cb18-9"><a href=""></a><span class="st">"year" : 1999</span></span>
+<span id="cb18-10"><a href=""></a><span class="st">}]}'</span></span>
+<span id="cb18-11"><a href=""></a>  </span>
+<span id="cb18-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`indy movies`
                      name year actors.Indiana Jones actors.Dr. Rene Belloq
@@ -982,42 +1012,61 @@ Cornelius Erfort
 <section id="hierarchical-data" class="slide level2">
 <h2>Hierarchical data</h2>
 <ul>
-<li>We usually work with rectangular data.</li>
-<li>How can we transform hierarchical data to rectangular?</li>
+<li>Our analysis tools (dataframes, models, plots) usually expect <strong>rectangular data</strong>.</li>
+<li>JSON is often <strong>hierarchical</strong>: nested objects, arrays, lists.</li>
+<li>Problem: there is no single automatic “correct” flattening.</li>
+<li>We need to decide what should become:
+<ul>
+<li>columns (attributes of one unit),</li>
+<li>rows (repeated units),</li>
+<li>separate tables (one-to-many relationships).</li>
+</ul></li>
 </ul>
 <div class="fragment">
 <ul>
-<li>add additional columns: <code>tidyr::unnest_wider()</code></li>
-<li>add additional rows: <code>tidyr::unnest_longer()</code></li>
+<li>Typical tools:
+<ul>
+<li>add columns: <code>tidyr::unnest_wider()</code></li>
+<li>add rows: <code>tidyr::unnest_longer()</code></li>
+</ul></li>
 </ul>
 </div>
 </section>
 <section id="hierarchical-data-1" class="slide level2">
 <h2>Hierarchical data</h2>
 <ul>
-<li>Packages: <code>jsonlite</code> and <code>tidyr</code></li>
-<li><code>jsonlite::parse_json()</code></li>
-<li><code>jsonlite::fromJSON()</code></li>
+<li>Practical workflow:
+<ol type="1">
+<li>Parse JSON (<code>jsonlite::fromJSON()</code> or <code>jsonlite::parse_json()</code>)</li>
+<li>Inspect structure (<code>str()</code>, <code>names()</code>)</li>
+<li>Flatten step by step with <code>tidyr</code></li>
+<li>Check that rows still represent the intended unit of analysis</li>
+</ol></li>
+<li>Core packages: <code>jsonlite</code> and <code>tidyr</code></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="exercise-3-apis-and-data-formats" class="title-slide slide level1 center">
-<h1>Exercise 3: APIs and Data Formats</h1>
-
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="exercises-and-applied-work" class="title-slide slide level1 center">
-<h1>Exercises and Applied Work</h1>
+<section id="exercise-3-apis-and-data-formats" class="slide level2">
+<h2>Exercise 3: APIs and Data Formats</h2>
 <ul>
-<li>Practical applications and exercises</li>
+<li><strong>Time:</strong> 20-25 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/03-apis.R</code></li>
+<li><strong>Goal:</strong> request API data, parse JSON, and transform nested output into rectangular data</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li>Open <code>exercises/03-apis.R</code></li>
+<li>Build and run an API request URL</li>
+<li>Parse response with <code>jsonlite</code></li>
+<li>Export a clean table for analysis</li>
+</ol></li>
 </ul>
-
 </section>
+<section class="slide level2">
+
+<div class="::::::::">
+
+</div>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
