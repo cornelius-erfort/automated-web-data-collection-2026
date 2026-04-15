@@ -114,7 +114,7 @@ library(xml2)
 -   Workshop logistics
 -   Github
 -   Syllabus: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
--   Cheat Sheet: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html>
+-   Cheat Sheet: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
 
 ```{r github}
 qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026") %>% plot

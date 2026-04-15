@@ -1,15 +1,15 @@
 ---
 title: "R Web Data Collection Cheat Sheet"
 author: "Cornelius Erfort (Witten/Herdecke University)"
-date: "2026-04-24"
+date: today
 format:
   html:
     toc: true
     number-sections: false
     theme: cosmo
-    css: handout-shared.css
+    css: ../slides/handout-shared.css
     include-after-body:
-      - text: <script src="handout-theme-toggle.js"></script>
+      - text: <script src="../slides/handout-theme-toggle.js"></script>
 ---
 
 **Prepared for:** Automated Web Data Collection 2026  
@@ -177,4 +177,3 @@ Typical sequence:
 - JavaScript-only content -> `RSelenium`
 - Nested JSON too complex -> `unnest_wider()` / `unnest_longer()`
 - Long multi-page jobs -> loop + caching + retry logic
-

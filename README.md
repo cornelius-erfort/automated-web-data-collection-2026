@@ -2,7 +2,7 @@
 title: "Advanced Web Data Collection Workshop"
 subtitle: "Syllabus 2026"
 author: "Cornelius Erfort (Witten/Herdecke University)"
-date: "2026-04-24"
+date: today
 format:
   html:
     toc: true
@@ -77,7 +77,7 @@ By the end of this workshop, participants will be able to:
 
 - Web browser with developer tools (Firefox or Chrome recommended)
 - R environment: **R** + **RStudio** (recommended) or a similar editor/IDE
-- Web Data Collection Cheat Sheet (HTML): [Functions and Packages Cheat Sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/FUNCTIONS_AND_PACKAGES_CHEATSHEET.html)
+- Web Data Collection Cheat Sheet (HTML): [Functions and Packages Cheat Sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html)
 - Required R packages:
   - rvest
   - xml2
