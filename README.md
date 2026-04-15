@@ -14,7 +14,9 @@ format:
 ---
 
 **Prepared for:** Automated Web Data Collection 2026  
+
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
+
 **Rendered syllabus (HTML):** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
 
 ## Course Overview
