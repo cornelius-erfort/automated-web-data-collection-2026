@@ -8,14 +8,22 @@ format:
     toc: true
     number-sections: false
     theme: cosmo
-    css: slides/handout-shared.css
+    css: web-assets/handout-shared.css
     include-after-body:
-      - text: <script src="slides/handout-theme-toggle.js"></script>
+      - text: <script src="web-assets/handout-theme-toggle.js"></script>
 ---
 
 **Prepared for:** Automated Web Data Collection 2026  
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
 **Rendered HTML version:** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
+
+## Quick Links
+
+- Syllabus (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
+- Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html>
+- Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html>
+- Cheat Sheet (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
+- Day 1 HTML examples: [Plain](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-plain.html) · [Styled](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/examples/html-syntax-styled.html)
 
 ## Course Overview
 
@@ -49,7 +57,7 @@ By the end of this workshop, participants will be able to:
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start, Introduction |
-| | Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/day-one.html> |
+| | Day 1 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html> |
 | | Course overview, setup |
 | | HTML/CSS, Web Structure |
 | | HTML basics, CSS Diner, Selector Gadget, R basics (if needed) |
@@ -66,7 +74,7 @@ By the end of this workshop, participants will be able to:
 | Time | Topic/Activities |
 | --- | --- |
 | 9:00 | Start |
-| | Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides/day-two.html> |
+| | Day 2 Slides (HTML): <https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html> |
 | | Day 1 Review, Recap and questions |
 | | Dynamic Content, Browser automation (RSelenium) |
 | 12:30–13:30 | Lunch Break |

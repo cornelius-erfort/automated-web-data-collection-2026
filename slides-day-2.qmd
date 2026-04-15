@@ -7,7 +7,7 @@ author:
 date: "2026-04-25"
 format: 
   revealjs:
-     css: custom.css
+     css: slides/custom.css
      slide-number: true
      show-slide-number: all
      preview-links: auto
@@ -95,7 +95,7 @@ qr_code("https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf") %>% p
 :::
 
 ::: {.column width="30%"}
-![](images/rselenium.png){width="50%"}
+![](slides/images/rselenium.png){width="50%"}
 :::
 :::::
 

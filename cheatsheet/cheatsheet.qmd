@@ -7,9 +7,9 @@ format:
     toc: true
     number-sections: false
     theme: cosmo
-    css: ../slides/handout-shared.css
+    css: ../web-assets/handout-shared.css
     include-after-body:
-      - text: <script src="../slides/handout-theme-toggle.js"></script>
+      - text: <script src="../web-assets/handout-theme-toggle.js"></script>
 ---
 
 **Prepared for:** Automated Web Data Collection 2026  

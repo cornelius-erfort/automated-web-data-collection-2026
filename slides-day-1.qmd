@@ -7,7 +7,7 @@ author:
 date: "2026-04-24"
 format: 
   revealjs:
-     css: custom.css
+     css: slides/custom.css
      slide-number: true
      show-slide-number: all
      preview-links: auto
@@ -132,7 +132,7 @@ Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). Automated Data Collec
 :::
 
 ::: {.column width="30%"}
-![](images/munzert.jpg){width="80%"}
+![](slides/images/munzert.jpg){width="80%"}
 :::
 :::::
 
@@ -146,7 +146,7 @@ Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly 
 :::
 
 ::: {.column width="30%"}
-![](images/wickham.jpg){width="80%"}
+![](slides/images/wickham.jpg){width="80%"}
 :::
 :::::
 
@@ -242,7 +242,7 @@ Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly 
 </html>
 ```
 
--   Open in browser: [HTML example (plain)](examples/html-syntax-plain.html)
+-   Open in browser: [HTML example (plain)](slides/examples/html-syntax-plain.html)
 
 ------------------------------------------------------------------------
 
@@ -253,7 +253,7 @@ Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly 
 -   Design usually follows rules (e.g. body text gray, headings blue, links underlined).
 -   We need a language to define these design rules separately.
 -   Result: cleaner code, easier maintenance, and faster redesigns.
--   Open in browser: [HTML example (styled)](examples/html-syntax-styled.html)
+-   Open in browser: [HTML example (styled)](slides/examples/html-syntax-styled.html)
 
 ------------------------------------------------------------------------
 
@@ -537,13 +537,13 @@ for (element in c("one", "two", "three")) {
 
 ## For loop
 
-```{r echo = T, loop}
+```{r echo = T, eval = F, loop}
 #| code-line-numbers: "1,2|3,14|4,5|6,7|8|9-11|12,13"
 # Create a local folder once to store downloaded pages
 if(!dir.exists("labour")) dir.create("labour")
 for (link in head(links)) {
   # Build a filename from the URL slug
-  filename <- str_c("labour/", basename(link), ".html")
+  filename <- str_c("slides/labour/", basename(link), ".html")
   # Skip if this page was already downloaded
   if(file.exists(filename)) next
   print(filename)
