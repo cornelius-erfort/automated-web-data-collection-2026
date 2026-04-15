@@ -1,4 +1,5 @@
-:root {
+:root,
+html[data-theme="light"] {
   --bg: #ffffff;
   --text: #1f2937;
   --muted: #4b5563;
@@ -20,6 +21,17 @@
     --code-bg: #111827;
     --table-head: #1f2937;
   }
+}
+
+html[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --muted: #cbd5e1;
+  --heading: #f8fafc;
+  --link: #8ab4f8;
+  --border: #334155;
+  --code-bg: #111827;
+  --table-head: #1f2937;
 }
 
 html,
@@ -96,4 +108,22 @@ th {
   border-radius: 10px;
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9999;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--code-bg);
+  color: var(--text);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+  filter: brightness(1.1);
 }

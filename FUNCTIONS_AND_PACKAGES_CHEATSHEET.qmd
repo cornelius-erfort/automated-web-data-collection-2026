@@ -1,6 +1,5 @@
 ---
 title: "R Web Data Collection Cheat Sheet"
-subtitle: "Day 1 + Day 2"
 author: "Cornelius Erfort (Witten/Herdecke University)"
 date: "2026-04-24"
 format:
@@ -9,13 +8,14 @@ format:
     number-sections: false
     theme: cosmo
     css: handout-shared.css
+    include-after-body:
+      - text: <script src="handout-theme-toggle.js"></script>
 ---
 
 **Prepared for:** Automated Web Data Collection 2026  
-**Instructor:** Cornelius Erfort  
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
 
-**Related document (syllabus):** [Local HTML](syllabus.html) · [GitHub source](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/syllabus.md)
+**Syllabus (HTML on GitHub):** [Advanced Web Data Collection Workshop Syllabus](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/syllabus.html)
 
 ## Core Packages
 
