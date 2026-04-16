@@ -21,7 +21,7 @@ format:
 
 ## Course Overview
 
-The internet is an essential source of data for social science research, providing access to vast amounts of text and structured information. This course introduces students to both basic and advanced methods for automated web data collection, focusing on practical applications in political science and other social sciences. In addition to classic approaches (scraping static and dynamic content, working with APIs, and processing multiple data formats), we will cover how recent advances in AI and agentic coding can accelerate data collection: assistants can now often draft working scrapers quickly, iterate on errors, and help discover underlying requests (e.g., pagination) when combined with browser developer tools. Agentic coding can take over large parts of the scraping pipeline, but you still need basic understanding of HTML/APIs to supervise, debug, and verify results. The course also covers browser automation, error handling, scheduling scraping jobs, and ethical and legal considerations.
+The internet is an essential source of data for social science research, providing access to vast amounts of text and structured information. This course introduces students to both basic and advanced methods for automated web data collection, focusing on practical applications in political science and other social sciences. In addition to classic approaches (scraping static and dynamic content, working with APIs, and processing multiple data formats), we will cover how recent advances in AI and agentic coding can accelerate data collection: assistants can now often draft working scrapers quickly, iterate on errors, and help discover underlying requests (e.g., pagination) when combined with browser developer tools. Agentic coding can take over large parts of the scraping pipeline, but a basic understanding of underlying processes is still valuable. The course also covers browser automation, error handling, scheduling scraping jobs, and ethical and legal considerations.
 
 ## Recommended preparation
 
@@ -41,6 +41,7 @@ To get the most from the hands-on parts, please **before the workshop**:
 By the end of this workshop, participants will be able to:
 
 - Understand web scraping fundamentals and best practices
+- Understand the role AI agents can play in scraping workflows (and how to supervise/verify them)
 - Use core **R** libraries for web scraping (rvest, RSelenium, httr)
 - Handle different types of web content (static, dynamic, JavaScript-rendered)
 - Work with APIs and direct HTTP requests
