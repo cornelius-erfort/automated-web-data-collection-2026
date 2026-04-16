@@ -55,18 +55,14 @@ library(rvest)
 library(xml2)
 ```
 
-------------------------------------------------------------------------
-
 ## About today
 
--   Focus on more advanced web scraping techniques
--   Learn to handle dynamic content and browser automation
--   Manage files and schedule scraping jobs
--   Understand scraping challenges (CAPTCHAs, rate limits, proxies)
--   Discuss ethics and legal aspects
--   Applied exercises
--   Syllabus: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
--   Cheat Sheet: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
+1.  Dynamic content: when `rvest` is not enough
+2.  Live browser scraping with `rvest` (Chromote)
+3.  Practical scraping ops: files, logging, and scheduling
+4.  Common challenges: CAPTCHAs, rate limits, proxies
+5.  Ethics and legal practice
+6.  Applied exercises
 
 ------------------------------------------------------------------------
 
@@ -76,62 +72,59 @@ library(xml2)
 -   Standard tools like `rvest` only see the initial HTML
 -   Data may be loaded via AJAX, appear after clicks, or require scrolling
 
-------------------------------------------------------------------------
-
-## RSelenium: Automate your browser
-
--   RSelenium lets you control a real browser from R
--   You can click, scroll, fill forms, and extract data after JavaScript runs
--   Works with Chrome, Firefox, Edge, etc.
--   Useful for scraping sites that require interaction or authentication
-
-::::: columns
-::: {.column width="40%"}
-```{r rselenium-qr}
-qr_code("https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf") %>% plot
-```
-
-<https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf>
-:::
-
-::: {.column width="30%"}
-![](slides/images/rselenium.png){width="50%"}
-:::
-:::::
+Example (dynamic loading): <https://www.cducsu.de/presse>
 
 ------------------------------------------------------------------------
 
-## RSelenium: Basic workflow
+## rvest: `read_html_live()` via Chromote
 
-```{r echo=T,eval=FALSE, rselenium-basic}
-library(RSelenium)
-# Start a Selenium server and browser
-rD <- rsDriver(browser = "chrome")
-remDr <- rD$client
+-   `read_html_live()` runs a real Chrome browser in the background (via `chromote`)
+-   Lets you scrape **JavaScript-generated** HTML that `read_html()` can’t see
+-   Supports light interaction: click, type, scroll (via the `LiveHTML` object)
 
-# Navigate to a page
-remDr$navigate("https://example.com")
 
-# Find an element and click it
-button <- remDr$findElement(using = "css selector", value = ".my-button")
-button$clickElement()
 
-# Extract page source after JS loads
-html <- remDr$getPageSource()[[1]]
+------------------------------------------------------------------------
 
-remDr$close()
-rD$server$stop()
+## Basic workflow: `read_html_live()`
+
+```{r echo=T,eval=FALSE, read-html-live-basic}
+library(rvest)
+library(dplyr)
+
+# Start a live Chrome session and load the page
+live <- read_html_live("https://www.cducsu.de/presse")
+
+# Handle cookie banner (Klaro): click “Alle Cookies akzeptieren”
+live$click("button.cm-btn.cm-btn-success")
+
+# Click "Mehr laden" (load more items)
+live$scroll_into_view("a.button[rel='next']")
+live$click("a.button[rel='next']", n_clicks = 2)
+
+# Extract press releases currently visible
+items <- live |>
+  html_elements(".press-release-teasers [data-drupal-views-infinite-scroll-content-wrapper] article")
+
+out <- tibble(
+  title  = items |> html_element("a") |> html_text2(),
+  url    = items |> html_element("a") |> html_attr("href") |> paste0("https://www.cducsu.de", .),
+  date   = items |> html_element("time") |> html_text2(),
+  author = items |> html_element(".truncate") |> html_text2()
+)
+
+out |> slice_head(n = 10)
 ```
-
-# Exercise 4: RSelenium
 
 ------------------------------------------------------------------------
 
 ## Inspecting network activity
 
 -   Use browser dev tools to inspect network requests
--   Often you can recreate browser behavior instead of using RSelenium
+-   Often you can recreate browser behavior with `httr` once you find the underlying JSON endpoint
 -   Example: Find the JSON endpoint behind a table or chart
+-   Key idea: the same **CSS selector logic** you use for `html_elements()` is what you use for interactions like `live$click()` / `live$type()`
+-   Cursor tip: Chrome DevTools MCP (connect Cursor ↔ DevTools): <https://cursor.com/docs/cli/mcp> and <https://github.com/mcp/chromedevtools/chrome-devtools-mcp>
 
 ------------------------------------------------------------------------
 
@@ -282,33 +275,61 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 
 ------------------------------------------------------------------------
 
-## When to use `httr` vs. RSelenium
+## When to use `httr` vs. `read_html_live()`
 
 -   Use `httr` for APIs, or simple HTTP requests
--   Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)
--   Often, you can use browser dev tools to find the hidden API and use `httr` instead of RSelenium (faster, more robust)
+-   Use `read_html_live()` when the HTML is built by JavaScript and you need a live browser to see it
+-   Often, you can use browser dev tools to find the hidden API and use `httr` instead (faster, more robust)
 
 ------------------------------------------------------------------------
 
-## Agent-controlled browsers (also browser automation)
+## Agent-controlled browsers
 
--   AI agents can drive a real browser (click/scroll/forms) and can be used **instead of RSelenium** in some workflows
+-   AI agents can drive a real browser (click/scroll/forms) and can complement `read_html_live()` in exploration workflows
 -   Best use: **exploration** (find the right selectors, figure out pagination, discover the underlying XHR/JSON calls)
 -   **Tradeoffs:**
     -   Real browser automation → still **slow**
     -   Paid model calls → **costs money**
-    -   Not fully deterministic → for research, convert the final approach into a reproducible script (`httr` / `rvest` / `RSelenium` / Playwright)
+    -   Not fully deterministic → for research, convert the final approach into a reproducible script (`httr` / `rvest`)
+
 
 ------------------------------------------------------------------------
 
-# Exercise 5: httr
+## Exercise 5: `httr`
+
+-   **Time:** 25-30 minutes
+-   **Where in GitHub:** `exercises/05-httr.R`
+-   **Goal:** reproduce a browser request with `httr`, inspect the response, and parse the returned content
+-   **Steps:**
+    1.  Open `exercises/05-httr.R`
+    2.  Run a GET request and inspect `status_code()`, `headers()`, and `content()`
+    3.  Add query parameters (`GET(..., query = ...)`) for pagination/search
+
+------------------------------------------------------------------------
+
+## Recap: building blocks so far
+
+1.  **Static pages**: `read_html()` + `html_elements()` + `html_text2()` / `html_attr()`
+2.  **Dynamic pages**: `read_html_live()` + `live$click()`
+3.  **Hidden APIs / backend calls**: use DevTools → reproduce requests with `httr`
+4.  **Parse + tidy**: JSON (`jsonlite`) and nested data (`tidyr::unnest_*`)
+
+------------------------------------------------------------------------
+
+## What can go wrong? (1/2)
+
+-   **Selectors break** when the site layout changes
+-   **Dynamic content**: element exists only after JS + scrolling + clicks
+-   **Rate limits / blocks**: 429s, CAPTCHAs, temporary bans
+-   **Session & auth**: cookies/tokens expire, access requires authentication
+-   **Data quality issues**: duplicates, missing pages, partial downloads
 
 ------------------------------------------------------------------------
 
 ## Best practices
 
 -   **Give feedback in your scraping loops:**
-    -   Print progress with `print()` or `cat()`
+    -   Print progress with `print()` or `cat()` or `message()`
 -   **Use `tryCatch` to handle errors:**
     -   Prevents your script from stopping if one download fails
     -   Log errors for later review
@@ -360,10 +381,44 @@ tryCatch({
 
 ## Exercise 7: Helpful tools
 
+-   **Time:** 20-25 minutes
+-   **Where in GitHub:** `exercises/06-helpful-tools.R`
+-   **Goal:** make your scraper more reliable (progress, caching, logging, error handling)
+-   **Steps:**
+    1.  Open `exercises/06-helpful-tools.R`
+    2.  Add progress output (`cat()`, `message()`) inside a loop
+    3.  Add caching (save files to disk and reuse if present)
+    4.  Add error handling with `tryCatch()` and write a simple log file
 
 ------------------------------------------------------------------------
 
-## Scheduled scraping: Automate your scripts
+## Ethics and legal aspects: What you need to know
+
+-   Check the website's terms of service
+-   Respect robots.txt `robotstxt`
+-   Avoid overloading servers (be `polite`!)
+-   GDPR and privacy: Don't collect personal data without consent
+-   Copyright: Don't redistribute scraped content without permission
+    -   Example (press releases under Creative Commons): <https://www.spdfraktion.de/impressum>
+-   Consider adding your contact details in the header
+-   When in doubt, ask for permission or use official APIs
+
+------------------------------------------------------------------------
+
+## Example: robots.txt
+
+-   Check `https://example.com/robots.txt` for scraping rules
+-   Example: <https://afd.de/robots.txt>
+-   Use `robotstxt` R package to check permissions
+
+```{r robotstxt, eval=FALSE,echo=T}
+library(robotstxt)
+paths_allowed("https://example.com/path")
+```
+
+------------------------------------------------------------------------
+
+### Scheduled scraping (local)
 
 -   Use cron jobs (Linux/macOS) or Task Scheduler (Windows) to run R scripts automatically
 -   R package: `taskscheduleR` (Windows)
@@ -375,46 +430,27 @@ tryCatch({
 
 ------------------------------------------------------------------------
 
-## Scheduling scraping scripts remotely
+### Scheduling remotely (server / Docker)
 
 -   **Why schedule remotely?**
     -   Your script runs even when your laptop is off
-    -   More reliable, scalable, and can run on a schedule (e.g., every night)
+    -   More reliable, scalable, and can run on a schedule 
     -   Useful for long-running or regular scraping tasks
 -   **Requirements:**
     -   Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)
     -   Ability to install R and all required packages
     -   (Recommended) Use Docker to package your environment for reproducibility
 
-------------------------------------------------------------------------
-
-## Scheduling scraping scripts remotely
-
--   **What is Docker?**
-    -   Docker "containerizes" your code and all its dependencies
-    -   Ensures your script runs the same everywhere (laptop, server, cloud)
-    -   Makes deployment and updates easier
--   **Scheduling options:**
-    -   Linux: `cron` jobs
-    -   Windows: Task Scheduler
-    -   Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.
-
-------------------------------------------------------------------------
+. . .
 
 -   **Example: Simple Dockerfile for an R scraping script**
 
 ``` dockerfile
 FROM rocker/r-ver:4.3.1
-RUN install2.r --error rvest httr RSelenium tidyverse
+RUN install2.r --error rvest httr chromote tidyverse
 COPY myscript.R /myscript.R
 CMD ["Rscript", "/myscript.R"]
 ```
-
--   **Challenges:**
-    -   Need to manage credentials securely (API keys, passwords)
-    -   Need to handle errors, logging, and notifications
-    -   More technical knowledge required (command line, server setup, Docker basics)
--   **Tip:** Start simple (local cron job), then move to Docker/cloud as your needs grow!
 
 ------------------------------------------------------------------------
 
@@ -422,39 +458,15 @@ CMD ["Rscript", "/myscript.R"]
 
 -   CAPTCHAs: Hard to bypass, look for alternative data sources or APIs
 -   Rate limits: Add `Sys.sleep()` between requests, randomize intervals
--   Session IDs: Use cookies, headers, or RSelenium to maintain sessions
--   Proxies: Use proxy servers to rotate IPs (see `httr::use_proxy()` or RSelenium proxy settings)
+-   Session IDs: Use cookies/headers (`httr`) or keep a live browser session (`read_html_live()`)
+-   Proxies: Use proxy servers to rotate IPs (see `httr::use_proxy()`)
 
 ------------------------------------------------------------------------
 
-## Ethics and legal aspects: What you need to know
-
--   Always check the website's terms of service
--   Respect robots.txt `robotstxt`
--   Avoid overloading servers (be polite!)
--   GDPR and privacy: Don't collect personal data without consent
--   Copyright: Don't redistribute scraped content without permission
--   Consider adding your contact details in the User-Agent header
--   When in doubt, ask for permission or use official APIs
-
-------------------------------------------------------------------------
-
-## Example: robots.txt
-
--   Check `https://example.com/robots.txt` for scraping rules
--   Use `robotstxt` R package to check permissions
-
-```{r robotstxt, eval=FALSE,echo=T}
-library(robotstxt)
-paths_allowed("https://example.com/path")
-```
-
-------------------------------------------------------------------------
-
-## Using AI assistants for web scraping (LLMs / agents)
+## Using AI assistants for web scraping
 
 -   **How LLMs can help:**
-    -   Generate R code for scraping (rvest, httr, RSelenium, etc.)
+    -   Generate R code for scraping (`rvest`, `httr`, etc.)
     -   Suggest CSS selectors or regular expressions for extracting data
     -   Explain error messages and help debug code
     -   Summarize, clean, or transform scraped data
@@ -463,7 +475,7 @@ paths_allowed("https://example.com/path")
 
 ------------------------------------------------------------------------
 
-## Using AI assistants for web scraping (LLMs / agents)
+## Using AI assistants for web scraping 
 
 -   **Limitations and challenges:**
     -   May suggest code that doesn't work or is outdated ("hallucination")
@@ -476,31 +488,29 @@ paths_allowed("https://example.com/path")
 
 ------------------------------------------------------------------------
 
-## Agent vs script: choose by scale
+## Automated browser vs script
 
--   **Small-scale / exploratory tasks:** agent-first can be great
-    -   Let the agent control the browser, inspect the DOM/Network, click through flows, and produce a quick prototype
+-   **Small-scale / exploratory tasks:** 
+    -   Let the agent control the browser, inspect the DOM/Network, click through flows etc.
     -   Ideal when you need to collect a small sample, test feasibility, or understand page behavior
 -   **Larger-scale / production tasks:** move to a script
     -   Browser-driven agent loops become slower and more expensive at scale
-    -   Better to convert the discovered logic into an R script (`httr`/API or stable selectors) and run reproducibly
--   Practical rule: use the agent to **discover and debug**, then use scripts to **scale and maintain**
+    -   Better to convert the discovered logic into an R script
 
 ------------------------------------------------------------------------
 
 ## What is a “skill” (for an agent)?
 
 -   A **skill** is a reusable set of instructions and conventions you give an assistant so it behaves consistently across tasks.
--   Think of it as: **your lab’s standard operating procedure** encoded for the agent.
 -   Skills are most useful when tasks are repetitive, high-stakes, or easy to do “almost right”.
+-   Example skill (this repo): <https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/.cursor/skills/web-scraper/SKILL.md>
 
 ------------------------------------------------------------------------
 
 ## Why a web scraping skill is useful
 
--   **Makes results more reliable**: always check `robots.txt`, rate limits, and data provenance.
--   **Makes code more consistent**: folder structure, naming, logging, retries, and saving outputs.
--   **Makes debugging faster**: standard steps (inspect → hypothesize → test → log → iterate).
+-   Makes results more reliable: e.g. always check `robots.txt`, rate limits, and data provenance.
+-   Makes code more consistent: folder structure, naming, logging, retries, and saving outputs.
 
 Example skill checklist:
 
@@ -510,7 +520,7 @@ Example skill checklist:
 
 ------------------------------------------------------------------------
 
-## MCP (Model Context Protocol) in one slide
+## MCP (Model Context Protocol)
 
 -   MCP lets an assistant use **tools** beyond text generation (e.g., browser automation, network inspection, files, databases).
 -   It’s best thought of as: **plugins with a typed API** that provide controlled access to capabilities.
@@ -518,30 +528,6 @@ Example skill checklist:
     -   **Browser inspection** (DOM snapshots, clicking through pagination)
     -   **Network requests** (discover hidden JSON endpoints and pagination parameters)
 
-------------------------------------------------------------------------
-
-## When it doesn’t work: a debugging playbook
-
-Most scraping tasks are simple when the page is stable: if the selector/API works, it works. The real skill is what to do **when it fails**.
-
--   **Step 0: confirm the basics**
-    -   Is the page reachable? (status code, redirects, cookie wall)
-    -   Is the content in the **HTML** you download, or only after JS runs?
--   **Step 1: inspect the DOM**
-    -   Check if the element exists, and whether there are multiple similar elements
-    -   Prefer selectors that are **stable** (semantic classes/ids) over positional ones (`nth-child`)
--   **Step 2: check the Network tab**
-    -   Look for **XHR/fetch** calls that return JSON (often easiest for pagination/search)
-    -   Reproduce the request with `httr` (headers, params, pagination cursor)
--   **Step 3: handle blocking and scale issues**
-    -   Rate limits: slow down, add backoff, cache results
-    -   Anti-bot (CAPTCHA/Cloudflare): consider official APIs / permissions; browser automation may still fail
--   **Step 4: make it reproducible**
-    -   Save a small raw example (HTML/JSON), log errors, and write a minimal script that demonstrates the failure
-
-How an assistant helps:
-
--   Turn “it broke” into a checklist (DOM vs Network vs blocking), propose fixes, and iterate quickly on small test pulls.
 
 ------------------------------------------------------------------------
 
@@ -558,13 +544,16 @@ How an assistant helps:
 
 ## Exercise 7: Applied Exercise
 
--   Choose a topic from the list or propose your own
--   Work can also include additional steps like (simple) text analysis, geocoding, or data visualization
--   Don't start off coding right away, but think about the steps you need to take
--   Divide the project into smaller tasks
--   Discuss your project with your neighbor
--   For each step, start with a minimal example and make it work
--   Then think about additional steps like feedback, saving, error handling
+-   **Time:** 45-60 minutes
+-   **Where in GitHub:** `exercises/07-hands-on-project.R`
+-   **Goal:** design and implement a minimal end-to-end collection pipeline for a site of your choice
+-   **Steps:**
+    1.  Pick a topic from the list (or propose your own)
+    2.  Before coding: write down the steps (source type? HTML vs `read_html_live()` vs hidden API)
+    3.  Build a minimal working version for **one** page/request
+    4.  Scale up (pagination / “load more” / looping) and save raw data
+    5.  Add reliability features (rate limiting, caching, logging, `tryCatch`)
+    6.  Compare with a neighbor and sanity-check the resulting dataset
 
 
 ------------------------------------------------------------------------
@@ -603,59 +592,9 @@ How an assistant helps:
 -   [Air quality sensor data worldwide (encrypted via JavaScript)](https://waqi.info/#/c/3.563/8.145/2.2z)
 -   [Historic shapefiles for Danish parishes](https://dataforsyningen.dk/data/4840)
 
-
-## Scraping Workflow in Practice
-
-1.  Discover the best source (HTML vs API vs file endpoint)
-2.  Inspect structure (selectors, parameters, pagination, dynamic loading)
-3.  Prototype a minimal scraper for one page/request
-4.  Scale up with loops, pauses, retries, and logging
-5.  Validate output quality before analysis
-6.  Store data and metadata for reproducibility
-
 ------------------------------------------------------------------------
 
-## Common Failure Modes (and Quick Fixes)
+## Goodbye 👋
 
--   **Selector drift:** class names or page structure changes\
-    → Prefer stable attributes and re-check with browser inspect tools
--   **Hidden pagination:** only first page scraped\
-    → Explicitly detect and iterate over pagination/query parameters
--   **Rate limiting / blocking:** requests start failing\
-    → Add pauses, retries, and conservative request rates
--   **Dynamic content not in HTML source:** empty tables in `read_html()`\
-    → Look for background API calls or use browser automation when needed
--   **Encoding / locale issues:** garbled text or broken numbers/dates\
-    → Set encoding explicitly and standardize parsing rules
+- Thank you!
 
-------------------------------------------------------------------------
-
-## Data Quality Checks Before Analysis
-
--   **Row count sanity check:** is the size plausible for the source/time range?
--   **Unique identifier check:** do IDs duplicate unexpectedly?
--   **Missingness check:** are key fields (date, actor, value) frequently missing?
--   **Coverage check:** are all expected pages/time periods included?
--   **Spot-check against source:** verify a random sample manually in browser
-
-------------------------------------------------------------------------
-
-## Ethics and Legal Quick Checklist
-
--   Check `robots.txt` and terms of service before scaling up
--   Minimize load: respectful request rate and pauses
--   Avoid collecting personal data unless clearly necessary and lawful
--   Keep an audit trail: source URL, scrape date, script version
--   Document limitations and potential biases in collected data
-
-------------------------------------------------------------------------
-
-## AI Agent Guardrails for Scraping
-
--   **AI proposes, you verify**: selectors, endpoints, parameters, and outputs
--   Ask AI to explain *why* a selector or endpoint is robust
--   Test on small samples before full runs
--   Require explicit checks for duplicates, missing values, and coverage
--   Keep scripts transparent and reproducible (no black-box copy/paste)
-
-------------------------------------------------------------------------

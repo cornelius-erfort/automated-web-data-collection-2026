@@ -247,21 +247,16 @@ Cornelius Erfort
 </ul></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section>
 <section id="about-today" class="slide level2">
 <h2>About today</h2>
-<ul>
-<li>Focus on more advanced web scraping techniques</li>
-<li>Learn to handle dynamic content and browser automation</li>
-<li>Manage files and schedule scraping jobs</li>
-<li>Understand scraping challenges (CAPTCHAs, rate limits, proxies)</li>
-<li>Discuss ethics and legal aspects</li>
+<ol type="1">
+<li>Dynamic content: when <code>rvest</code> is not enough</li>
+<li>Live browser scraping with <code>rvest</code> (Chromote)</li>
+<li>Practical scraping ops: files, logging, and scheduling</li>
+<li>Common challenges: CAPTCHAs, rate limits, proxies</li>
+<li>Ethics and legal practice</li>
 <li>Applied exercises</li>
-<li>Syllabus: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html</a></li>
-<li>Cheat Sheet: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html</a></li>
-</ul>
+</ol>
 </section>
 <section id="dynamic-content-on-websites" class="slide level2">
 <h2>Dynamic Content on Websites</h2>
@@ -270,64 +265,54 @@ Cornelius Erfort
 <li>Standard tools like <code>rvest</code> only see the initial HTML</li>
 <li>Data may be loaded via AJAX, appear after clicks, or require scrolling</li>
 </ul>
+<p>Example (dynamic loading): <a href="https://www.cducsu.de/presse" class="uri">https://www.cducsu.de/presse</a></p>
 </section>
-<section id="rselenium-automate-your-browser" class="slide level2">
-<h2>RSelenium: Automate your browser</h2>
+<section id="rvest-read_html_live-via-chromote" class="slide level2">
+<h2>rvest: <code>read_html_live()</code> via Chromote</h2>
 <ul>
-<li>RSelenium lets you control a real browser from R</li>
-<li>You can click, scroll, fill forms, and extract data after JavaScript runs</li>
-<li>Works with Chrome, Firefox, Edge, etc.</li>
-<li>Useful for scraping sites that require interaction or authentication</li>
+<li><code>read_html_live()</code> runs a real Chrome browser in the background (via <code>chromote</code>)</li>
+<li>Lets you scrape <strong>JavaScript-generated</strong> HTML that <code>read_html()</code> can’t see</li>
+<li>Supports light interaction: click, type, scroll (via the <code>LiveHTML</code> object)</li>
 </ul>
-<div class="columns">
-<div class="column" style="width:40%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="slides-day-2_files/figure-revealjs/rselenium-qr-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><a href="https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf" class="uri">https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf</a></p>
-</div><div class="column" style="width:30%;">
-<p><img data-src="slides/images/rselenium.png" style="width:50.0%"></p>
-</div></div>
 </section>
-<section id="rselenium-basic-workflow" class="slide level2">
-<h2>RSelenium: Basic workflow</h2>
+<section id="basic-workflow-read_html_live" class="slide level2">
+<h2>Basic workflow: <code>read_html_live()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(RSelenium)</span>
-<span id="cb1-2"><a href=""></a><span class="co"># Start a Selenium server and browser</span></span>
-<span id="cb1-3"><a href=""></a>rD <span class="ot">&lt;-</span> <span class="fu">rsDriver</span>(<span class="at">browser =</span> <span class="st">"chrome"</span>)</span>
-<span id="cb1-4"><a href=""></a>remDr <span class="ot">&lt;-</span> rD<span class="sc">$</span>client</span>
-<span id="cb1-5"><a href=""></a></span>
-<span id="cb1-6"><a href=""></a><span class="co"># Navigate to a page</span></span>
-<span id="cb1-7"><a href=""></a>remDr<span class="sc">$</span><span class="fu">navigate</span>(<span class="st">"https://example.com"</span>)</span>
-<span id="cb1-8"><a href=""></a></span>
-<span id="cb1-9"><a href=""></a><span class="co"># Find an element and click it</span></span>
-<span id="cb1-10"><a href=""></a>button <span class="ot">&lt;-</span> remDr<span class="sc">$</span><span class="fu">findElement</span>(<span class="at">using =</span> <span class="st">"css selector"</span>, <span class="at">value =</span> <span class="st">".my-button"</span>)</span>
-<span id="cb1-11"><a href=""></a>button<span class="sc">$</span><span class="fu">clickElement</span>()</span>
-<span id="cb1-12"><a href=""></a></span>
-<span id="cb1-13"><a href=""></a><span class="co"># Extract page source after JS loads</span></span>
-<span id="cb1-14"><a href=""></a>html <span class="ot">&lt;-</span> remDr<span class="sc">$</span><span class="fu">getPageSource</span>()[[<span class="dv">1</span>]]</span>
-<span id="cb1-15"><a href=""></a></span>
-<span id="cb1-16"><a href=""></a>remDr<span class="sc">$</span><span class="fu">close</span>()</span>
-<span id="cb1-17"><a href=""></a>rD<span class="sc">$</span>server<span class="sc">$</span><span class="fu">stop</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(rvest)</span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="co"># Start a live Chrome session and load the page</span></span>
+<span id="cb1-5"><a href=""></a>live <span class="ot">&lt;-</span> <span class="fu">read_html_live</span>(<span class="st">"https://www.cducsu.de/presse"</span>)</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="co"># Handle cookie banner (Klaro): click “Alle Cookies akzeptieren”</span></span>
+<span id="cb1-8"><a href=""></a>live<span class="sc">$</span><span class="fu">click</span>(<span class="st">"button.cm-btn.cm-btn-success"</span>)</span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="co"># Click "Mehr laden" (load more items)</span></span>
+<span id="cb1-11"><a href=""></a>live<span class="sc">$</span><span class="fu">scroll_into_view</span>(<span class="st">"a.button[rel='next']"</span>)</span>
+<span id="cb1-12"><a href=""></a>live<span class="sc">$</span><span class="fu">click</span>(<span class="st">"a.button[rel='next']"</span>, <span class="at">n_clicks =</span> <span class="dv">2</span>)</span>
+<span id="cb1-13"><a href=""></a></span>
+<span id="cb1-14"><a href=""></a><span class="co"># Extract press releases currently visible</span></span>
+<span id="cb1-15"><a href=""></a>items <span class="ot">&lt;-</span> live <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href=""></a>  <span class="fu">html_elements</span>(<span class="st">".press-release-teasers [data-drupal-views-infinite-scroll-content-wrapper] article"</span>)</span>
+<span id="cb1-17"><a href=""></a></span>
+<span id="cb1-18"><a href=""></a>out <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-19"><a href=""></a>  <span class="at">title  =</span> items <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb1-20"><a href=""></a>  <span class="at">url    =</span> items <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">"href"</span>) <span class="sc">|&gt;</span> <span class="fu">paste0</span>(<span class="st">"https://www.cducsu.de"</span>, .),</span>
+<span id="cb1-21"><a href=""></a>  <span class="at">date   =</span> items <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"time"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb1-22"><a href=""></a>  <span class="at">author =</span> items <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">".truncate"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span>
+<span id="cb1-23"><a href=""></a>)</span>
+<span id="cb1-24"><a href=""></a></span>
+<span id="cb1-25"><a href=""></a>out <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section>
-<section id="exercise-4-rselenium" class="title-slide slide level1 center">
-<h1>Exercise 4: RSelenium</h1>
-
 </section>
 <section id="inspecting-network-activity" class="slide level2">
 <h2>Inspecting network activity</h2>
 <ul>
 <li>Use browser dev tools to inspect network requests</li>
-<li>Often you can recreate browser behavior instead of using RSelenium</li>
+<li>Often you can recreate browser behavior with <code>httr</code> once you find the underlying JSON endpoint</li>
 <li>Example: Find the JSON endpoint behind a table or chart</li>
+<li>Key idea: the same <strong>CSS selector logic</strong> you use for <code>html_elements()</code> is what you use for interactions like <code>live$click()</code> / <code>live$type()</code></li>
+<li>Cursor tip: Chrome DevTools MCP (connect Cursor ↔︎ DevTools): <a href="https://cursor.com/docs/cli/mcp" class="uri">https://cursor.com/docs/cli/mcp</a> and <a href="https://github.com/mcp/chromedevtools/chrome-devtools-mcp" class="uri">https://github.com/mcp/chromedevtools/chrome-devtools-mcp</a></li>
 </ul>
 </section>
 <section id="http-requests-and-the-httr-package" class="slide level2">
@@ -468,41 +453,66 @@ Cornelius Erfort
 <li>Check headers: <code>headers(resp)</code></li>
 </ul>
 </section>
-<section id="when-to-use-httr-vs.-rselenium" class="slide level2">
-<h2>When to use <code>httr</code> vs.&nbsp;RSelenium</h2>
+<section id="when-to-use-httr-vs.-read_html_live" class="slide level2">
+<h2>When to use <code>httr</code> vs.&nbsp;<code>read_html_live()</code></h2>
 <ul>
 <li>Use <code>httr</code> for APIs, or simple HTTP requests</li>
-<li>Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)</li>
-<li>Often, you can use browser dev tools to find the hidden API and use <code>httr</code> instead of RSelenium (faster, more robust)</li>
+<li>Use <code>read_html_live()</code> when the HTML is built by JavaScript and you need a live browser to see it</li>
+<li>Often, you can use browser dev tools to find the hidden API and use <code>httr</code> instead (faster, more robust)</li>
 </ul>
 </section>
-<section id="agent-controlled-browsers-also-browser-automation" class="slide level2">
-<h2>Agent-controlled browsers (also browser automation)</h2>
+<section id="agent-controlled-browsers" class="slide level2">
+<h2>Agent-controlled browsers</h2>
 <ul>
-<li>AI agents can drive a real browser (click/scroll/forms) and can be used <strong>instead of RSelenium</strong> in some workflows</li>
+<li>AI agents can drive a real browser (click/scroll/forms) and can complement <code>read_html_live()</code> in exploration workflows</li>
 <li>Best use: <strong>exploration</strong> (find the right selectors, figure out pagination, discover the underlying XHR/JSON calls)</li>
 <li><strong>Tradeoffs:</strong>
 <ul>
 <li>Real browser automation → still <strong>slow</strong></li>
 <li>Paid model calls → <strong>costs money</strong></li>
-<li>Not fully deterministic → for research, convert the final approach into a reproducible script (<code>httr</code> / <code>rvest</code> / <code>RSelenium</code> / Playwright)</li>
+<li>Not fully deterministic → for research, convert the final approach into a reproducible script (<code>httr</code> / <code>rvest</code>)</li>
 </ul></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="exercise-5-httr" class="title-slide slide level1 center">
-<h1>Exercise 5: httr</h1>
-
+<section id="exercise-5-httr" class="slide level2">
+<h2>Exercise 5: <code>httr</code></h2>
+<ul>
+<li><strong>Time:</strong> 25-30 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/05-httr.R</code></li>
+<li><strong>Goal:</strong> reproduce a browser request with <code>httr</code>, inspect the response, and parse the returned content</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li>Open <code>exercises/05-httr.R</code></li>
+<li>Run a GET request and inspect <code>status_code()</code>, <code>headers()</code>, and <code>content()</code></li>
+<li>Add query parameters (<code>GET(..., query = ...)</code>) for pagination/search</li>
+</ol></li>
+</ul>
+</section>
+<section id="recap-building-blocks-so-far" class="slide level2">
+<h2>Recap: building blocks so far</h2>
+<ol type="1">
+<li><strong>Static pages</strong>: <code>read_html()</code> + <code>html_elements()</code> + <code>html_text2()</code> / <code>html_attr()</code></li>
+<li><strong>Dynamic pages</strong>: <code>read_html_live()</code> + <code>live$click()</code></li>
+<li><strong>Hidden APIs / backend calls</strong>: use DevTools → reproduce requests with <code>httr</code></li>
+<li><strong>Parse + tidy</strong>: JSON (<code>jsonlite</code>) and nested data (<code>tidyr::unnest_*</code>)</li>
+</ol>
+</section>
+<section id="what-can-go-wrong-12" class="slide level2">
+<h2>What can go wrong? (1/2)</h2>
+<ul>
+<li><strong>Selectors break</strong> when the site layout changes</li>
+<li><strong>Dynamic content</strong>: element exists only after JS + scrolling + clicks</li>
+<li><strong>Rate limits / blocks</strong>: 429s, CAPTCHAs, temporary bans</li>
+<li><strong>Session &amp; auth</strong>: cookies/tokens expire, access requires authentication</li>
+<li><strong>Data quality issues</strong>: duplicates, missing pages, partial downloads</li>
+</ul>
 </section>
 <section id="best-practices" class="slide level2">
 <h2>Best practices</h2>
 <ul>
 <li><strong>Give feedback in your scraping loops:</strong>
 <ul>
-<li>Print progress with <code>print()</code> or <code>cat()</code></li>
+<li>Print progress with <code>print()</code> or <code>cat()</code> or <code>message()</code></li>
 </ul></li>
 <li><strong>Use <code>tryCatch</code> to handle errors:</strong>
 <ul>
@@ -554,9 +564,49 @@ Cornelius Erfort
 </section>
 <section id="exercise-7-helpful-tools" class="slide level2">
 <h2>Exercise 7: Helpful tools</h2>
+<ul>
+<li><strong>Time:</strong> 20-25 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/06-helpful-tools.R</code></li>
+<li><strong>Goal:</strong> make your scraper more reliable (progress, caching, logging, error handling)</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li>Open <code>exercises/06-helpful-tools.R</code></li>
+<li>Add progress output (<code>cat()</code>, <code>message()</code>) inside a loop</li>
+<li>Add caching (save files to disk and reuse if present)</li>
+<li>Add error handling with <code>tryCatch()</code> and write a simple log file</li>
+</ol></li>
+</ul>
 </section>
-<section id="scheduled-scraping-automate-your-scripts" class="slide level2">
-<h2>Scheduled scraping: Automate your scripts</h2>
+<section id="ethics-and-legal-aspects-what-you-need-to-know" class="slide level2">
+<h2>Ethics and legal aspects: What you need to know</h2>
+<ul>
+<li>Check the website’s terms of service</li>
+<li>Respect robots.txt <code>robotstxt</code></li>
+<li>Avoid overloading servers (be <code>polite</code>!)</li>
+<li>GDPR and privacy: Don’t collect personal data without consent</li>
+<li>Copyright: Don’t redistribute scraped content without permission
+<ul>
+<li>Example (press releases under Creative Commons): <a href="https://www.spdfraktion.de/impressum" class="uri">https://www.spdfraktion.de/impressum</a></li>
+</ul></li>
+<li>Consider adding your contact details in the header</li>
+<li>When in doubt, ask for permission or use official APIs</li>
+</ul>
+</section>
+<section id="example-robots.txt" class="slide level2">
+<h2>Example: robots.txt</h2>
+<ul>
+<li>Check <code>https://example.com/robots.txt</code> for scraping rules</li>
+<li>Example: <a href="https://afd.de/robots.txt" class="uri">https://afd.de/robots.txt</a></li>
+<li>Use <code>robotstxt</code> R package to check permissions</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
+<span id="cb8-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="scheduled-scraping-local">Scheduled scraping (local)</h3>
 <ul>
 <li>Use cron jobs (Linux/macOS) or Task Scheduler (Windows) to run R scripts automatically</li>
 <li>R package: <code>taskscheduleR</code> (Windows)</li>
@@ -564,13 +614,14 @@ Cornelius Erfort
 </ul>
 <pre><code>0 2 * * * Rscript /path/to/your_script.R</code></pre>
 </section>
-<section id="scheduling-scraping-scripts-remotely" class="slide level2">
-<h2>Scheduling scraping scripts remotely</h2>
+<section class="slide level2">
+
+<h3 id="scheduling-remotely-server-docker">Scheduling remotely (server / Docker)</h3>
 <ul>
 <li><strong>Why schedule remotely?</strong>
 <ul>
 <li>Your script runs even when your laptop is off</li>
-<li>More reliable, scalable, and can run on a schedule (e.g., every night)</li>
+<li>More reliable, scalable, and can run on a schedule</li>
 <li>Useful for long-running or regular scraping tasks</li>
 </ul></li>
 <li><strong>Requirements:</strong>
@@ -580,81 +631,30 @@ Cornelius Erfort
 <li>(Recommended) Use Docker to package your environment for reproducibility</li>
 </ul></li>
 </ul>
-</section>
-<section id="scheduling-scraping-scripts-remotely-1" class="slide level2">
-<h2>Scheduling scraping scripts remotely</h2>
-<ul>
-<li><strong>What is Docker?</strong>
-<ul>
-<li>Docker “containerizes” your code and all its dependencies</li>
-<li>Ensures your script runs the same everywhere (laptop, server, cloud)</li>
-<li>Makes deployment and updates easier</li>
-</ul></li>
-<li><strong>Scheduling options:</strong>
-<ul>
-<li>Linux: <code>cron</code> jobs</li>
-<li>Windows: Task Scheduler</li>
-<li>Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
+<p>. . .</p>
 <ul>
 <li><strong>Example: Simple Dockerfile for an R scraping script</strong></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb9-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
-<span id="cb9-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr RSelenium tidyverse</span>
-<span id="cb9-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
-<span id="cb9-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><strong>Challenges:</strong>
-<ul>
-<li>Need to manage credentials securely (API keys, passwords)</li>
-<li>Need to handle errors, logging, and notifications</li>
-<li>More technical knowledge required (command line, server setup, Docker basics)</li>
-</ul></li>
-<li><strong>Tip:</strong> Start simple (local cron job), then move to Docker/cloud as your needs grow!</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb10-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
+<span id="cb10-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr chromote tidyverse</span>
+<span id="cb10-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
+<span id="cb10-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="scraping-challenges-captchas-rate-limits-sessions-proxies" class="slide level2">
 <h2>Scraping challenges: CAPTCHAs, rate limits, sessions, proxies</h2>
 <ul>
 <li>CAPTCHAs: Hard to bypass, look for alternative data sources or APIs</li>
 <li>Rate limits: Add <code>Sys.sleep()</code> between requests, randomize intervals</li>
-<li>Session IDs: Use cookies, headers, or RSelenium to maintain sessions</li>
-<li>Proxies: Use proxy servers to rotate IPs (see <code>httr::use_proxy()</code> or RSelenium proxy settings)</li>
+<li>Session IDs: Use cookies/headers (<code>httr</code>) or keep a live browser session (<code>read_html_live()</code>)</li>
+<li>Proxies: Use proxy servers to rotate IPs (see <code>httr::use_proxy()</code>)</li>
 </ul>
 </section>
-<section id="ethics-and-legal-aspects-what-you-need-to-know" class="slide level2">
-<h2>Ethics and legal aspects: What you need to know</h2>
-<ul>
-<li>Always check the website’s terms of service</li>
-<li>Respect robots.txt <code>robotstxt</code></li>
-<li>Avoid overloading servers (be polite!)</li>
-<li>GDPR and privacy: Don’t collect personal data without consent</li>
-<li>Copyright: Don’t redistribute scraped content without permission</li>
-<li>Consider adding your contact details in the User-Agent header</li>
-<li>When in doubt, ask for permission or use official APIs</li>
-</ul>
-</section>
-<section id="example-robots.txt" class="slide level2">
-<h2>Example: robots.txt</h2>
-<ul>
-<li>Check <code>https://example.com/robots.txt</code> for scraping rules</li>
-<li>Use <code>robotstxt</code> R package to check permissions</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
-<span id="cb10-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="using-ai-assistants-for-web-scraping-llms-agents" class="slide level2">
-<h2>Using AI assistants for web scraping (LLMs / agents)</h2>
+<section id="using-ai-assistants-for-web-scraping" class="slide level2">
+<h2>Using AI assistants for web scraping</h2>
 <ul>
 <li><strong>How LLMs can help:</strong>
 <ul>
-<li>Generate R code for scraping (rvest, httr, RSelenium, etc.)</li>
+<li>Generate R code for scraping (<code>rvest</code>, <code>httr</code>, etc.)</li>
 <li>Suggest CSS selectors or regular expressions for extracting data</li>
 <li>Explain error messages and help debug code</li>
 <li>Summarize, clean, or transform scraped data</li>
@@ -663,8 +663,8 @@ Cornelius Erfort
 </ul></li>
 </ul>
 </section>
-<section id="using-ai-assistants-for-web-scraping-llms-agents-1" class="slide level2">
-<h2>Using AI assistants for web scraping (LLMs / agents)</h2>
+<section id="using-ai-assistants-for-web-scraping-1" class="slide level2">
+<h2>Using AI assistants for web scraping</h2>
 <ul>
 <li><strong>Limitations and challenges:</strong>
 <ul>
@@ -680,36 +680,34 @@ Cornelius Erfort
 </ul></li>
 </ul>
 </section>
-<section id="agent-vs-script-choose-by-scale" class="slide level2">
-<h2>Agent vs script: choose by scale</h2>
+<section id="automated-browser-vs-script" class="slide level2">
+<h2>Automated browser vs script</h2>
 <ul>
-<li><strong>Small-scale / exploratory tasks:</strong> agent-first can be great
+<li><strong>Small-scale / exploratory tasks:</strong>
 <ul>
-<li>Let the agent control the browser, inspect the DOM/Network, click through flows, and produce a quick prototype</li>
+<li>Let the agent control the browser, inspect the DOM/Network, click through flows etc.</li>
 <li>Ideal when you need to collect a small sample, test feasibility, or understand page behavior</li>
 </ul></li>
 <li><strong>Larger-scale / production tasks:</strong> move to a script
 <ul>
 <li>Browser-driven agent loops become slower and more expensive at scale</li>
-<li>Better to convert the discovered logic into an R script (<code>httr</code>/API or stable selectors) and run reproducibly</li>
+<li>Better to convert the discovered logic into an R script</li>
 </ul></li>
-<li>Practical rule: use the agent to <strong>discover and debug</strong>, then use scripts to <strong>scale and maintain</strong></li>
 </ul>
 </section>
 <section id="what-is-a-skill-for-an-agent" class="slide level2">
 <h2>What is a “skill” (for an agent)?</h2>
 <ul>
 <li>A <strong>skill</strong> is a reusable set of instructions and conventions you give an assistant so it behaves consistently across tasks.</li>
-<li>Think of it as: <strong>your lab’s standard operating procedure</strong> encoded for the agent.</li>
 <li>Skills are most useful when tasks are repetitive, high-stakes, or easy to do “almost right”.</li>
+<li>Example skill (this repo): <a href="https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/.cursor/skills/web-scraper/SKILL.md" class="uri">https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/.cursor/skills/web-scraper/SKILL.md</a></li>
 </ul>
 </section>
 <section id="why-a-web-scraping-skill-is-useful" class="slide level2">
 <h2>Why a web scraping skill is useful</h2>
 <ul>
-<li><strong>Makes results more reliable</strong>: always check <code>robots.txt</code>, rate limits, and data provenance.</li>
-<li><strong>Makes code more consistent</strong>: folder structure, naming, logging, retries, and saving outputs.</li>
-<li><strong>Makes debugging faster</strong>: standard steps (inspect → hypothesize → test → log → iterate).</li>
+<li>Makes results more reliable: e.g.&nbsp;always check <code>robots.txt</code>, rate limits, and data provenance.</li>
+<li>Makes code more consistent: folder structure, naming, logging, retries, and saving outputs.</li>
 </ul>
 <p>Example skill checklist:</p>
 <ul>
@@ -718,8 +716,8 @@ Cornelius Erfort
 <li>Add: polite delays, error handling, and resumable scraping (save intermediate results).</li>
 </ul>
 </section>
-<section id="mcp-model-context-protocol-in-one-slide" class="slide level2">
-<h2>MCP (Model Context Protocol) in one slide</h2>
+<section id="mcp-model-context-protocol" class="slide level2">
+<h2>MCP (Model Context Protocol)</h2>
 <ul>
 <li>MCP lets an assistant use <strong>tools</strong> beyond text generation (e.g., browser automation, network inspection, files, databases).</li>
 <li>It’s best thought of as: <strong>plugins with a typed API</strong> that provide controlled access to capabilities.</li>
@@ -728,40 +726,6 @@ Cornelius Erfort
 <li><strong>Browser inspection</strong> (DOM snapshots, clicking through pagination)</li>
 <li><strong>Network requests</strong> (discover hidden JSON endpoints and pagination parameters)</li>
 </ul></li>
-</ul>
-</section>
-<section id="when-it-doesnt-work-a-debugging-playbook" class="slide level2">
-<h2>When it doesn’t work: a debugging playbook</h2>
-<p>Most scraping tasks are simple when the page is stable: if the selector/API works, it works. The real skill is what to do <strong>when it fails</strong>.</p>
-<ul>
-<li><strong>Step 0: confirm the basics</strong>
-<ul>
-<li>Is the page reachable? (status code, redirects, cookie wall)</li>
-<li>Is the content in the <strong>HTML</strong> you download, or only after JS runs?</li>
-</ul></li>
-<li><strong>Step 1: inspect the DOM</strong>
-<ul>
-<li>Check if the element exists, and whether there are multiple similar elements</li>
-<li>Prefer selectors that are <strong>stable</strong> (semantic classes/ids) over positional ones (<code>nth-child</code>)</li>
-</ul></li>
-<li><strong>Step 2: check the Network tab</strong>
-<ul>
-<li>Look for <strong>XHR/fetch</strong> calls that return JSON (often easiest for pagination/search)</li>
-<li>Reproduce the request with <code>httr</code> (headers, params, pagination cursor)</li>
-</ul></li>
-<li><strong>Step 3: handle blocking and scale issues</strong>
-<ul>
-<li>Rate limits: slow down, add backoff, cache results</li>
-<li>Anti-bot (CAPTCHA/Cloudflare): consider official APIs / permissions; browser automation may still fail</li>
-</ul></li>
-<li><strong>Step 4: make it reproducible</strong>
-<ul>
-<li>Save a small raw example (HTML/JSON), log errors, and write a minimal script that demonstrates the failure</li>
-</ul></li>
-</ul>
-<p>How an assistant helps:</p>
-<ul>
-<li>Turn “it broke” into a checklist (DOM vs Network vs blocking), propose fixes, and iterate quickly on small test pulls.</li>
 </ul>
 </section>
 <section id="outlook-what-else" class="slide level2">
@@ -778,13 +742,18 @@ Cornelius Erfort
 <section id="exercise-7-applied-exercise" class="slide level2">
 <h2>Exercise 7: Applied Exercise</h2>
 <ul>
-<li>Choose a topic from the list or propose your own</li>
-<li>Work can also include additional steps like (simple) text analysis, geocoding, or data visualization</li>
-<li>Don’t start off coding right away, but think about the steps you need to take</li>
-<li>Divide the project into smaller tasks</li>
-<li>Discuss your project with your neighbor</li>
-<li>For each step, start with a minimal example and make it work</li>
-<li>Then think about additional steps like feedback, saving, error handling</li>
+<li><strong>Time:</strong> 45-60 minutes</li>
+<li><strong>Where in GitHub:</strong> <code>exercises/07-hands-on-project.R</code></li>
+<li><strong>Goal:</strong> design and implement a minimal end-to-end collection pipeline for a site of your choice</li>
+<li><strong>Steps:</strong>
+<ol type="1">
+<li>Pick a topic from the list (or propose your own)</li>
+<li>Before coding: write down the steps (source type? HTML vs <code>read_html_live()</code> vs hidden API)</li>
+<li>Build a minimal working version for <strong>one</strong> page/request</li>
+<li>Scale up (pagination / “load more” / looping) and save raw data</li>
+<li>Add reliability features (rate limiting, caching, logging, <code>tryCatch</code>)</li>
+<li>Compare with a neighbor and sanity-check the resulting dataset</li>
+</ol></li>
 </ul>
 </section>
 <section id="web-scraping-ideas-easy" class="slide level2">
@@ -822,66 +791,13 @@ Cornelius Erfort
 <li><a href="https://dataforsyningen.dk/data/4840">Historic shapefiles for Danish parishes</a></li>
 </ul>
 </section>
-<section id="scraping-workflow-in-practice" class="slide level2">
-<h2>Scraping Workflow in Practice</h2>
-<ol type="1">
-<li>Discover the best source (HTML vs API vs file endpoint)</li>
-<li>Inspect structure (selectors, parameters, pagination, dynamic loading)</li>
-<li>Prototype a minimal scraper for one page/request</li>
-<li>Scale up with loops, pauses, retries, and logging</li>
-<li>Validate output quality before analysis</li>
-<li>Store data and metadata for reproducibility</li>
-</ol>
-</section>
-<section id="common-failure-modes-and-quick-fixes" class="slide level2">
-<h2>Common Failure Modes (and Quick Fixes)</h2>
+<section id="goodbye" class="slide level2">
+<h2>Goodbye 👋</h2>
 <ul>
-<li><strong>Selector drift:</strong> class names or page structure changes<br>
-→ Prefer stable attributes and re-check with browser inspect tools</li>
-<li><strong>Hidden pagination:</strong> only first page scraped<br>
-→ Explicitly detect and iterate over pagination/query parameters</li>
-<li><strong>Rate limiting / blocking:</strong> requests start failing<br>
-→ Add pauses, retries, and conservative request rates</li>
-<li><strong>Dynamic content not in HTML source:</strong> empty tables in <code>read_html()</code><br>
-→ Look for background API calls or use browser automation when needed</li>
-<li><strong>Encoding / locale issues:</strong> garbled text or broken numbers/dates<br>
-→ Set encoding explicitly and standardize parsing rules</li>
+<li>Thank you!</li>
 </ul>
-</section>
-<section id="data-quality-checks-before-analysis" class="slide level2">
-<h2>Data Quality Checks Before Analysis</h2>
-<ul>
-<li><strong>Row count sanity check:</strong> is the size plausible for the source/time range?</li>
-<li><strong>Unique identifier check:</strong> do IDs duplicate unexpectedly?</li>
-<li><strong>Missingness check:</strong> are key fields (date, actor, value) frequently missing?</li>
-<li><strong>Coverage check:</strong> are all expected pages/time periods included?</li>
-<li><strong>Spot-check against source:</strong> verify a random sample manually in browser</li>
-</ul>
-</section>
-<section id="ethics-and-legal-quick-checklist" class="slide level2">
-<h2>Ethics and Legal Quick Checklist</h2>
-<ul>
-<li>Check <code>robots.txt</code> and terms of service before scaling up</li>
-<li>Minimize load: respectful request rate and pauses</li>
-<li>Avoid collecting personal data unless clearly necessary and lawful</li>
-<li>Keep an audit trail: source URL, scrape date, script version</li>
-<li>Document limitations and potential biases in collected data</li>
-</ul>
-</section>
-<section id="ai-agent-guardrails-for-scraping" class="slide level2">
-<h2>AI Agent Guardrails for Scraping</h2>
-<ul>
-<li><strong>AI proposes, you verify</strong>: selectors, endpoints, parameters, and outputs</li>
-<li>Ask AI to explain <em>why</em> a selector or endpoint is robust</li>
-<li>Test on small samples before full runs</li>
-<li>Require explicit checks for duplicates, missing values, and coverage</li>
-<li>Keep scripts transparent and reproducible (no black-box copy/paste)</li>
-</ul>
-</section>
-<section class="slide level2">
 
-
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

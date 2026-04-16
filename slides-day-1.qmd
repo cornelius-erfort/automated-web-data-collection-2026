@@ -113,7 +113,6 @@ library(xml2)
 
 -   Workshop logistics
 -   Github
--   Syllabus: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
 -   Cheat Sheet: <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
 
 ```{r github}
@@ -129,6 +128,8 @@ qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026"
 ::::: columns
 ::: {.column width="70%"}
 Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. Wiley.
+
+<https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817>
 :::
 
 ::: {.column width="30%"}
@@ -143,6 +144,8 @@ Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). Automated Data Collec
 ::::: columns
 ::: {.column width="70%"}
 Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly Media.
+
+<https://r4ds.had.co.nz/>
 :::
 
 ::: {.column width="30%"}
@@ -154,25 +157,27 @@ Wickham, H., & Grolemund, G. (2023). R for Data Science (2nd Edition). O'Reilly 
 
 ## Timeline (1/2)
 
--   Day 1 Topics
-    -   Web data decision framework: HTML vs API vs dynamic content
-    -   HTML and CSS essentials for scraping with `rvest`
-    -   API fundamentals: query parameters, pagination, and responses
-    -   Build a minimal reproducible scraper workflow
-    -   Data quality checks before analysis
-    -   Applied exercise block
+**Day 1 Topics**
+
+- Web data decision framework: HTML vs API vs dynamic content
+- HTML and CSS essentials for scraping with `rvest`
+- API fundamentals: query parameters, pagination, and responses
+- Build a minimal reproducible scraper workflow
+- Data quality checks before analysis
+- Applied exercise block
 
 ------------------------------------------------------------------------
 
 ## Timeline (2/2)
 
--   Day 2 Topics
-    -   Dynamic pages and browser automation (when and how)
-    -   Robust scraping: retries, logging, and anti-fragile selectors
-    -   Workflow operations: file management, scheduling, and monitoring
-    -   Ethics and legal practice for responsible collection
-    -   AI-assisted scraping with verification guardrails
-    -   Applied exercise block
+**Day 2 Topics**
+
+- Dynamic pages and browser automation (when and how)
+- Robust scraping: retries, logging, and anti-fragile selectors
+- Workflow operations: file management, scheduling, and monitoring
+- Ethics and legal practice for responsible collection
+- AI-assisted scraping with verification guardrails
+- Applied exercise block
 
 ------------------------------------------------------------------------
 
@@ -390,6 +395,7 @@ qr_code("https://selectorgadget.com") %>% plot
 -   We now know how to inspect HTML and identify CSS selectors.
 -   Next step: use R packages to parse/load pages and extract the elements we want.
 -   Workflow: `read_html()` -\> select elements -\> extract text/attributes -\> build dataset.
+-   **Cheat sheet for R scraping:** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html>
 
 ------------------------------------------------------------------------
 
@@ -465,6 +471,7 @@ flowchart LR
   A(URL)-- "manually" --> B(URL pattern)
   B -- "str_c(URL, pattern)" --> C(list of URLs)
 ```
+
 
 ------------------------------------------------------------------------
 
@@ -596,8 +603,8 @@ for (link in links) {
 ## Useful functions
 
 -   `if(condition) expression`, if condition: only runs expression if condition is TRUE
--   `!` Logical NOT operator\`, inverts a logical (`TRUE` -\> `FALSE`, `FALSE` -\> `TRUE`)
--   `vector_1 %in% vector_2` operator to check whether the elements from vector_1 are in vector_2
+-   `!` Logical NOT operator, inverts a logical (`TRUE` -\> `FALSE`, `FALSE` -\> `TRUE`)
+-   `vector_1 %in% vector_2` operator to check whether the elements from `vector_1` are in `vector_2`
 -   `message` prints a message in the console
 
 ------------------------------------------------------------------------
@@ -866,5 +873,19 @@ fromJSON(json)
 
 ------------------------------------------------------------------------
 
-::: ::::::::
-:::
+## Outlook: Day 2
+
+- Dynamic content (JavaScript-rendered pages): when `rvest` is not enough
+- Browser automation (`RSelenium`) and alternatives
+- HTTP requests with `httr` (often faster than browser automation)
+- Robust workflows: retries, logging, and scheduling
+- Ethics and legal practice for responsible collection
+
+------------------------------------------------------------------------
+
+## See you tomorrow
+
+- Bring your project idea (or pick one from the examples)
+- Make sure your setup still works (R + browser dev tools)
+
+Thank you!

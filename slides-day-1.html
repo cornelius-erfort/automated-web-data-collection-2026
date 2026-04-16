@@ -305,7 +305,6 @@ Cornelius Erfort
 <ul>
 <li>Workshop logistics</li>
 <li>Github</li>
-<li>Syllabus: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html</a></li>
 <li>Cheat Sheet: <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html</a></li>
 </ul>
 
@@ -316,6 +315,7 @@ Cornelius Erfort
 <div class="columns">
 <div class="column" style="width:70%;">
 <p>Munzert, S., Rubba, C., Meißner, P., &amp; Nyhuis, D. (2014). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. Wiley.</p>
+<p><a href="https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817" class="uri">https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817</a></p>
 </div><div class="column" style="width:30%;">
 <p><img data-src="slides/images/munzert.jpg" style="width:80.0%"></p>
 </div></div>
@@ -325,14 +325,14 @@ Cornelius Erfort
 <div class="columns">
 <div class="column" style="width:70%;">
 <p>Wickham, H., &amp; Grolemund, G. (2023). R for Data Science (2nd Edition). O’Reilly Media.</p>
+<p><a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
 </div><div class="column" style="width:30%;">
 <p><img data-src="slides/images/wickham.jpg" style="width:80.0%"></p>
 </div></div>
 </section>
 <section id="timeline-12" class="slide level2">
 <h2>Timeline (1/2)</h2>
-<ul>
-<li>Day 1 Topics
+<p><strong>Day 1 Topics</strong></p>
 <ul>
 <li>Web data decision framework: HTML vs API vs dynamic content</li>
 <li>HTML and CSS essentials for scraping with <code>rvest</code></li>
@@ -340,13 +340,11 @@ Cornelius Erfort
 <li>Build a minimal reproducible scraper workflow</li>
 <li>Data quality checks before analysis</li>
 <li>Applied exercise block</li>
-</ul></li>
 </ul>
 </section>
 <section id="timeline-22" class="slide level2">
 <h2>Timeline (2/2)</h2>
-<ul>
-<li>Day 2 Topics
+<p><strong>Day 2 Topics</strong></p>
 <ul>
 <li>Dynamic pages and browser automation (when and how)</li>
 <li>Robust scraping: retries, logging, and anti-fragile selectors</li>
@@ -354,7 +352,6 @@ Cornelius Erfort
 <li>Ethics and legal practice for responsible collection</li>
 <li>AI-assisted scraping with verification guardrails</li>
 <li>Applied exercise block</li>
-</ul></li>
 </ul>
 </section>
 <section id="questions" class="slide level2">
@@ -547,6 +544,7 @@ Cornelius Erfort
 <li>We now know how to inspect HTML and identify CSS selectors.</li>
 <li>Next step: use R packages to parse/load pages and extract the elements we want.</li>
 <li>Workflow: <code>read_html()</code> -&gt; select elements -&gt; extract text/attributes -&gt; build dataset.</li>
+<li><strong>Cheat sheet for R scraping:</strong> <a href="https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html" class="uri">https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html</a></li>
 </ul>
 </section>
 <section id="package-xml2" class="slide level2">
@@ -793,8 +791,8 @@ Cornelius Erfort
 <h2>Useful functions</h2>
 <ul>
 <li><code>if(condition) expression</code>, if condition: only runs expression if condition is TRUE</li>
-<li><code>!</code> Logical NOT operator`, inverts a logical (<code>TRUE</code> -&gt; <code>FALSE</code>, <code>FALSE</code> -&gt; <code>TRUE</code>)</li>
-<li><code>vector_1 %in% vector_2</code> operator to check whether the elements from vector_1 are in vector_2</li>
+<li><code>!</code> Logical NOT operator, inverts a logical (<code>TRUE</code> -&gt; <code>FALSE</code>, <code>FALSE</code> -&gt; <code>TRUE</code>)</li>
+<li><code>vector_1 %in% vector_2</code> operator to check whether the elements from <code>vector_1</code> are in <code>vector_2</code></li>
 <li><code>message</code> prints a message in the console</li>
 </ul>
 </section>
@@ -1069,11 +1067,23 @@ Cornelius Erfort
 </ol></li>
 </ul>
 </section>
-<section class="slide level2">
-
-<div class="::::::::">
-
-</div>
+<section id="outlook-day-2" class="slide level2">
+<h2>Outlook: Day 2</h2>
+<ul>
+<li>Dynamic content (JavaScript-rendered pages): when <code>rvest</code> is not enough</li>
+<li>Browser automation (<code>RSelenium</code>) and alternatives</li>
+<li>HTTP requests with <code>httr</code> (often faster than browser automation)</li>
+<li>Robust workflows: retries, logging, and scheduling</li>
+<li>Ethics and legal practice for responsible collection</li>
+</ul>
+</section>
+<section id="see-you-tomorrow" class="slide level2">
+<h2>See you tomorrow</h2>
+<ul>
+<li>Bring your project idea (or pick one from the examples)</li>
+<li>Make sure your setup still works (R + browser dev tools)</li>
+</ul>
+<p>Thank you!</p>
 
 </section></section>
     </div>

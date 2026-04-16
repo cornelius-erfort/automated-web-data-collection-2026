@@ -16,7 +16,7 @@ format:
 **Prepared for:** Automated Web Data Collection 2026  
 
 **Course repo:** <https://github.com/cornelius-erfort/automated-web-data-collection-2026>
-<br>
+
 **Rendered syllabus (HTML):** <https://cornelius-erfort.github.io/automated-web-data-collection-2026/index.html>
 
 ## Course Overview
@@ -61,8 +61,8 @@ By the end of this workshop, participants will be able to:
 | 9:00 | Start, Introduction |
 | | Course overview, setup |
 | | HTML/CSS, Web Structure |
-| | HTML basics, CSS Diner, Selector Gadget, R basics (if needed) |
-| 12:30–13:30 | Lunch Break |
+| | HTML basics, CSS Diner, Selector Gadget, Basic file management |
+| ca. 12:30–13:30 | Lunch Break |
 | | Static Web Scraping, APIs and Data Formats |
 | | Continue with exercises and project work |
 | | Applied exercise block, Practical scraping (static sites, APIs) |
@@ -76,7 +76,7 @@ By the end of this workshop, participants will be able to:
 | 9:00 | Start |
 | | Day 1 Review, Recap and questions |
 | | Dynamic Content, Browser automation (RSelenium) |
-| 12:30–13:30 | Lunch Break |
+| ca. 12:30–13:30 | Lunch Break |
 | | HTTP Requests, Automation, Scheduling |
 | | Ethics, Legal Aspects |
 | | Continue with exercises and project work |
