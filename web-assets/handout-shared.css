@@ -98,14 +98,24 @@ table {
   table-layout: fixed;
 }
 
+/* Pandoc may emit <colgroup><col style="width: 50%">…; override that. */
+#course-schedule table colgroup col:first-child {
+  width: 8.5rem !important;
+}
+
+#course-schedule table colgroup col:nth-child(2) {
+  width: auto !important;
+}
+
 #course-schedule table th:first-child,
 #course-schedule table td:first-child {
-  width: 30%;
+  width: 8.5rem;
+  white-space: nowrap;
 }
 
 #course-schedule table th:nth-child(2),
 #course-schedule table td:nth-child(2) {
-  width: 70%;
+  width: auto;
 }
 
 th,
