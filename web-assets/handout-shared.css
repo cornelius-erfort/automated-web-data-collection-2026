@@ -93,6 +93,21 @@ table {
   width: 100%;
 }
 
+/* Make the schedule tables readable (time vs content). */
+#course-schedule table {
+  table-layout: fixed;
+}
+
+#course-schedule table th:first-child,
+#course-schedule table td:first-child {
+  width: 30%;
+}
+
+#course-schedule table th:nth-child(2),
+#course-schedule table td:nth-child(2) {
+  width: 70%;
+}
+
 th,
 td {
   border: 1px solid var(--border);

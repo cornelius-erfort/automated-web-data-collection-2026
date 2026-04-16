@@ -57,7 +57,7 @@ By the end of this workshop, participants will be able to:
 
 ### Day 1: Fundamentals and Basic Scraping
 
-| Time | Topic/Activities |
+| Time | Topic |
 | --- | --- |
 | 9:00 | Start, Introduction |
 | | Course overview, setup |
@@ -68,23 +68,23 @@ By the end of this workshop, participants will be able to:
 | | Continue with exercises and project work |
 | | Applied exercise block, Practical scraping (static sites, APIs) |
 | | Wrap-up |
-| 17:00 | Finish |
+| 17:00 | End |
 
 ### Day 2: Advanced Techniques and Best Practices
 
-| Time | Topic/Activities |
+| Time | Topic |
 | --- | --- |
 | 9:00 | Start |
-| | Day 1 Review, Recap and questions |
-| | Dynamic content with `rvest::read_html_live()` (Chromote) |
+| | Day 1 recap + roadmap for today |
+| | Dynamic content: `rvest::read_html_live()` (Chromote) demo (clicking / “Mehr laden”) |
+| | DevTools/Network: discover backend requests (“hidden APIs”) |
+| | Reproduce requests with `httr` (GET/POST, headers, cookies) |
+| | What can go wrong? (failure modes) + best practices (logging, caching, retries, rate limits) |
 | ca. 12:30–13:30 | Lunch Break |
-| | HTTP Requests, robust workflows (logging, caching, retries) |
-| | Optional: Scheduling (cron / Docker) |
-| | Ethics, Legal Aspects |
-| | Continue with exercises and project work |
-| | Applied exercise block, Project presentations, Q&A |
-| | Wrap-up |
-| 17:00 | Finish |
+| | Ethics & legal (ToS, robots.txt, `polite`, attribution/licensing) |
+| | Agents & tooling: skills + MCP / DevTools integration (how to supervise/verify) |
+| | Wrap-up + Q&A |
+| 17:00 | End |
 
 ## Resources
 
@@ -93,14 +93,7 @@ By the end of this workshop, participants will be able to:
 - Day 1 Slides (HTML): [slides](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-1.html)
 - Day 2 Slides (HTML): [slides](https://cornelius-erfort.github.io/automated-web-data-collection-2026/slides-day-2.html)
 - Web Data Collection Cheat Sheet (HTML): [cheat sheet](https://cornelius-erfort.github.io/automated-web-data-collection-2026/cheatsheet/cheatsheet.html)
-- Required R packages:
-  - [rvest](https://cran.r-project.org/package=rvest)
-  - [xml2](https://cran.r-project.org/package=xml2)
-  - [httr](https://cran.r-project.org/package=httr)
-  - [chromote](https://cran.r-project.org/package=chromote)
-  - [jsonlite](https://cran.r-project.org/package=jsonlite)
-  - [tidyverse](https://cran.r-project.org/package=tidyverse)
-  - [robotstxt](https://cran.r-project.org/package=robotstxt)
+- Required R packages: rvest, xml2, httr, chromote, jsonlite, tidyverse, robotstxt
 - [SelectorGadget](https://selectorgadget.com)
 - [CSS Diner](https://flukeout.github.io/)
 - [List of Free Public APIs](https://github.com/public-apis/public-apis)
