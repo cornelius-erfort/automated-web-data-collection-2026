@@ -42,7 +42,7 @@ By the end of this workshop, participants will be able to:
 
 - Understand web scraping fundamentals and best practices
 - Understand the role AI agents can play in scraping workflows (and how to supervise/verify them)
-- Use core **R** libraries for web scraping (rvest, RSelenium, httr)
+- Use core **R** libraries for web scraping (rvest + `read_html_live()`/chromote, httr)
 - Handle different types of web content (static, dynamic, JavaScript-rendered)
 - Work with APIs and direct HTTP requests
 - Store and process scraped data in various formats (CSV, JSON, XML, etc.)
@@ -76,9 +76,10 @@ By the end of this workshop, participants will be able to:
 | --- | --- |
 | 9:00 | Start |
 | | Day 1 Review, Recap and questions |
-| | Dynamic Content, Browser automation (RSelenium) |
+| | Dynamic content with `rvest::read_html_live()` (Chromote) |
 | ca. 12:30–13:30 | Lunch Break |
-| | HTTP Requests, Automation, Scheduling |
+| | HTTP Requests, robust workflows (logging, caching, retries) |
+| | Optional: Scheduling (cron / Docker) |
 | | Ethics, Legal Aspects |
 | | Continue with exercises and project work |
 | | Applied exercise block, Project presentations, Q&A |
@@ -96,9 +97,10 @@ By the end of this workshop, participants will be able to:
   - [rvest](https://cran.r-project.org/package=rvest)
   - [xml2](https://cran.r-project.org/package=xml2)
   - [httr](https://cran.r-project.org/package=httr)
-  - [RSelenium](https://cran.r-project.org/package=RSelenium)
+  - [chromote](https://cran.r-project.org/package=chromote)
   - [jsonlite](https://cran.r-project.org/package=jsonlite)
   - [tidyverse](https://cran.r-project.org/package=tidyverse)
+  - [robotstxt](https://cran.r-project.org/package=robotstxt)
 - [SelectorGadget](https://selectorgadget.com)
 - [CSS Diner](https://flukeout.github.io/)
 - [List of Free Public APIs](https://github.com/public-apis/public-apis)
