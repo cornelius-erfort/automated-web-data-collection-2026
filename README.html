@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cornelius Erfort (Witten/Herdecke University)">
-<meta name="dcterms.date" content="2026-04-16">
+<meta name="dcterms.date" content="2026-04-23">
 
 <title>Advanced Web Data Collection Workshop</title>
 <style>
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 16, 2026</p>
+      <p class="date">April 23, 2026</p>
     </div>
   </div>
   
@@ -183,13 +183,17 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td></td>
-<td>Applied exercise block, Practical scraping (static sites, APIs)</td>
+<td>Applied exercise: scrape the current MdBs of the Bundestag from <a href="https://www.bundestag.de/abgeordnete" class="uri">https://www.bundestag.de/abgeordnete</a></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td>Wrap-up</td>
+<td>Applied exercise block, Practical scraping (static sites, APIs)</td>
 </tr>
 <tr class="even">
+<td></td>
+<td>Wrap-up</td>
+</tr>
+<tr class="odd">
 <td>17:00</td>
 <td>End</td>
 </tr>
@@ -248,9 +252,13 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td></td>
-<td>Wrap-up + Q&amp;A</td>
+<td>Two-phase scraping workflow with agents: (1) <strong>Discovery</strong> — find the most stable data source (hidden REST/GraphQL APIs → server-rendered JSON like <code>__NEXT_DATA__</code> → CMS APIs → JSON-LD/microdata → stable semantic selectors, avoiding framework-generated classes); (2) <strong>Script generation</strong> — produce a single-file scraper (prefer pure HTTP via <code>httpx</code>/<code>httr</code> over headless browsers, CLI args, pagination, rate limiting, logging, configurable output) ready for scheduled runs</td>
 </tr>
 <tr class="odd">
+<td></td>
+<td>Wrap-up + Q&amp;A</td>
+</tr>
+<tr class="even">
 <td>17:00</td>
 <td>End</td>
 </tr>
@@ -277,6 +285,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="example-web-scraping-projects">Example Web Scraping Projects</h2>
 <p><strong>Easy</strong></p>
 <ul>
+<li>Current Members of the Bundestag (21st Wahlperiode) (<a href="https://www.bundestag.de/abgeordnete" class="uri">https://www.bundestag.de/abgeordnete</a>)</li>
 <li>Wikipedia: List of political scientists (<a href="https://en.wikipedia.org/wiki/List_of_political_scientists" class="uri">https://en.wikipedia.org/wiki/List_of_political_scientists</a>)</li>
 <li>Parties’ press releases (<a href="https://www.spd.de/presse/pressemitteilungen/" class="uri">https://www.spd.de/presse/pressemitteilungen/</a>)</li>
 <li>Polls (wahlrecht.de) (<a href="https://www.wahlrecht.de/umfragen/" class="uri">https://www.wahlrecht.de/umfragen/</a>)</li>

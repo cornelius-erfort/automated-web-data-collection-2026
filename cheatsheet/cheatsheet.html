@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cornelius Erfort (Witten/Herdecke University)">
-<meta name="dcterms.date" content="2026-04-16">
+<meta name="dcterms.date" content="2026-04-23">
 
 <title>R Web Data Collection Cheat Sheet</title>
 <style>
@@ -100,11 +100,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#basic-request-pattern" id="toc-basic-request-pattern" class="nav-link" data-scroll-target="#basic-request-pattern">Basic request pattern</a></li>
   </ul></li>
   <li><a href="#json-nested-data-jsonlite-tidyr" id="toc-json-nested-data-jsonlite-tidyr" class="nav-link" data-scroll-target="#json-nested-data-jsonlite-tidyr">JSON + Nested Data (<code>jsonlite</code> + <code>tidyr</code>)</a></li>
-  <li><a href="#dynamic-pages-rselenium" id="toc-dynamic-pages-rselenium" class="nav-link" data-scroll-target="#dynamic-pages-rselenium">Dynamic Pages (<code>RSelenium</code>)</a></li>
+  <li><a href="#dynamic-pages-rvestread_html_live-chromote" id="toc-dynamic-pages-rvestread_html_live-chromote" class="nav-link" data-scroll-target="#dynamic-pages-rvestread_html_live-chromote">Dynamic Pages (<code>rvest::read_html_live()</code> / <code>chromote</code>)</a></li>
   <li><a href="#data-wrangling-essentials-dplyr-tidyr-readr" id="toc-data-wrangling-essentials-dplyr-tidyr-readr" class="nav-link" data-scroll-target="#data-wrangling-essentials-dplyr-tidyr-readr">Data Wrangling Essentials (<code>dplyr</code>, <code>tidyr</code>, <code>readr</code>)</a></li>
   <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">File Formats</a></li>
   <li><a href="#reliability-checklist" id="toc-reliability-checklist" class="nav-link" data-scroll-target="#reliability-checklist">Reliability Checklist</a></li>
   <li><a href="#quick-decision-guide" id="toc-quick-decision-guide" class="nav-link" data-scroll-target="#quick-decision-guide">Quick Decision Guide</a></li>
+  <li><a href="#web-scraping-skill-two-phase-workflow" id="toc-web-scraping-skill-two-phase-workflow" class="nav-link" data-scroll-target="#web-scraping-skill-two-phase-workflow">Web Scraping Skill: Two-Phase Workflow</a>
+  <ul class="collapse">
+  <li><a href="#phase-1-discovery-find-the-most-stable-data-source" id="toc-phase-1-discovery-find-the-most-stable-data-source" class="nav-link" data-scroll-target="#phase-1-discovery-find-the-most-stable-data-source">Phase 1 — Discovery (find the most stable data source)</a></li>
+  <li><a href="#phase-2-script-generation-single-file-scraper-for-scheduling" id="toc-phase-2-script-generation-single-file-scraper-for-scheduling" class="nav-link" data-scroll-target="#phase-2-script-generation-single-file-scraper-for-scheduling">Phase 2 — Script generation (single-file scraper for scheduling)</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -129,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 16, 2026</p>
+      <p class="date">April 23, 2026</p>
     </div>
   </div>
   
@@ -151,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)       <span class="co"># scrape HTML with CSS selectors</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)        <span class="co"># make HTTP requests to APIs/endpoints</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)    <span class="co"># parse JSON responses</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSelenium)   <span class="co"># browser automation for dynamic pages</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(chromote)    <span class="co"># headless Chrome (used by read_html_live())</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robotstxt)   <span class="co"># check robots.txt permissions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="static-html-scraping-xml2-rvest" class="level2">
@@ -368,10 +373,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="dynamic-pages-rselenium" class="level2">
-<h2 class="anchored" data-anchor-id="dynamic-pages-rselenium">Dynamic Pages (<code>RSelenium</code>)</h2>
-<p>Use <code>RSelenium</code> when: - content appears only after JavaScript runs - data requires clicks/scroll/login - <code>read_html()</code> misses visible page data</p>
-<p>Typical sequence: 1. Start driver and open page 2. Wait / interact with page elements 3. Extract updated page source 4. Parse with <code>rvest</code> or save raw output</p>
+<section id="dynamic-pages-rvestread_html_live-chromote" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-pages-rvestread_html_live-chromote">Dynamic Pages (<code>rvest::read_html_live()</code> / <code>chromote</code>)</h2>
+<p>Use <code>read_html_live()</code> when: - content appears only after JavaScript runs - data requires clicks, scrolling, or “load more” buttons - <code>read_html()</code> misses visible page data</p>
+<p>Typical sequence: 1. <code>page &lt;- read_html_live(url)</code> opens the page in headless Chrome 2. Interact: <code>page$click(css = ".load-more")</code>, <code>page$scroll_by(top = 1000)</code>, <code>page$type(css = "input", text = "…")</code> 3. Extract: use <code>page</code> directly with <code>html_elements()</code> / <code>html_text2()</code> — it behaves like a live HTML document 4. Close when done: <code>page$session$close()</code></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_html_live(url)</code></td>
+<td>Load a page with a live (JS-rendered) session</td>
+</tr>
+<tr class="even">
+<td><code>page$click(css)</code></td>
+<td>Click an element</td>
+</tr>
+<tr class="odd">
+<td><code>page$scroll_by(top)</code></td>
+<td>Scroll the page to trigger lazy loading</td>
+</tr>
+<tr class="even">
+<td><code>page$type(css, text)</code></td>
+<td>Type into an input</td>
+</tr>
+<tr class="odd">
+<td><code>page$view()</code></td>
+<td>Open the current rendered page for inspection</td>
+</tr>
+<tr class="even">
+<td><code>page$html_elements(css)</code></td>
+<td>Extract elements from the live DOM</td>
+</tr>
+</tbody>
+</table>
+<p>Middle ground before going headless: inspect DevTools → Network for a hidden API and reproduce the request with <code>httr</code> — usually faster and more stable than browser automation.</p>
 </section>
 <section id="data-wrangling-essentials-dplyr-tidyr-readr" class="level2">
 <h2 class="anchored" data-anchor-id="data-wrangling-essentials-dplyr-tidyr-readr">Data Wrangling Essentials (<code>dplyr</code>, <code>tidyr</code>, <code>readr</code>)</h2>
@@ -463,10 +507,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Static page source available -&gt; <code>xml2</code> + <code>rvest</code></li>
 <li>Structured endpoint/API available -&gt; <code>httr</code> + <code>jsonlite</code></li>
-<li>JavaScript-only content -&gt; <code>RSelenium</code></li>
+<li>JavaScript-only content -&gt; <code>rvest::read_html_live()</code> (headless Chrome via <code>chromote</code>)</li>
 <li>Nested JSON too complex -&gt; <code>unnest_wider()</code> / <code>unnest_longer()</code></li>
 <li>Long multi-page jobs -&gt; loop + caching + retry logic</li>
 </ul>
+</section>
+<section id="web-scraping-skill-two-phase-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="web-scraping-skill-two-phase-workflow">Web Scraping Skill: Two-Phase Workflow</h2>
+<p>A reusable checklist for agent-assisted scraping (see <a href="https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/.cursor/skills/web-scraper/SKILL.md"><code>.cursor/skills/web-scraper/SKILL.md</code></a>). <strong>Always go through both phases in order</strong> — skipping discovery creates fragile scrapers.</p>
+<section id="phase-1-discovery-find-the-most-stable-data-source" class="level3">
+<h3 class="anchored" data-anchor-id="phase-1-discovery-find-the-most-stable-data-source">Phase 1 — Discovery (find the most stable data source)</h3>
+<p>Work top-down; stop at the first level that works:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Source</th>
+<th>Where to look</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Undocumented REST API</td>
+<td>DevTools → Network → XHR/fetch (try pagination clicks)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>GraphQL endpoint</td>
+<td><code>/graphql</code>, <code>/gql</code>, <code>__relay</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Server-rendered JSON blobs</td>
+<td><code>__NEXT_DATA__</code>, <code>__NUXT__</code>, <code>__INITIAL_STATE__</code>, Remix <code>__remixContext</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>React Server Components</td>
+<td>Next.js App Router: <code>?_rsc=</code> requests</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>CMS/platform API</td>
+<td>WordPress <code>/wp-json/wp/v2/</code>, Shopify, Drupal JSON:API, Contentful, Ghost</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Structured data in HTML</td>
+<td><code>&lt;script type="application/ld+json"&gt;</code>, microdata, RDFa</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>data-*</code> attributes</td>
+<td><code>data-product-id</code>, <code>data-price</code>, <code>data-sku</code></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Stable CSS selectors</td>
+<td>Semantic HTML (<code>&lt;article&gt;</code>, <code>&lt;time&gt;</code>, <code>&lt;table&gt;</code>); avoid <code>.css-1a2b3c</code> / <code>.MuiButton-root</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phase-2-script-generation-single-file-scraper-for-scheduling" class="level3">
+<h3 class="anchored" data-anchor-id="phase-2-script-generation-single-file-scraper-for-scheduling">Phase 2 — Script generation (single-file scraper for scheduling)</h3>
+<ul>
+<li><strong>Prefer pure HTTP</strong> (<code>httr</code>, <code>httpx</code>) over headless browsers; <code>read_html_live()</code> / Playwright are last-resort</li>
+<li>Single file, CLI args: <code>--output</code>, <code>--format</code> (jsonl/csv/parquet), <code>--date-range</code>, <code>--page-limit</code>, optional DB connection string</li>
+<li>Automatic pagination, polite delays (<code>Sys.sleep()</code>), progress logged to stderr</li>
+<li>Exit codes: <code>0</code> success, <code>1</code> partial, <code>2</code> failure</li>
+<li><code>USER_AGENT</code> and <code>HEADERS</code> constants at the top for easy tuning</li>
+<li>Always check <code>robots.txt</code>; flag WAFs (Cloudflare, Akamai) early so the strategy can be adjusted</li>
+</ul>
+</section>
 </section>
 
 </main>

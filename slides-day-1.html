@@ -233,7 +233,7 @@ Cornelius Erfort
 <li>Experience with <strong>agentic coding</strong> (e.g.&nbsp;Claude Code, Cursor, GitHub Copilot, etc.)?</li>
 <li>Experience with <strong>web scraping</strong>?
 <ul>
-<li>If yes: what did you scrape (site/API), and with what tools (e.g.&nbsp;<code>rvest</code>, Selenium, <code>httr</code>)?</li>
+<li>If yes: what did you scrape (site/API), and with what tools (e.g.&nbsp;<code>rvest</code>, <code>chromote</code>/<code>read_html_live()</code>, <code>httr</code>)?</li>
 </ul></li>
 </ul>
 </section>
@@ -522,13 +522,13 @@ Cornelius Erfort
 </section>
 <section id="view-the-source-code-in-the-browser" class="slide level2">
 <h2>View the source code in the browser</h2>
-<p><a href="https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html">MPs from the 17th Bundestag</a>, CSS path: <code>.linkIntern</code></p>
+<p><a href="https://www.bundestag.de/abgeordnete">Members of the current Bundestag</a></p>
 
-<img data-src="slides-day-1_files/figure-revealjs/bundestag-1.png" width="960" class="r-stretch"><p><a href="https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html" class="uri">https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html</a></p>
+<img data-src="slides-day-1_files/figure-revealjs/bundestag-1.png" width="960" class="r-stretch"><p><a href="https://www.bundestag.de/abgeordnete" class="uri">https://www.bundestag.de/abgeordnete</a></p>
 </section>
 <section id="view-the-source-code-in-the-browser-1" class="slide level2">
 <h2>View the source code in the browser</h2>
-<p><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Political scientists on Wikipedia</a>, CSS path: <code>h2+ ul li &gt; a:nth-child(1)</code></p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Political scientists on Wikipedia</a></p>
 
 <img data-src="slides-day-1_files/figure-revealjs/polsci-1.png" width="960" class="r-stretch"><p><a href="https://en.wikipedia.org/wiki/List_of_political_scientists" class="uri">https://en.wikipedia.org/wiki/List_of_political_scientists</a></p>
 </section>
@@ -537,6 +537,13 @@ Cornelius Erfort
 
 <img data-src="slides-day-1_files/figure-revealjs/selector-1.png" width="960" class="r-stretch"><p>10-15 min to install</p>
 <p><a href="https://selectorgadget.com" class="uri">https://selectorgadget.com</a></p>
+</section>
+<section id="css-paths-for-the-two-examples" class="slide level2">
+<h2>CSS paths for the two examples</h2>
+<ul>
+<li><a href="https://www.bundestag.de/abgeordnete">Members of the current Bundestag</a> → <code>.lazyloaded</code></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Political scientists on Wikipedia</a> → <code>h2+ ul li &gt; a:nth-child(1)</code></li>
+</ul>
 </section>
 <section id="from-page-structure-to-data-extraction-in-r" class="slide level2">
 <h2>From Page Structure to Data Extraction in R</h2>
@@ -682,11 +689,11 @@ Cornelius Erfort
 <span id="cb6-9"><a href=""></a><span class="co"># Check the first few collected links</span></span>
 <span id="cb6-10"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "https://labour.org.uk/updates/press-releases/liz-kendall-speech-at-labour-party-conference-2024/"       
-[2] "https://labour.org.uk/updates/press-releases/bridget-phillipson-speech-at-labour-party-conference-2024/"
-[3] "https://labour.org.uk/updates/press-releases/wes-streeting-speech-at-labour-party-conference-2024/"     
-[4] "https://labour.org.uk/updates/press-releases/keir-starmer-speech-at-labour-party-conference-2024/"      
-[5] "https://labour.org.uk/updates/press-releases/lisa-nandy-speech-at-labour-party-conference-2024/"        </code></pre>
+<pre><code>[1] "https://labour.org.uk/updates/press-releases/keir-starmer-speech-change-be-part-of-it/"                           
+[2] "https://labour.org.uk/updates/press-releases/keir-starmer-launches-change-labours-general-election-manifesto/"    
+[3] "https://labour.org.uk/updates/press-releases/keir-starmer-a-stronger-safer-more-secure-britain-speech/"           
+[4] "https://labour.org.uk/updates/press-releases/keir-starmer-speaking-at-the-launch-of-labours-six-steps-in-glasgow/"
+[5] "https://labour.org.uk/updates/press-releases/keir-starmer-speech-at-labours-six-steps-for-change-in-wales/"       </code></pre>
 </div>
 </div>
 </section>
@@ -742,12 +749,12 @@ Cornelius Erfort
 <span id="cb12-13"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
 <span id="cb12-14"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "labour/liz-kendall-speech-at-labour-party-conference-2024.html"
-[1] "labour/bridget-phillipson-speech-at-labour-party-conference-2024.html"
-[1] "labour/wes-streeting-speech-at-labour-party-conference-2024.html"
-[1] "labour/keir-starmer-speech-at-labour-party-conference-2024.html"
-[1] "labour/lisa-nandy-speech-at-labour-party-conference-2024.html"
-[1] "labour/yvette-cooper-speech-at-labour-party-conference-2024.html"</code></pre>
+<pre><code>[1] "labour/keir-starmer-speech-change-be-part-of-it.html"
+[1] "labour/keir-starmer-launches-change-labours-general-election-manifesto.html"
+[1] "labour/keir-starmer-a-stronger-safer-more-secure-britain-speech.html"
+[1] "labour/keir-starmer-speaking-at-the-launch-of-labours-six-steps-in-glasgow.html"
+[1] "labour/keir-starmer-speech-at-labours-six-steps-for-change-in-wales.html"
+[1] "labour/revealed-the-conservatives-71-billion-worth-of-reckless-spending-will-lead-to-interest-rate-rises.html"</code></pre>
 </div>
 </div>
 </section>
@@ -1071,7 +1078,7 @@ Cornelius Erfort
 <h2>Outlook: Day 2</h2>
 <ul>
 <li>Dynamic content (JavaScript-rendered pages): when <code>rvest</code> is not enough</li>
-<li>Browser automation (<code>RSelenium</code>) and alternatives</li>
+<li>Browser automation with <code>rvest::read_html_live()</code> (headless Chrome via <code>chromote</code>)</li>
 <li>HTTP requests with <code>httr</code> (often faster than browser automation)</li>
 <li>Robust workflows: retries, logging, and scheduling</li>
 <li>Ethics and legal practice for responsible collection</li>
