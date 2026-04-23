@@ -520,49 +520,31 @@ Example skill checklist:
 
 ------------------------------------------------------------------------
 
-## Web scraping skill: two-phase workflow
+## Web scraping skill: Phase 1
 
-The `web-scraper` skill splits every scraping task into two phases — **skipping discovery produces fragile scrapers that break on the first site update.**
+The `web-scraper` skill uses a two-phase workflow. **Always do Phase 1 before Phase 2.**
 
-1.  **Discovery** — find the most stable + efficient data source
-2.  **Script generation** — produce a single-file scraper ready to run on a schedule
+**Phase 1 — Discovery priority ladder** (work top-down; stop at first level that works):
 
-------------------------------------------------------------------------
+1.  Public / undocumented REST API — check XHR/fetch in DevTools, especially on pagination or filter clicks
+2.  GraphQL endpoint — look for `/graphql`, `/gql`
+3.  Server-rendered JSON blobs — `__NEXT_DATA__`, `__NUXT__`, `window.__INITIAL_STATE__`, Remix `__remixContext`
+4.  React Server Components — Next.js App Router: look for `?_rsc=` requests
+5.  CMS/platform APIs — WordPress (`/wp-json/wp/v2/`), Shopify, Drupal JSON:API, Contentful, Ghost
+6.  Structured data in HTML — `<script type="application/ld+json">`, microdata, RDFa
+7.  `data-` attributes — `data-product-id`, `data-price`, `data-sku`
+8.  Stable CSS selectors — semantic HTML (`<article>`, `<time>`, `<table>`); avoid framework-generated classes like `.css-1a2b3c` or `.MuiButton-root`
 
-## Phase 1 — Discovery priority ladder
-
-Work **top-down**; stop at the first level that works:
-
-1.  **Public / undocumented REST API** — check XHR/fetch in DevTools, especially on pagination or filter clicks
-2.  **GraphQL endpoint** — look for `/graphql`, `/gql`
-3.  **Server-rendered JSON blobs** — `__NEXT_DATA__`, `__NUXT__`, `window.__INITIAL_STATE__`, Remix `__remixContext`
-4.  **React Server Components** — Next.js App Router: look for `?_rsc=` requests
-5.  **CMS/platform APIs** — WordPress (`/wp-json/wp/v2/`), Shopify, Drupal JSON:API, Contentful, Ghost
-6.  **Structured data in HTML** — `<script type="application/ld+json">`, microdata, RDFa
-7.  **`data-` attributes** — `data-product-id`, `data-price`, `data-sku`
-8.  **Stable CSS selectors** — semantic HTML (`<article>`, `<time>`, `<table>`); **avoid** framework-generated classes like `.css-1a2b3c` or `.MuiButton-root`
-
-Output: a short report describing what was found and why it's the recommended source.
+Output: short report describing what was found and why it's the recommended source.
 
 ------------------------------------------------------------------------
 
-## Phase 2 — Script generation
+## Web scraping skill: Phase 2
 
-Produce a **single file** the user can run on a schedule (daily, monthly, …).
+**Phase 2 — Script generation** (single file runnable on a schedule):
 
-Tooling preference:
-
--   `httr` / `httpx` (pure HTTP) **>** headless browser — always prefer HTTP
--   `curl_cffi` (TLS fingerprinting workaround) as middle ground
--   `read_html_live()` / Playwright as **last resort**
-
-Script requirements:
-
--   CLI args: `--output`, `--format` (jsonl/csv/parquet), `--date-range`, `--page-limit`, optional `--connection` for DB
--   Pagination handled automatically, polite delays built in
--   Progress logged to stderr; exit codes (`0` success, `1` partial, `2` failure)
--   `USER_AGENT` and `HEADERS` at the top for easy tuning
--   Single file — no package structure
+-   Tooling preference: `httr` / `httpx` (pure HTTP) > headless browser; `curl_cffi` as middle ground; `read_html_live()` / Playwright as last resort
+-   Script requirements: CLI args (`--output`, `--format`, `--date-range`, `--page-limit`, optional `--connection`), auto-pagination, polite delays, progress to stderr, exit codes (`0/1/2`), `USER_AGENT` + `HEADERS` at top, single-file script
 
 ------------------------------------------------------------------------
 
