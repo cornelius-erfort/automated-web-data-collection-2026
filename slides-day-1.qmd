@@ -367,7 +367,7 @@ qr_code("https://flukeout.github.io/") %>% plot
 
 ## View the source code in the browser
 
-[Abgeordnete (Berliner Parlament)](https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche), CSS path: `.has-icon-file`
+[Abgeordnete (Berliner Parlament)](https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche)
 
 ```{r bundestag}
 qr_code("https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche") %>% plot
@@ -403,7 +403,7 @@ qr_code("https://selectorgadget.com") %>% plot
 
 ## CSS paths for the two examples
 
--   [Members of the current Bundestag](https://www.bundestag.de/abgeordnete) → `.lazyloaded`
+-   [Abgeordnete (Berliner Parlament)](https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche) → `.has-icon-file`
 -   [Political scientists on Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists) → `h2+ ul li > a:nth-child(1)`
 
 ------------------------------------------------------------------------
