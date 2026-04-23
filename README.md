@@ -66,6 +66,7 @@ By the end of this workshop, participants will be able to:
 | ca. 12:30–13:30 | Lunch Break |
 | | Static Web Scraping, APIs and Data Formats |
 | | Continue with exercises and project work |
+| | Applied exercise: scrape the current MdBs of the Bundestag from <https://www.bundestag.de/abgeordnete> |
 | | Applied exercise block, Practical scraping (static sites, APIs) |
 | | Wrap-up |
 | 17:00 | End |
@@ -83,6 +84,7 @@ By the end of this workshop, participants will be able to:
 | ca. 12:30–13:30 | Lunch Break |
 | | Ethics & legal (ToS, robots.txt, `polite`, attribution/licensing) |
 | | Agents & tooling: skills + MCP / DevTools integration (how to supervise/verify) |
+| | Two-phase scraping workflow with agents: (1) **Discovery** — find the most stable data source (hidden REST/GraphQL APIs → server-rendered JSON like `__NEXT_DATA__` → CMS APIs → JSON-LD/microdata → stable semantic selectors, avoiding framework-generated classes); (2) **Script generation** — produce a single-file scraper (prefer pure HTTP via `httpx`/`httr` over headless browsers, CLI args, pagination, rate limiting, logging, configurable output) ready for scheduled runs |
 | | Wrap-up + Q&A |
 | 17:00 | End |
 
@@ -103,6 +105,7 @@ By the end of this workshop, participants will be able to:
 
 **Easy**
 
+- Current Members of the Bundestag (21st Wahlperiode) (<https://www.bundestag.de/abgeordnete>)
 - Wikipedia: List of political scientists (<https://en.wikipedia.org/wiki/List_of_political_scientists>)
 - Parties' press releases (<https://www.spd.de/presse/pressemitteilungen/>)
 - Polls (wahlrecht.de) (<https://www.wahlrecht.de/umfragen/>)

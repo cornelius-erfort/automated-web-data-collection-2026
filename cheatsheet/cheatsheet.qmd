@@ -25,7 +25,7 @@ library(xml2)        # parse HTML/XML
 library(rvest)       # scrape HTML with CSS selectors
 library(httr)        # make HTTP requests to APIs/endpoints
 library(jsonlite)    # parse JSON responses
-library(RSelenium)   # browser automation for dynamic pages
+library(chromote)    # headless Chrome (used by read_html_live())
 library(robotstxt)   # check robots.txt permissions
 ```
 
@@ -126,18 +126,29 @@ tbl <- tibble::as_tibble(obj$results) %>%
 | `unnest_wider(col)` | Expand nested fields to columns |
 | `unnest_longer(col)` | Expand list entries to rows |
 
-## Dynamic Pages (`RSelenium`)
+## Dynamic Pages (`rvest::read_html_live()` / `chromote`)
 
-Use `RSelenium` when:
+Use `read_html_live()` when:
 - content appears only after JavaScript runs
-- data requires clicks/scroll/login
+- data requires clicks, scrolling, or "load more" buttons
 - `read_html()` misses visible page data
 
 Typical sequence:
-1. Start driver and open page
-2. Wait / interact with page elements
-3. Extract updated page source
-4. Parse with `rvest` or save raw output
+1. `page <- read_html_live(url)` opens the page in headless Chrome
+2. Interact: `page$click(css = ".load-more")`, `page$scroll_by(top = 1000)`, `page$type(css = "input", text = "…")`
+3. Extract: use `page` directly with `html_elements()` / `html_text2()` — it behaves like a live HTML document
+4. Close when done: `page$session$close()`
+
+| Function | What it does |
+|---|---|
+| `read_html_live(url)` | Load a page with a live (JS-rendered) session |
+| `page$click(css)` | Click an element |
+| `page$scroll_by(top)` | Scroll the page to trigger lazy loading |
+| `page$type(css, text)` | Type into an input |
+| `page$view()` | Open the current rendered page for inspection |
+| `page$html_elements(css)` | Extract elements from the live DOM |
+
+Middle ground before going headless: inspect DevTools → Network for a hidden API and reproduce the request with `httr` — usually faster and more stable than browser automation.
 
 ## Data Wrangling Essentials (`dplyr`, `tidyr`, `readr`)
 
@@ -174,6 +185,6 @@ Typical sequence:
 
 - Static page source available -> `xml2` + `rvest`
 - Structured endpoint/API available -> `httr` + `jsonlite`
-- JavaScript-only content -> `RSelenium`
+- JavaScript-only content -> `rvest::read_html_live()` (headless Chrome via `chromote`)
 - Nested JSON too complex -> `unnest_wider()` / `unnest_longer()`
 - Long multi-page jobs -> loop + caching + retry logic
