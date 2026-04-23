@@ -188,3 +188,31 @@ Middle ground before going headless: inspect DevTools → Network for a hidden A
 - JavaScript-only content -> `rvest::read_html_live()` (headless Chrome via `chromote`)
 - Nested JSON too complex -> `unnest_wider()` / `unnest_longer()`
 - Long multi-page jobs -> loop + caching + retry logic
+
+## Web Scraping Skill: Two-Phase Workflow
+
+A reusable checklist for agent-assisted scraping (see [`.cursor/skills/web-scraper/SKILL.md`](https://github.com/cornelius-erfort/automated-web-data-collection-2026/blob/main/.cursor/skills/web-scraper/SKILL.md)). **Always go through both phases in order** — skipping discovery creates fragile scrapers.
+
+### Phase 1 — Discovery (find the most stable data source)
+
+Work top-down; stop at the first level that works:
+
+| Priority | Source | Where to look |
+|---|---|---|
+| 1 | Undocumented REST API | DevTools → Network → XHR/fetch (try pagination clicks) |
+| 2 | GraphQL endpoint | `/graphql`, `/gql`, `__relay` |
+| 3 | Server-rendered JSON blobs | `__NEXT_DATA__`, `__NUXT__`, `__INITIAL_STATE__`, Remix `__remixContext` |
+| 4 | React Server Components | Next.js App Router: `?_rsc=` requests |
+| 5 | CMS/platform API | WordPress `/wp-json/wp/v2/`, Shopify, Drupal JSON:API, Contentful, Ghost |
+| 6 | Structured data in HTML | `<script type="application/ld+json">`, microdata, RDFa |
+| 7 | `data-*` attributes | `data-product-id`, `data-price`, `data-sku` |
+| 8 | Stable CSS selectors | Semantic HTML (`<article>`, `<time>`, `<table>`); avoid `.css-1a2b3c` / `.MuiButton-root` |
+
+### Phase 2 — Script generation (single-file scraper for scheduling)
+
+- **Prefer pure HTTP** (`httr`, `httpx`) over headless browsers; `read_html_live()` / Playwright are last-resort
+- Single file, CLI args: `--output`, `--format` (jsonl/csv/parquet), `--date-range`, `--page-limit`, optional DB connection string
+- Automatic pagination, polite delays (`Sys.sleep()`), progress logged to stderr
+- Exit codes: `0` success, `1` partial, `2` failure
+- `USER_AGENT` and `HEADERS` constants at the top for easy tuning
+- Always check `robots.txt`; flag WAFs (Cloudflare, Akamai) early so the strategy can be adjusted
