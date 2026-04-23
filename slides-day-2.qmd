@@ -300,10 +300,10 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 ## Exercise 5: `httr`
 
 -   **Time:** 25-30 minutes
--   **Where in GitHub:** `exercises/05-httr.R`
+-   **Where in GitHub:** [`exercises/05-httr.R`](exercises/05-httr.R)
 -   **Goal:** reproduce a browser request with `httr`, inspect the response, and parse the returned content
 -   **Steps:**
-    1.  Open `exercises/05-httr.R`
+    1.  Open [`exercises/05-httr.R`](exercises/05-httr.R)
     2.  Run a GET request and inspect `status_code()`, `headers()`, and `content()`
     3.  Add query parameters (`GET(..., query = ...)`) for pagination/search
 
@@ -384,10 +384,10 @@ tryCatch({
 ## Exercise 7: Helpful tools
 
 -   **Time:** 20-25 minutes
--   **Where in GitHub:** `exercises/06-helpful-tools.R`
+-   **Where in GitHub:** [`exercises/06-helpful-tools.R`](exercises/06-helpful-tools.R)
 -   **Goal:** make your scraper more reliable (progress, caching, logging, error handling)
 -   **Steps:**
-    1.  Open `exercises/06-helpful-tools.R`
+    1.  Open [`exercises/06-helpful-tools.R`](exercises/06-helpful-tools.R)
     2.  Add progress output (`cat()`, `message()`) inside a loop
     3.  Add caching (save files to disk and reuse if present)
     4.  Add error handling with `tryCatch()` and write a simple log file
@@ -576,7 +576,7 @@ Output: short report describing what was found and why it's the recommended sour
 
 ::: {.small-font}
 -   **Time:** 45-60 minutes
--   **Where in GitHub:** `exercises/07-hands-on-project.R`
+-   **Where in GitHub:** [`exercises/07-hands-on-project.R`](exercises/07-hands-on-project.R)
 -   **Goal:** design and implement a minimal end-to-end collection pipeline for a site of your choice
 -   **Steps:**
     1.  Pick a topic from the list (or propose your own)

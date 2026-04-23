@@ -448,10 +448,10 @@ qr_code("https://selectorgadget.com") %>% plot
 ## Exercise 1: HTML
 
 -   **Time:** 15-20 minutes
--   **Where in GitHub:** `exercises/01-html.R`
+-   **Where in GitHub:** [`exercises/01-html.R`](exercises/01-html.R)
 -   **Goal:** inspect webpage and extract elements with CSS selectors
 -   **Steps:**
-    1.  Open `exercises/01-html.R`
+    1.  Open [`exercises/01-html.R`](exercises/01-html.R)
     2.  Run the starter code and inspect the page structure
     3.  Write selectors and extract text/attributes
     4.  Compare your output with your neighbor
@@ -630,10 +630,10 @@ for (link in links) {
 ## Exercise 2: Web Scraping
 
 -   **Time:** 20-25 minutes
--   **Where in GitHub:** `exercises/02-webscraping.R`
+-   **Where in GitHub:** [`exercises/02-webscraping.R`](exercises/02-webscraping.R)
 -   **Goal:** scrape pages, store HTMLs, and combine info
 -   **Steps:**
-    1.  Open `exercises/02-webscraping.R`
+    1.  Open [`exercises/02-webscraping.R`](exercises/02-webscraping.R)
 
     2.  Build or inspect the URL list you need to scrape
 
@@ -881,10 +881,10 @@ fromJSON(json)
 ## Exercise 3: APIs and Data Formats
 
 -   **Time:** 20-25 minutes
--   **Where in GitHub:** `exercises/03-apis.R`
+-   **Where in GitHub:** [`exercises/03-apis.R`](exercises/03-apis.R)
 -   **Goal:** request API data, parse JSON, and transform nested output into rectangular data
 -   **Steps:**
-    1.  Open `exercises/03-apis.R`
+    1.  Open [`exercises/03-apis.R`](exercises/03-apis.R)
     2.  Build and run an API request URL
     3.  Parse response with `jsonlite`
     4.  Export a clean table for analysis
