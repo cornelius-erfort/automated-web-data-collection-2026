@@ -74,6 +74,8 @@ library(xml2)
 
 Example (dynamic loading): <https://www.cducsu.de/presse>
 
+Additional example (dynamic member table): <https://sansad.in/ls/members>
+
 ------------------------------------------------------------------------
 
 ## rvest: `read_html_live()` via Chromote
@@ -572,6 +574,7 @@ Output: short report describing what was found and why it's the recommended sour
 
 ## Exercise 7: Applied Exercise
 
+::: {.small-font}
 -   **Time:** 45-60 minutes
 -   **Where in GitHub:** `exercises/07-hands-on-project.R`
 -   **Goal:** design and implement a minimal end-to-end collection pipeline for a site of your choice
@@ -582,6 +585,7 @@ Output: short report describing what was found and why it's the recommended sour
     4.  Scale up (pagination / “load more” / looping) and save raw data
     5.  Add reliability features (rate limiting, caching, logging, `tryCatch`)
     6.  Compare with a neighbor and sanity-check the resulting dataset
+:::
 
 
 ------------------------------------------------------------------------

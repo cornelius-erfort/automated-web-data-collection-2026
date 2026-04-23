@@ -123,6 +123,17 @@ qr_code("https://github.com/cornelius-erfort/automated-web-data-collection-2026"
 
 ------------------------------------------------------------------------
 
+## GitHub (quick intro)
+
+-   GitHub hosts the course repository with slides, exercises, and helper materials.
+-   To follow along smoothly, keep a local copy on your computer.
+-   Recommended: clone the repo (`git clone ...`) so updates are easy to pull.
+-   Alternative: download the ZIP and save it in a folder for this workshop.
+
+<https://github.com/cornelius-erfort/automated-web-data-collection-2026>
+
+------------------------------------------------------------------------
+
 ## Resources (1/2)
 
 ::::: columns
@@ -356,13 +367,13 @@ qr_code("https://flukeout.github.io/") %>% plot
 
 ## View the source code in the browser
 
-[Members of the current Bundestag](https://www.bundestag.de/abgeordnete)
+[Abgeordnete (Berliner Parlament)](https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche), CSS path: `.has-icon-file`
 
 ```{r bundestag}
-qr_code("https://www.bundestag.de/abgeordnete") %>% plot
+qr_code("https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche") %>% plot
 ```
 
-<https://www.bundestag.de/abgeordnete>
+<https://www.parlament-berlin.de/das-parlament/abgeordnete/alphabetische-suche>
 
 ------------------------------------------------------------------------
 
