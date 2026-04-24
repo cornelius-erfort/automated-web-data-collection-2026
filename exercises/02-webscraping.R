@@ -67,7 +67,8 @@ dir.create("abgeordneten_qas", showWarnings = FALSE)
 for (i in 0:2) {
   url <- paste0(base_url, "?page=", i)
   file_name <- paste0("abgeordneten_html/", i, ".html")
-  download.file(url, destfile = file_name)
+  myhtml <- read_html(url)
+  write_html(myhtml, file_name)
   Sys.sleep(2)  # Be polite
 }
 
@@ -84,7 +85,7 @@ all_relative_urls <- c()
 
 for (file in html_files) {
   page <- read_html(file)
-  links <- html_elements(page, ".tile__question__teaser a")
+  links <- html_elements(page, "article div.question__question a")
   hrefs <- html_attr(links, "href")
   all_relative_urls <- c(all_relative_urls, hrefs)
 }
