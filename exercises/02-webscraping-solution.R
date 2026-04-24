@@ -45,7 +45,7 @@ for (i in 1:3) {
 # 6. Read the first html page (from the folder) and extract all links to the page for the full question/response on that page using a css path (hint: ".tile__question__teaser a").
 myhtml <- read_html("examples/berlin/0.html")
 
-myelements <- html_elements(myhtml, ".tile__question__teaser a")
+myelements <- html_elements(myhtml, "article div.question__question a")
 
 myelements
 
