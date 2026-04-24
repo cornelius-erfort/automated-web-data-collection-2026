@@ -29,6 +29,8 @@ for (page in pages) {
   
 }
 
+
+
 all_links <- c()
 
 for (filename in list.files("labour")) {
