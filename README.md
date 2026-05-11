@@ -1,5 +1,5 @@
 ---
-title: "Advanced Web Data Collection Workshop"
+title: "Automated Web Data Collection"
 subtitle: "Syllabus 2026"
 author: "Cornelius Erfort (Witten/Herdecke University)"
 date: today
